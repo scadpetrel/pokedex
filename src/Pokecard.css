@@ -1,0 +1,138 @@
+
+.Pokecard {
+  width: 8rem;
+  padding: 1rem;
+  margin: 1rem 2rem;
+  background-color: lightblue;
+  border-radius: 10px;
+}
+
+img.pokeCards-img{
+  width: 5rem;
+  /* background-color: white;
+  border-radius: 50%;
+  padding: 1rem */
+}
+
+/* backgrounds */
+.normal{ 
+  background-color: #A8A878;
+}
+.fire{ 
+  background-color: #F08030;
+}
+.water{ 
+  background-color: #6890F0;
+}
+.grass{ 
+  background-color: #78C850;
+}
+.electric{ 
+  background-color: #F8D030;
+}
+.ice{ 
+  background-color: #98D8D8;
+}
+.fighting{ 
+  background-color: #C03028;
+}
+.ground{ 
+  background-color: #E0C068 ;
+}
+.flying{ 
+  background-color: #A890F0;
+}
+.psycic{ 
+  background-color: #F85888;
+}
+.bug{ 
+  background-color: #A8B820;
+}
+.rock{ 
+  background-color: #B8A038;
+}
+.ghost{ 
+  background-color: #705898;
+}
+.dark{ 
+  background-color: #705848;
+}
+.dragon{ 
+  background-color: #7038F8 ;
+}
+.steel{ 
+  background-color: #B8B8D0;
+}
+.fairy { 
+  background-color: #F0B6BC;
+}
+
+/* 
+background colors from pokemon wiki at fandom
+
+normal: #A8A878
+fire: #F08030
+water: #6890F0 
+grass: #78C850 
+electric: #F8D030
+ice: #98D8D8 
+fighting: #C03028 
+poison: #A040A0 
+ground: #E0C068 
+flying: #A890F0
+psycic: #F85888 
+bug: #A8B820
+rock: #B8A038
+ghost: #705898
+dark: #705848 
+dragon: #7038F8 
+steel: #B8B8D0
+fairy: #F0B6BC
+/* .pokeCards {
+  
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.pokeCards-card {
+  padding: 15px;
+  background-color: white;
+  width: auto;
+  height: auto;
+  margin: 15px 35px;
+  list-style: none;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.pokeCards-img-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  width: 140px;
+  height: 140px;
+  margin: 0px auto;
+  
+}
+
+.pokeCards-img {
+  transition: transform .2s ease-in-out;
+}
+
+.pokeCards-img:hover {
+  transform: scale(1.3);
+}
+
+.pokeCards-name {
+  margin-top: 1.4rem;
+  margin-bottom: .5rem;
+  font-size: 1.3em;
+
+  font-weight: 700;
+} */

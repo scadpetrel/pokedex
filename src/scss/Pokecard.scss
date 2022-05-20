@@ -1,0 +1,78 @@
+
+@import "color";
+
+.Pokecard {
+  width: 8rem;
+  padding: 1rem;
+  margin: 3.5rem 2rem 1rem 2rem;
+  background-color: lightblue;
+  border-radius: 10px;
+}
+
+.Pokecard img{
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+  left: 1.5rem;
+
+  top: -4rem;
+  /* background-color: white;
+  border-radius: 50%;
+  padding: 1rem */
+}
+
+/* backgrounds */
+.normal{ 
+  background-color: lighten($normal, 30);
+}
+.fire{ 
+  background-color: lighten($fire, 30);
+}
+.water{ 
+  background-color: lighten($water, 25);
+}
+.grass{ 
+  background-color: lighten($grass, 30);
+}
+.electric{ 
+  background-color: lighten($electric, 25);
+}
+.ice{ 
+  background-color: lighten($ice, 25);
+}
+.fighting{ 
+  background-color: lighten($fighting, 40);
+}
+.poison{
+  background-color: lighten($poison, 45);
+}
+.ground{ 
+  background-color: lighten($ground, 28);
+}
+.flying{ 
+  background-color: lighten($flying, 30);
+}
+.psychic{ 
+  background-color: lighten($psycic, 28);
+}
+.bug{ 
+  background-color: lighten($bug, 43);
+}
+.rock{ 
+  background-color: lighten($rock, 35);
+}
+.ghost{ 
+  background-color: lighten($ghost, 30);
+}
+.dark{ 
+  background-color: lighten($dark, 30);
+}
+.dragon{ 
+  background-color: lighten($dragon, 30);
+}
+.steel{ 
+  background-color: lighten($steel, 30);
+}
+.fairy { 
+  background-color: lighten($fairy, 10);
+}

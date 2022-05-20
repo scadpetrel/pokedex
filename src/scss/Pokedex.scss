@@ -1,0 +1,10 @@
+@import "color";
+
+.Pokedex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+  padding: 0;
+}

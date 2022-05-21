@@ -12,7 +12,10 @@ class Pokecard extends React.Component {
         </div>
         <div>
           <h3>{this.props.name}</h3>
-          <p>{this.props.type}</p>
+          <p>{this.props.type} {this.props.type2}</p>
+          <p></p>
+          <small>{this.props.number}</small>
+          
         </div>
         
       </div>

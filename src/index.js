@@ -1,10 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './scss/index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./scss/index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const history = createBrowserHistory();
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   
     <App />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -14,13 +14,20 @@ import { Box } from "@mui/system";
 
 
 const Pokecard = (props) => {
+  const [hover, setHover] = useState(1)
   const backgroundType = `Pokecard ${props.type}`;
   const history = useNavigate();
-  // const link = props.number;
+    // const link = props.number;
+  const handleMouseEnter = () => {
+    setHover(14)
+  }
 
+  const handleMouseOut = () => {
+    setHover(1)
+  }
   return (
     <Grid item xl={3} lg={3} md={4} sm={6} xs={12}>
-      <Card sx={{ width: 225, height: 343 }} onClick={() => history(`/${props.number}`)}>
+      <Card elevation={hover} sx={{ width: 225, height: 343 }} onMouseOver={handleMouseEnter} onMouseOut={handleMouseOut} style={{cursor:'pointer'}} onClick={() => history(`/${props.number}`)}>
         <CardContent className={backgroundType}>
           <Typography variant="overline" display="block" gutterBottom>
             {props.number}

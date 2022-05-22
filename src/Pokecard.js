@@ -4,10 +4,12 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Chip from '@mui/material/Chip';
 import Typography from "@mui/material/Typography";
 // import { createBrowserHistory } from "history";
 // import { Router, Route, Switch, useHistory, create } from 'react-router-dom';
 import "./scss/Pokecard.scss";
+import { Box } from "@mui/system";
 
 
 
@@ -18,7 +20,7 @@ const Pokecard = (props) => {
 
   return (
     <Grid item xl={3} lg={3} md={4} sm={6} xs={12}>
-      <Card sx={{ width: 225 }} onClick={() => history(`/${props.number}`)}>
+      <Card sx={{ width: 225, height: 343 }} onClick={() => history(`/${props.number}`)}>
         <CardContent className={backgroundType}>
           <Typography variant="overline" display="block" gutterBottom>
             {props.number}
@@ -27,12 +29,17 @@ const Pokecard = (props) => {
           <Typography gutterBottom variant="h5" component="div">
             {props.name}
           </Typography>
-          <Typography variant="subtitle1" gutterBottom component="div">
+          <Box >
+          <Chip sx={{ mr:1 }}label={props.type}/>
+          {props.type2 ? (<><Chip label={props.type2}/></>) : ('')}
+          </Box>
+
+          {/* <Typography variant="subtitle1" gutterBottom component="div">
             {props.type}
-          </Typography>
-          <Typography variant="subtitle1" gutterBottom component="div">
+          </Typography> */}
+          {/* <Typography variant="subtitle1" gutterBottom component="div">
             {props.type2}
-          </Typography>
+          </Typography> */}
         </CardContent>
       </Card>
     </Grid>

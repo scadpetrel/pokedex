@@ -3,9 +3,9 @@ import Pokecard from "./Pokecard";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
+// import TextField from "@mui/material/TextField";
+// import InputLabel from "@mui/material/InputLabel";
+// import InputAdornment from "@mui/material/InputAdornment";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
@@ -23,6 +23,7 @@ const Search = styled("div")(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
+  marginBottom: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
@@ -147,8 +148,7 @@ const Pokedex = () => {
                     inputProps={{ "aria-label": "search" }}
                     onChange={handleSearchChange}
                   />
-                </Search>{" "}
-                Pokedex
+                </Search>
               </Box>
             </div>
           </Toolbar>
@@ -160,7 +160,7 @@ const Pokedex = () => {
             item.name.includes(filter) && (
               <Pokecard
                 key={item.id}
-                name={item.name}
+                name={changeToTitleCase(item.name)}
                 img={item.sprites.other.dream_world.front_default}
                 type={item.types[0].type.name}
                 type2={item.types[1] ? item.types[1].type.name : ""}

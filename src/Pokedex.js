@@ -81,9 +81,9 @@ const Pokedex = () => {
   return(
     <>
     <AppBar position="fixed">
-      <Toolbar>Something </Toolbar>
+      <Toolbar>Pokedex</Toolbar>
     </AppBar>
-    <h1>Pokedex</h1>
+    
     <Grid container spacing={3}>
     {axiosPoke.map(item => (
         <Pokecard key={item.id} name={item.name} img={item.sprites.other.dream_world.front_default} type={item.types[0].type.name} type2={item.types[1] ? item.types[1].type.name : '' }number={item.id}/>

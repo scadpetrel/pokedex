@@ -155,7 +155,7 @@ const Pokedex = () => {
         </AppBar>
       </Box>
       {isLoaded ? (<Grid container spacing={3}>
-        {axiosPoke.map(
+        {axiosPoke.sort((a, b) => a.id - b.id).map(
           (item) =>
             item.name.includes(filter) && (
               <Pokecard

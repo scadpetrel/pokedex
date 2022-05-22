@@ -19,7 +19,7 @@ const Pokecard = (props) => {
   const history = useNavigate();
     // const link = props.number;
   const handleMouseEnter = () => {
-    setHover(14)
+    setHover(18)
   }
 
   const handleMouseOut = () => {

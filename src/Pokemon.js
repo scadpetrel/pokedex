@@ -1,8 +1,46 @@
-import React from 'react'
+// import React from 'react'
+import React, {useState, useEffect} from "react";
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const Pokemon = () => {
     const { pokemonId } = useParams()
+    const [axiosPoke, setAxiosPoke] = useState([])
+
+    useEffect(() => {
+      console.log("useEffect pokemon")
+      // fetchPokemons()
+      axiosPokemon()
+    }, [])
+
+    const axiosPokemon = ()=> {
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        .then(function (response) {
+          const { data } = response;
+          // const { results } = data;
+          // console.log(results)
+          const newPokemonData = {}
+          console.log(data.name)
+          setAxiosPoke(data)
+
+          // results.forEach((p, idx) => {
+          // axios
+          //   .get(`https://pokeapi.co/api/v2/pokemon/${idx + 1}`)
+          //   .then(function (response) {
+          //     const { data } = response;
+          //     // console.log(data)
+          //     setAxiosPoke(curState => [...curState, data])
+          //   })
+          //   newPokemonData[idx + 1] = {
+          //     id: idx + 1,
+          //     name: response.data.name,
+              
+          //   }
+          // }) 
+          // setAxiosPoke(newPokemonData)
+        })
+    }
 
   return (
     <div><h3>{`Pokemon ${pokemonId}`}</h3></div>

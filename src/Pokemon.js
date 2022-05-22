@@ -1,11 +1,13 @@
 // import React from 'react'
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useParams } from 'react-router-dom';
 
 const Pokemon = () => {
     const { pokemonId } = useParams()
     const [axiosPoke, setAxiosPoke] = useState([])
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
       console.log("useEffect pokemon")
@@ -23,7 +25,7 @@ const Pokemon = () => {
           const newPokemonData = {}
           console.log(data.name)
           setAxiosPoke(data)
-
+          setIsLoaded(true) 
           // results.forEach((p, idx) => {
           // axios
           //   .get(`https://pokeapi.co/api/v2/pokemon/${idx + 1}`)
@@ -43,7 +45,18 @@ const Pokemon = () => {
     }
 
   return (
-    <div><h3>{`Pokemon ${pokemonId}`}</h3></div>
+    
+    <div>
+      {isLoaded ? (
+      <div>
+      <h3>{`Pokemon ${pokemonId}`}</h3>
+      <h2>{axiosPoke.name}</h2>
+      <img src={axiosPoke.sprites.other.dream_world.front_default}/>
+      </div>
+      ) : (<CircularProgress />)}
+      
+      
+    </div>
   )
 }
 

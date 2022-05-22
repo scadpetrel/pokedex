@@ -3,15 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./scss/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Router } from "react-router-dom";
-import { createBrowserHistory } from "history";
+// import { Router } from "react-router-dom";
+// import { createBrowserHistory } from "history";
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   
     <App />
+   
   
 );
 

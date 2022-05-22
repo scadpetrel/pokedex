@@ -3,11 +3,12 @@ import "./scss/App.scss";
 import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Container from '@mui/material/Container';
 
 function App() {
   return (
     <div className="App">
-      <h1>Pokedex</h1>
+     <Container>
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={<Pokedex />} />
@@ -15,6 +16,7 @@ function App() {
           
         </Routes>
       </BrowserRouter>
+      </Container>
     </div>
   );
 }

@@ -6,11 +6,13 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 12rem;
-  padding: 1rem;
-  margin: 3.5rem 2rem 1rem 2rem;
+  // width: 12rem;
+  height: 100%;
+  // margin: 0 auto;
+  // padding: 1rem;
+  // margin: 3.5rem 2rem 1rem 2rem;
   background-color: lightblue;
-  border-radius: 10px;
+  // border-radius: 10px;
 }
 
 .Pokecard img{
@@ -27,58 +29,58 @@
 }
 
 /* backgrounds */
-.normal{ 
+.App .normal{ 
   background: linear-gradient(lighten($normal, 30), lighten($normal, 20) );
   // background-color: lighten($normal, 30);
 }
-.fire{ 
+.App .fire{ 
   background-color: lighten($fire, 30);
 }
-.water{ 
+.App .water{ 
   background-color: lighten($water, 25);
 }
-.grass{ 
+.App .grass{ 
   background-color: lighten($grass, 30);
 }
-.electric{ 
+.App .electric{ 
   background-color: lighten($electric, 25);
 }
-.ice{ 
+.App .ice{ 
   background-color: lighten($ice, 25);
 }
-.fighting{ 
+.App .fighting{ 
   background-color: lighten($fighting, 40);
 }
-.poison{
+.App .poison{
   background-color: lighten($poison, 45);
 }
-.ground{ 
+.App .ground{ 
   background-color: lighten($ground, 28);
 }
-.flying{ 
+.App .flying{ 
   background-color: lighten($flying, 30);
 }
-.psychic{ 
+.App .psychic{ 
   background-color: lighten($psycic, 28);
 }
-.bug{ 
+.App .bug{ 
   background-color: lighten($bug, 43);
 }
-.rock{ 
+.App .rock{ 
   background-color: lighten($rock, 35);
 }
-.ghost{ 
+.App .ghost{ 
   background-color: lighten($ghost, 30);
 }
-.dark{ 
+.App .dark{ 
   background-color: lighten($dark, 30);
 }
-.dragon{ 
+.App .dragon{ 
   background-color: lighten($dragon, 30);
 }
-.steel{ 
+.App .steel{ 
   background-color: lighten($steel, 30);
 }
-.fairy { 
+.App .fairy { 
   background-color: lighten($fairy, 10);
 }

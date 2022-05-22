@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from "react";
 import Pokecard from "./Pokecard";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/AppBar';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
 import './scss/Pokedex.scss'
 import axios from "axios";
 
@@ -40,10 +44,10 @@ const Pokedex = () => {
   const handleLoadMore = () => {
     fetchPokemons()
   }
-  // axios fetch
+  // axios fetch from pokeapi.co
   const axiosPokemon = ()=> {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=100')
+      .get('https://pokeapi.co/api/v2/pokemon?limit=10')
       .then(function (response) {
         const { data } = response;
         const { results } = data;
@@ -66,15 +70,29 @@ const Pokedex = () => {
         // setAxiosPoke(newPokemonData)
       })
   }
+
+  // make first letter toUpperCase
+  const changeToTitleCase = name => 
+  name.charAt(0).toUpperCase() + name.slice(1);
+
   axiosPoke.map(el => (
     console.log(el.types[1])
   ))
   return(
     <>
-    <div className="Pokedex">
-      {axiosPoke.map(item => (
+    <AppBar position="fixed">
+      <Toolbar>Something </Toolbar>
+    </AppBar>
+    <h1>Pokedex</h1>
+    <Grid container spacing={3}>
+    {axiosPoke.map(item => (
         <Pokecard key={item.id} name={item.name} img={item.sprites.other.dream_world.front_default} type={item.types[0].type.name} type2={item.types[1] ? item.types[1].type.name : '' }number={item.id}/>
         ))}
+     
+    </Grid>
+    <div className="Pokedex">
+    
+     
     </div>
     <button onClick={handleLoadMore}>Load More</button>
     </>

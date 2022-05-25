@@ -5,7 +5,7 @@ import { lightBlue } from '@mui/material/colors';
 const Stats = (props) => {
   return (
     <>
-    <Box style={{ backgroundColor: 'lightBlue' }}width="100%">
+    <Box style={{ backgroundColor: "#e0e0e0" }}width="100%">
     <h4>Stats: </h4>
     {props.stats.map((stat) => (
       <p>

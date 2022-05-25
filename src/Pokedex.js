@@ -65,28 +65,7 @@ const Pokedex = () => {
   const [filter, setFilter] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const fetchPokemons = async () => {
-    const res = await fetch(loadMore);
-    const data = await res.json();
-
-    setLoadMore(data.next);
-    // console.log(data.results)
-
-    function fetchDetails(result) {
-      result.forEach(async (pokemon) => {
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-        const data = await res.json();
-
-        setPokemons((curState) => [...curState, data]);
-      });
-    }
-
-    fetchDetails(data.results);
-  };
-
-  const handleSearchChange = (evt) => {
+    const handleSearchChange = (evt) => {
     setFilter(evt.target.value);
   };
 
@@ -96,9 +75,6 @@ const Pokedex = () => {
     axiosPokemon();
   }, []);
 
-  const handleLoadMore = () => {
-    fetchPokemons();
-  };
   // axios fetch from pokeapi.co
   const axiosPokemon = () => {
     axios
@@ -136,7 +112,7 @@ const Pokedex = () => {
     <>
       <Box sx={{ height: 100, flexGrow: 1 }}>
         <AppBar position="fixed">
-          <Toolbar>
+          <Toolbar color='primary' >
             <div>
               <Box sx={{ height: 75, display: "flex", alignItems: "flex-end" }}>
                 {/* <SearchIcon sx={{ color: "action.active", mr: 1, my: 1 }} /> */}

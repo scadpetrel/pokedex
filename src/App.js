@@ -3,20 +3,37 @@ import "./scss/App.scss";
 import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#e5ff9d",
+      main: "#c8ffa1",
+      dark: "#7ebc3b",
+    },
+    secondary: {
+      light: "#b6fff7",
+      main: "#82edc4",
+      dark: "#4eba94",
+    },
+  },
+});
 
 function App() {
   return (
     <div className="App">
-     <Container>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path='/' element={<Pokedex />} />
-          <Route path='/:pokemonId' element={<Pokemon />} />
-          
-        </Routes>
-      </BrowserRouter>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <Container>
+          <BrowserRouter>
+            <Routes>
+              <Route exact path="/" element={<Pokedex />} />
+              <Route path="/:pokemonId" element={<Pokemon />} />
+            </Routes>
+          </BrowserRouter>
+        </Container>
+      </ThemeProvider>
     </div>
   );
 }

@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
 import PokemonNav from "./components/PokemnNav";
 import Stats from "./components/Stats";
+import Physical from "./components/Physical";
+import TypeAbility from "./components/TypeAbility";
 
 import "./scss/Pokemon.scss";
 
@@ -58,34 +60,21 @@ const Pokemon = () => {
             margin={10}
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Box width="50%" height={800}>
+            <Box marginRight={2} width="50%" height={800}>
               <div
                 className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
               >
                 <img src={axiosPoke.sprites.other.dream_world.front_default} />
               </div>
-            
-                <Stats stats={axiosPoke.stats} />
-              
+
+              <Stats stats={axiosPoke.stats} />
             </Box>
-            <Box width="50%" height={800}>
-              <div>
-                <h4>Characteristics</h4>
-                <p>height: {axiosPoke.height}</p>
-                <p>weight: {axiosPoke.weight}</p>
-                <p>gender - get</p>
-                <p>category - get</p>
-                <h4>abilities:</h4>
-                {axiosPoke.abilities.map((ability) => (
-                  <p>{ability.ability.name}</p>
-                ))}
-              </div>
-              <div>
-                <h4>type:</h4>
-                {axiosPoke.types.map((type) => (
-                  <p>{type.type.name}</p>
-                ))}
-              </div>
+            <Box marginLeft={2} width="50%" height={800}>
+              <Physical height={axiosPoke.height} weight={axiosPoke.weight} />
+              <TypeAbility
+                types={axiosPoke.types}
+                abilities={axiosPoke.abilities}
+              />
             </Box>
           </Box>
         </div>

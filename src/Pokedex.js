@@ -102,7 +102,7 @@ const Pokedex = () => {
   // axios fetch from pokeapi.co
   const axiosPokemon = () => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=100")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=400")
       .then(function (response) {
         const { data } = response;
         const { results } = data;
@@ -121,6 +121,7 @@ const Pokedex = () => {
             name: response.data.name,
           };
         });
+        
         setIsLoaded(true);
         // setAxiosPoke(newPokemonData)
       });
@@ -168,6 +169,7 @@ const Pokedex = () => {
               />
             )
         )}
+        
       </Grid>) : (<CircularProgress />)}
       
       {/* <div className="Pokedex"></div> */}

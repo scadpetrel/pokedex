@@ -1,4 +1,4 @@
-import NewPullPoke from "./Pokedex";
+// import NewPullPoke from "./Pokedex";
 import "./scss/App.scss";
 import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
@@ -18,6 +18,9 @@ const theme = createTheme({
       main: "#82edc4",
       dark: "#4eba94",
     },
+    poke: {
+      main: "#82edc4",
+    }
   },
 });
 
@@ -26,7 +29,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Container>
-          <BrowserRouter>
+          <BrowserRouter forceRefresh >
             <Routes>
               <Route exact path="/" element={<Pokedex />} />
               <Route path="/:pokemonId" element={<Pokemon />} />

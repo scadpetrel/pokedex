@@ -7,11 +7,12 @@ const Physical = (props) => {
     <>
       <Box sx={{ overflow: 'auto' }} style={{ backgroundColor: "#e0e0e0" }} width="100%">
   
-          <p>Physical: </p>
+          <h4>Physical:</h4>
           <p>height: {props.height}</p>
-          <p>weight: {props.weight}</p>
-          <p>gender - get</p>
-          <p>category - get</p>    
+          <p>weight: {props.weight} kg</p>
+          <p>Gender: {props.gender}</p>
+          <p>category: {props.category}</p>
+          <p>egg types</p>    
       </Box>
     </>
   );

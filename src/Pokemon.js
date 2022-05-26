@@ -31,16 +31,16 @@ const Pokemon = () => {
   let weight = convertToKilogram(axiosPoke.weight);
   let height2 = convertHeight(axiosPoke.height);
   let gender = genderRatio(pokemonSpecies.gender_rate);
+  let api_evolution = ''
 
   useEffect(() => {
-    console.log("useEffect pokemon");
     // fetchPokemons()
     axiosPokemon();
     // getSpecies()
   }, []);
 
-  const axiosPokemon = () => {
-    axios
+  const axiosPokemon = async () => {
+    await axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
       .then(function (response) {
         const { data } = response;
@@ -68,24 +68,31 @@ const Pokemon = () => {
       });
   };
 
-  const getSpecies = () => {
-    axios
+  const getSpecies = async () => {
+    await axios
       .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`)
       .then(function (response) {
         const { data } = response;
         console.log(data);
         setPokemonSpecies(data);
+        api_evolution = data.evolution_chain.url;
+        console.log(api_evolution)
+        
+        // setTimeout(getEvolution, 500)
         getEvolution();
-        setIsLoaded(true);
       });
   };
 
-  const getEvolution = () => {
-    axios
-      .get(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}/`)
+  // need to rework URL
+  const getEvolution = async () => {
+    // if(isLoaded){
+      
+    await axios
+      .get(api_evolution)
       .then(function (response) {
         const { data } = response;
         console.log(data);
+        // console.log(pokemonSpecies.evolution_chain.url)
         var evoChain = [];
         var evoData = data.chain;
 
@@ -103,6 +110,8 @@ const Pokemon = () => {
         } while (!!evoData && evoData.hasOwnProperty("evolves_to"));
         setEvolution(evoChain);
       });
+      setIsLoaded(true);
+    // }
   };
 
   return (
@@ -124,7 +133,7 @@ const Pokemon = () => {
               <Stats stats={axiosPoke.stats} />
             </Box>
             <Box marginLeft={2} width="50%" height={800}>
-              <Evolution />
+              <Evolution evolution={evolution}/>
               <Physical
                 height={height2}
                 weight={weight}

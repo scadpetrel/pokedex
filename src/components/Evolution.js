@@ -9,11 +9,11 @@ const Evolution = (props) => {
     <>
     <Box style={{ backgroundColor: "#e0e0e0" }}width="100%">
     <h4>Evolution: </h4>
-    {/* {props.stats.map((stat) => (
+    {props.evolution.map((evo) => (
       <p>
-        {stat.stat.name}: {stat.base_stat}
+        {evo.species_name} 
       </p>
-    ))} */}
+    ))}
     </Box>
     </>
   )

@@ -10,6 +10,7 @@ import Stats from "./components/Stats";
 import Physical from "./components/Physical";
 import Evolution from "./components/Evolution";
 import TypeAbility from "./components/TypeAbility";
+import { blueGrey, grey } from "@mui/material/colors";
 import {
   changeToTitleCase,
   convertToMeeter,
@@ -18,6 +19,7 @@ import {
   genderRatio,
 } from "./helper";
 import "./scss/Pokemon.scss";
+import { ThemeContext } from "@emotion/react";
 
 const Pokemon = () => {
   const { pokemonId } = useParams();
@@ -27,7 +29,7 @@ const Pokemon = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   // const navigate = useNavigate();
   // let height = convertToMeeter(axiosPoke.height);
-  let name = changeToTitleCase("bob");
+  // let name = changeToTitleCase(axiosPoke.name);
   let weight = convertToKilogram(axiosPoke.weight);
   let height2 = convertHeight(axiosPoke.height);
   let gender = genderRatio(pokemonSpecies.gender_rate);
@@ -77,7 +79,6 @@ const Pokemon = () => {
         setPokemonSpecies(data);
         api_evolution = data.evolution_chain.url;
         console.log(api_evolution)
-        
         // setTimeout(getEvolution, 500)
         getEvolution();
       });
@@ -85,8 +86,6 @@ const Pokemon = () => {
 
   // need to rework URL
   const getEvolution = async () => {
-    // if(isLoaded){
-      
     await axios
       .get(api_evolution)
       .then(function (response) {
@@ -111,20 +110,20 @@ const Pokemon = () => {
         setEvolution(evoChain);
       });
       setIsLoaded(true);
-    // }
   };
 
   return (
     <div>
       {isLoaded ? (
         <div>
-          <PokemonNav name={name} id={axiosPoke.id} />
+          <PokemonNav name={changeToTitleCase(axiosPoke.name)} id={axiosPoke.id} />
           <Box
             margin={0}
             marginTop={15}
             style={{ display: "flex", justifyContent: "space-between" }}
+            sx={{ p: 2}}
           >
-            <Box marginRight={2} width="50%" height={800}>
+            <Box marginRight={2} width="50%" height='auto' style={{ backgroundColor: blueGrey[50] }} sx={{ p: 2, boxShadow: 4  }}>
               <div
                 className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
               >
@@ -132,13 +131,14 @@ const Pokemon = () => {
               </div>
               <Stats stats={axiosPoke.stats} />
             </Box>
-            <Box marginLeft={2} width="50%" height={800}>
+            <Box marginLeft={2} width="50%" height='auto' style={{ backgroundColor: blueGrey[50] }} sx={{ p: 2, boxShadow: 4  }}>
               <Evolution evolution={evolution}/>
               <Physical
                 height={height2}
                 weight={weight}
                 gender={gender}
                 category={pokemonSpecies.genera[7].genus}
+                egg={pokemonSpecies.egg_groups}
               />
               <TypeAbility
                 types={axiosPoke.types}

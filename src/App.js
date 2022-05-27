@@ -5,6 +5,9 @@ import Pokemon from "./Pokemon";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Raleway from './fonts/Raleway-VariableFont_wght.ttf'
+
+const font = "Raleway";
 
 const theme = createTheme({
   palette: {
@@ -18,8 +21,8 @@ const theme = createTheme({
       main: "#82edc4",
       dark: "#4eba94",
     },
-    poke: {
-      main: "#82edc4",
+    pokered: {
+      main: "#ac0031",
     }
   },
 });

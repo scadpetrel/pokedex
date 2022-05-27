@@ -6,8 +6,9 @@ import Chip from '@mui/material/Chip';
 const Stats = (props) => {
   return (
     <>
-      <Box style={{ backgroundColor: "#e0e0e0" }} width="100%">
-        <h4>abilities:</h4>
+      <h4>abilities:</h4>
+      <Box sx={{ p: 3, boxSizing: "border-box" }}style={{  border: "1px solid black", borderRadius: "4px" }} width="100%">
+        
         <Box style={{ display: 'flex', justifyContent: 'center' }}>
         {props.abilities.map((ability) => (
           <Chip label={ability.ability.name} />

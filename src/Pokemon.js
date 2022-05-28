@@ -8,6 +8,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from '@mui/material/Button';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';  
 import PokemonNav from "./components/PokemnNav";
 import Stats from "./components/Stats";
 import Breeding from "./components/Breeding";
@@ -39,6 +43,10 @@ const Pokemon = () => {
   let api_evolution = "";
 
   const history = useNavigate();
+
+  const theme = useTheme();
+  const lgBreak = useMediaQuery(theme.breakpoints.only('md'));
+  const prvNextWidth = (lgBreak ? "66%" : "100%");
 
   useEffect(() => {
     // fetchPokemons()
@@ -133,13 +141,19 @@ const Pokemon = () => {
             name={changeToTitleCase(axiosPoke.name)}
             id={axiosPoke.id}
           />
+          <Grid container sx={{ mt: 15, mx: "auto" }} height={50} style={{ width: prvNextWidth,  display: "flex", justifyContent: "space-between" }}>
+        
+          <Button color="inherit" onClick={handlePrev}><ArrowBackIosIcon/>Prev</Button>
+          
+          <Button color="inherit" onClick={handleNext}>Next<ArrowForwardIosIcon/></Button>
+          </Grid>
           <Box
             margin={0}
-            marginTop={15}
+            marginTop={0}
             style={{ display: "flex", justifyContent: "space-between" }}
             sx={{ p: 0 }}
           >
-            <Button color="inherit" onClick={handlePrev}>Prev</Button>
+            {/* <Button color="inherit" onClick={handlePrev}><ArrowBackIosIcon/></Button> */}
             <Grid
               container
               spacing={3}
@@ -192,11 +206,13 @@ const Pokemon = () => {
                 </Box>
               </Grid>
             </Grid>
-            <Button color="inherit" onClick={handleNext}>Next</Button>
+            {/* <Button color="inherit" onClick={handleNext}><ArrowForwardIosIcon/></Button> */}
           </Box>
         </div>
       ) : (
+        <div>
         <CircularProgress />
+        </div>
       )}
     </div>
   );

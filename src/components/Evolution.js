@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { styled, useTheme } from "@mui/material/styles";
-// import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import useMediaQuery from '@mui/material/useMediaQuery';  
@@ -81,7 +81,7 @@ const Evolution = (props) => {
   return (
     <div className="Evolution">
       <Box
-        sx={{ mb: 3, boxSizing: "border-box" }}
+        sx={{ mb: 3, p: 3, boxSizing: "border-box" }}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -92,9 +92,9 @@ const Evolution = (props) => {
         }}
         width="auto"
       >
-        <div>
-          <h4>Evolution</h4>
-        </div>
+        <Typography variant="h4">
+          Evolution
+        </Typography>
         <div className="Evolution-chain">
           {evolution.map((evo) => (
             <>

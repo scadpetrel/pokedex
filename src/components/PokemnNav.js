@@ -25,9 +25,9 @@ const PokemonNav = (props) => {
   
   return (
     <Box sx={{   flexGrow: 1 }}>
-    <AppBar sx={{ flexDirection: 'row', justifyContent: 'space-between' }}position="fixed">
+    <AppBar sx={{ flexDirection: 'row', justifyContent: 'center' }}position="fixed">
      {/* <Button color="inherit" onClick={handlePrev}>Prev</Button> */}
-     <Typography variant="h3" component="div" gutterBottom>
+     <Typography variant="h3" component="h1" align="center" gutterBottom>
         {props.name} #{props.id}
       </Typography>
      {/* <Button color="inherit" onClick={handleNext}>Next</Button> */}

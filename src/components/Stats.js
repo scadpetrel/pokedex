@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
+import Typography from '@mui/material/Typography';
 // import { lightBlue } from '@mui/material/colors';
 import "../scss/Stats.scss";
 
@@ -35,12 +36,13 @@ const Stats = (props) => {
           borderRadius: "4px",
           backgroundColor: "rgba(255, 255, 255, 0.8)",
           display: "flex",
-          justifyContent: "space-around",
+          justifyContent: "center",
           flexWrap: "wrap",
         }}
         width="100%"
       >
-        <h2>Stats</h2>
+        <Typography variant="h4" gutterBottom="true">Stats</Typography>
+        <h2></h2>
         <Grid container spacing={2}>
         
           {props.stats.map((stat) => (

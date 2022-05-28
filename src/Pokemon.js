@@ -2,15 +2,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Button from '@mui/material/Button';
 import PokemonNav from "./components/PokemnNav";
 import Stats from "./components/Stats";
-import Physical from "./components/Physical";
+import Breeding from "./components/Breeding";
 import Evolution from "./components/Evolution";
-import TypeAbility from "./components/TypeAbility";
+import PokeData from "./components/PokeData";
 import { blueGrey, grey } from "@mui/material/colors";
 import {
   changeToTitleCase,
@@ -35,6 +37,8 @@ const Pokemon = () => {
   let height2 = convertHeight(axiosPoke.height);
   let gender = genderRatio(pokemonSpecies.gender_rate);
   let api_evolution = "";
+
+  const history = useNavigate();
 
   useEffect(() => {
     // fetchPokemons()
@@ -111,6 +115,16 @@ const Pokemon = () => {
     setIsLoaded(true);
   };
 
+  function handlePrev(){
+    history(`/${axiosPoke.id -1}`)
+    history(0)
+  }
+
+  function handleNext(){
+    history(`/${axiosPoke.id +1}`)
+    history(0)
+  }
+
   return (
     <div>
       {isLoaded ? (
@@ -123,50 +137,62 @@ const Pokemon = () => {
             margin={0}
             marginTop={15}
             style={{ display: "flex", justifyContent: "space-between" }}
-            sx={{ p: 2 }}
+            sx={{ p: 0 }}
           >
-            <Grid container spacing={3} justifyContent="center" columns={{ md: 12, lg: 6}}>
+            <Button color="inherit" onClick={handlePrev}>Prev</Button>
+            <Grid
+              container
+              spacing={3}
+              justifyContent="center"
+              columns={{ xs: 12, md: 12, lg: 6 }}
+            >
               <Grid item xs={12} sm={10} md={8} lg={3}>
-              <Box
-                // marginRight={2}
-                // width="50%"
-                height="auto"
-                style={{ backgroundColor: blueGrey[50] }}
-                sx={{ p: 2, boxShadow: 4 }}
-               >
-                <div
-                  className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
+                <Box
+                  // marginRight={2}
+                  // width="50%"
+                  height="auto"
+                  width="auto"
+                  style={{ backgroundColor: blueGrey[50] }}
+                  sx={{ p: 2, boxShadow: 4 }}
                 >
-                  <img
-                    src={axiosPoke.sprites.other.dream_world.front_default}
-                  />
-                </div>
-                <Stats stats={axiosPoke.stats} />
-              </Box>
+                  <div
+                    className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
+                  >
+                    <img
+                      src={axiosPoke.sprites.other.dream_world.front_default}
+                    />
+                  </div>
+                  <Stats stats={axiosPoke.stats} />
+                </Box>
               </Grid>
               <Grid item xs={12} sm={10} md={8} lg={3}>
-              <Box
-                // marginLeft={2}
-                // width="50%"
-                height="auto"
-                style={{ backgroundColor: blueGrey[50] }}
-                sx={{ p: 2, boxShadow: 4 }}
-               >
-                <Evolution evolution={evolution} />
-                <Physical
-                  height={height2}
-                  weight={weight}
-                  gender={gender}
-                  category={pokemonSpecies.genera[7].genus}
-                  egg={pokemonSpecies.egg_groups}
-                />
-                <TypeAbility
-                  types={axiosPoke.types}
-                  abilities={axiosPoke.abilities}
-                />
-              </Box>
+                <Box
+                  // marginLeft={2}
+                  // width="50%"
+                  height="auto"
+                  width="auto"
+                  style={{ backgroundColor: blueGrey[50] }}
+                  sx={{ p: 2, boxShadow: 4 }}
+                >
+                  <PokeData
+                    height={height2}
+                    weight={weight}
+                    category={pokemonSpecies.genera[7].genus}
+                    types={axiosPoke.types}
+                    abilities={axiosPoke.abilities}
+                  />
+                  <Evolution evolution={evolution} />
+                  <Breeding
+                    eggCycle={pokemonSpecies.hatch_counter}
+                    gender={gender}
+                    // category={pokemonSpecies.genera[7].genus}
+                    egg={pokemonSpecies.egg_groups}
+                  />
+                  
+                </Box>
               </Grid>
             </Grid>
+            <Button color="inherit" onClick={handleNext}>Next</Button>
           </Box>
         </div>
       ) : (

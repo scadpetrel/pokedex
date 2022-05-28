@@ -13,12 +13,12 @@ const PokemonNav = (props) => {
 
   function handlePrev(){
     history(`/${props.id -1}`)
-    history(0)
+    // history(0)
   }
 
   function handleNext(){
     history(`/${props.id +1}`)
-    history(0)
+    // history(0)
   }
 
   let name = changeToTitleCase(props.name)
@@ -26,11 +26,11 @@ const PokemonNav = (props) => {
   return (
     <Box sx={{   flexGrow: 1 }}>
     <AppBar sx={{ flexDirection: 'row', justifyContent: 'space-between' }}position="fixed">
-     <Button color="inherit" onClick={handlePrev}>Prev</Button>
+     {/* <Button color="inherit" onClick={handlePrev}>Prev</Button> */}
      <Typography variant="h3" component="div" gutterBottom>
         {props.name} #{props.id}
       </Typography>
-     <Button color="inherit" onClick={handleNext}>Next</Button>
+     {/* <Button color="inherit" onClick={handleNext}>Next</Button> */}
     </AppBar>
     </Box>
   )

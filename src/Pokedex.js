@@ -131,10 +131,11 @@ const Pokedex = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      {isLoaded ? (<Grid container spacing={3}>
+      {isLoaded ? (<Grid container spacing={3} justifyContent="center">
         {axiosPoke.sort((a, b) => a.id - b.id).map(
           (item) =>
             item.name.includes(filter) && (
+              <Grid item>
               <Pokecard
                 key={item.id}
                 name={changeToTitleCase(item.name)}
@@ -143,6 +144,7 @@ const Pokedex = () => {
                 type2={item.types[1] ? item.types[1].type.name : ""}
                 number={item.id}
               />
+              </Grid>
             )
         )}
         

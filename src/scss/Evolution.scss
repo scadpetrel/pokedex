@@ -6,14 +6,39 @@
 
 .Evolution-chain {
   display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  flex-direction: row;
+  // flex-wrap: wrap;
+  // margin: 0 auto;
   align-items: center;
-  span {
-    padding: 0 .5rem;
+  
+  // span {
+  //   padding: 0 .5rem;
+  // }
+
+  .fa-arrow-down {
+    display: none;
   }
 
-  span:last-of-type {
+  svg {
+    align-self: flex-end;
+    margin-bottom: 10px;
+    color: #4eba94;
+  }
+  svg:last-of-type {
     display: none;
+  } 
+  
+  .Evolution-down {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Evolution-chain {
+    flex-direction: column;
+
+   svg {
+    align-self: center;
+   }
   }
 }

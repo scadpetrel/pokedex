@@ -1,33 +1,11 @@
-// .Evolution {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// }
-
+// Handle responsive arrow display -- could refactor into component
 .Evolution-chain {
-  display: flex;
-  flex-direction: row;
-  // flex-wrap: wrap;
-  // margin: 0 auto;
-  align-items: center;
-  
-  // span {
-  //   padding: 0 .5rem;
-  // }
+ 
 
   .fa-arrow-down {
     display: none;
   }
-
-  svg {
-    align-self: flex-end;
-    margin-bottom: 10px;
-    color: #4eba94;
-  }
-  svg:last-of-type {
-    display: none;
-  } 
-  
+ 
   .Evolution-down {
     display: none;
   }

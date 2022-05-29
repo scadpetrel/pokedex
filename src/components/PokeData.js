@@ -48,13 +48,13 @@ const PokeData = (props) => {
               <Typography color="#ac0031" variant="subtitle2">
                 Weight
               </Typography>
-              <Typography variant="body1"> {props.weight} kg</Typography>
+              <Typography variant="body1"> {props.weight} kg / {props.pounds}</Typography>
             </Grid>
           </Grid>
           <Grid container>
             <Grid className="pokeItem" item xs={6}>
               <Typography mb={1} variant="h6">
-                Type
+                {props.types.length > 1 ? "Types" : "Type" }
               </Typography>
               <Box style={{ display: "flex", justifyContent: "center" }}>
                 {props.types.map((type) => (

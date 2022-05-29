@@ -22,9 +22,11 @@ import {
   changeToTitleCase,
   convertMeter,
   convertToKilogram,
-  // convertHeight,
-  genderRatio,
-  convertFeetInches
+  convertToPounds,
+  // genderRatio,
+  convertFeetInches,
+  genderFemale,
+  genderMale
 } from "./helper";
 import "./scss/Pokemon.scss";
 import { ThemeContext } from "@emotion/react";
@@ -42,10 +44,11 @@ const Pokemon = () => {
   // let name = changeToTitleCase(axiosPoke.name);
 
   // ==== Display variables
+  let pounds = convertToPounds(axiosPoke.weight)
   let weight = convertToKilogram(axiosPoke.weight);
   let meter = convertMeter(axiosPoke.height);
   let ftIn = convertFeetInches(axiosPoke.height)
-  let gender = genderRatio(pokemonSpecies.gender_rate);
+  // let gender = genderRatio(pokemonSpecies.gender_rate);
  
   
   let api_evolution = "";
@@ -240,6 +243,7 @@ const Pokemon = () => {
                     ftIn={ftIn}
                     meter={meter}
                     weight={weight}
+                    pounds={pounds}
                     category={pokemonSpecies.genera[7].genus}
                     types={axiosPoke.types}
                     abilities={axiosPoke.abilities}
@@ -247,7 +251,9 @@ const Pokemon = () => {
                   <Evolution evolution={evolution} />
                   <Breeding
                     eggCycle={pokemonSpecies.hatch_counter}
-                    gender={gender}
+                    genderRate={pokemonSpecies.gender_rate}
+                    genderMale={genderMale(pokemonSpecies.gender_rate)}
+                    genderFemale={genderFemale(pokemonSpecies.gender_rate)}
                     // category={pokemonSpecies.genera[7].genus}
                     egg={pokemonSpecies.egg_groups}
                   />

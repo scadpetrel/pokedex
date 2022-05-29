@@ -2,56 +2,46 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
-import Typography from '@mui/material/Typography';
-// import { lightBlue } from '@mui/material/colors';
+import Typography from "@mui/material/Typography";
+import { changeToTitleCase } from "../helper";
 import "../scss/Stats.scss";
 
-const StyledGrid = styled(Grid)(({ theme }) => ({
+const StatsContainer = styled(Box)(({ theme }) => ({
+  border: "1.5px solid #4eba94",
+  borderRadius: "4px",
+  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+}));
+
+const StatsGrid = styled(Grid)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   "& span": {
     color: "#ac0031",
   },
-  // "& .MuiInputBase-input": {
-  //   padding: theme.spacing(1, 1, 1, 0),
-  //   // vertical padding + font size from searchIcon
-  //   paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-  //   transition: theme.transitions.create("width"),
-  //   width: "100%",
-  //   [theme.breakpoints.up("md")]: {
-  //     width: "20ch",
-  //   },
-  // },
 }));
 
 const Stats = (props) => {
   return (
     <>
-      
-      <Box
-        sx={{ mt: 3, p: 2, boxSizing: "border-box" }}
-        style={{
-          border: "1.5px solid #4eba94",
-          borderRadius: "4px",
-          backgroundColor: "rgba(255, 255, 255, 0.8)",
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
-        }}
-        width="100%"
-      >
-        <Typography variant="h4" gutterBottom="true">Stats</Typography>
-        <h2></h2>
+      <StatsContainer sx={{ mt: 3, p: 2, boxSizing: "border-box" }}>
+        <Typography variant="h4" mb={4} gutterBottom>
+          Stats
+        </Typography>
         <Grid container spacing={2}>
-        
           {props.stats.map((stat) => (
-            <StyledGrid item xs={12} sm={4} md={6} lg={4}>
-              <span>{stat.stat.name}</span> {stat.base_stat}
-            </StyledGrid>
+            <StatsGrid item xs={12} sm={4} md={6} lg={4}>
+              <Typography color="#ac0031" variant="subtitle2">
+                <span>{changeToTitleCase(stat.stat.name)}</span>
+              </Typography>
+              <Typography variant="body1">{stat.base_stat}</Typography>
+            </StatsGrid>
           ))}
         </Grid>
-      </Box>
+      </StatsContainer>
     </>
   );
 };

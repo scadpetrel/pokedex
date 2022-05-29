@@ -41,7 +41,8 @@ const PokeData = (props) => {
               <Typography color="#ac0031" variant="subtitle2">
                 Height
               </Typography>
-              <Typography variant="body1">{props.height}</Typography>
+              <Typography variant="body1">{props.meter} / {props.ftIn}</Typography>
+              
             </Grid>
             <Grid item className="pokeItem" mr="auto" pt={2} xs={4}>
               <Typography color="#ac0031" variant="subtitle2">

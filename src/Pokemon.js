@@ -20,38 +20,46 @@ import PokeData from "./components/PokeData";
 import { blueGrey, grey } from "@mui/material/colors";
 import {
   changeToTitleCase,
-  convertToMeeter,
+  convertMeter,
   convertToKilogram,
-  convertHeight,
+  // convertHeight,
   genderRatio,
+  convertFeetInches
 } from "./helper";
 import "./scss/Pokemon.scss";
 import { ThemeContext } from "@emotion/react";
+import { Typography } from "@mui/material";
 
 const Pokemon = () => {
   const { pokemonId } = useParams();
   const [axiosPoke, setAxiosPoke] = useState([]);
   const [pokemonSpecies, setPokemonSpecies] = useState([]);
   const [evolution, setEvolution] = useState([]);
+  const [description, setDescription] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
   // const navigate = useNavigate();
   // let height = convertToMeeter(axiosPoke.height);
   // let name = changeToTitleCase(axiosPoke.name);
+
+  // ==== Display variables
   let weight = convertToKilogram(axiosPoke.weight);
-  let height2 = convertHeight(axiosPoke.height);
+  let meter = convertMeter(axiosPoke.height);
+  let ftIn = convertFeetInches(axiosPoke.height)
   let gender = genderRatio(pokemonSpecies.gender_rate);
+ 
+  
   let api_evolution = "";
+ 
 
   const history = useNavigate();
 
+  // ==== Theme and layout variables
   const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
   const prvNextWidth = lgBreak ? "66%" : "100%";
 
   useEffect(() => {
-    // fetchPokemons()
     axiosPokemon();
-    // getSpecies()
   }, []);
 
   const axiosPokemon = async () => {
@@ -84,20 +92,25 @@ const Pokemon = () => {
   };
 
   const getSpecies = async () => {
+    let pullDescription = []
     await axios
       .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`)
       .then(function (response) {
         const { data } = response;
-        console.log(data);
+        // console.log(data);
         setPokemonSpecies(data);
         api_evolution = data.evolution_chain.url;
-        console.log(api_evolution);
-        // setTimeout(getEvolution, 500)
+        // console.log(data.flavor_text_entries);
+        // filter out english blue flavor text and set to state
+        pullDescription = data.flavor_text_entries.filter(text => text.language.name == "en" && text.version.name == "blue")
+        setDescription(pullDescription)
+        console.log(pullDescription)
         getEvolution();
+        
       });
   };
 
-  // need to rework URL
+  // ==== Get evolution chain names
   const getEvolution = async () => {
     await axios.get(api_evolution).then(function (response) {
       const { data } = response;
@@ -118,10 +131,24 @@ const Pokemon = () => {
 
         evoData = evoData["evolves_to"][0];
       } while (!!evoData && evoData.hasOwnProperty("evolves_to"));
+
+
       setEvolution(evoChain);
     });
+
+
     setIsLoaded(true);
+  
+    
   };
+
+   // filter english blue and red flavor text. 
+   const filterFlavorText = () => {
+    let filteredItems = pokemonSpecies.flavor_text_entries.filter(poke => poke.language.name == "en" && poke.version.name == "blue")
+    console.log("in filter flavor")
+    console.log(filteredItems)
+    setDescription(filteredItems)
+  }
 
   function handlePrev() {
     history(`/${axiosPoke.id - 1}`);
@@ -132,10 +159,14 @@ const Pokemon = () => {
     history(`/${axiosPoke.id + 1}`);
     history(0);
   }
+  
+  // let description = filterFlavorText(pokemonSpecies.flavor_text_entries)
 
   return (
+    
     <div>
       {isLoaded ? (
+        
         <div>
           <PokemonNav
             name={changeToTitleCase(axiosPoke.name)}
@@ -143,7 +174,7 @@ const Pokemon = () => {
           />
           <Grid
             container
-            sx={{ mt: 15, mx: "auto" }}
+            sx={{ mt: 8, mx: "auto" }}
             height={50}
             style={{
               width: prvNextWidth,
@@ -190,7 +221,9 @@ const Pokemon = () => {
                       src={axiosPoke.sprites.other.dream_world.front_default}
                     />
                   </div>
-                  <p>{pokemonSpecies.flavor_text_entries[0].flavor_text}</p>
+                  <Typography mt={2} variant="body1">
+                  {description[0].flavor_text}
+                  </Typography>
                   <Stats stats={axiosPoke.stats} />
                 </Box>
               </Grid>
@@ -204,7 +237,8 @@ const Pokemon = () => {
                   sx={{ p: 2, boxShadow: 4 }}
                 >
                   <PokeData
-                    height={height2}
+                    ftIn={ftIn}
+                    meter={meter}
                     weight={weight}
                     category={pokemonSpecies.genera[7].genus}
                     types={axiosPoke.types}

@@ -57,15 +57,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Pokedex = () => {
-  const [pokemons, setPokemons] = useState([]);
-  const [loadMore, setLoadMore] = useState([
-    "https://pokeapi.co/api/v2/pokemon",
-  ]);
+  // const [pokemons, setPokemons] = useState([]);
+  // const [loadMore, setLoadMore] = useState([
+  //   "https://pokeapi.co/api/v2/pokemon",
+  // ]);
   const [axiosPoke, setAxiosPoke] = useState([]);
   const [filter, setFilter] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
 
-    const handleSearchChange = (evt) => {
+  const handleSearchChange = (evt) => {
     setFilter(evt.target.value);
   };
 
@@ -78,7 +78,7 @@ const Pokedex = () => {
   // axios fetch from pokeapi.co
   const axiosPokemon = () => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=400")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=898")
       .then(function (response) {
         const { data } = response;
         const { results } = data;
@@ -97,13 +97,14 @@ const Pokedex = () => {
             name: response.data.name,
           };
         });
-        
+
         setIsLoaded(true);
         // setAxiosPoke(newPokemonData)
       });
   };
 
-  // make first letter toUpperCase
+
+  // make first letter toUpperCase ** moved to helper.js, need to import and delte this
   const changeToTitleCase = (name) =>
     name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -112,7 +113,7 @@ const Pokedex = () => {
     <>
       <Box sx={{ height: 100, flexGrow: 1 }}>
         <AppBar position="fixed">
-          <Toolbar color='primary' >
+          <Toolbar color="primary">
             <div>
               <Box sx={{ height: 75, display: "flex", alignItems: "flex-end" }}>
                 {/* <SearchIcon sx={{ color: "action.active", mr: 1, my: 1 }} /> */}
@@ -131,25 +132,30 @@ const Pokedex = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      {isLoaded ? (<Grid container spacing={3} justifyContent="center">
-        {axiosPoke.sort((a, b) => a.id - b.id).map(
-          (item) =>
-            item.name.includes(filter) && (
-              <Grid item>
-              <Pokecard
-                key={item.id}
-                name={changeToTitleCase(item.name)}
-                img={item.sprites.other.dream_world.front_default}
-                type={item.types[0].type.name}
-                type2={item.types[1] ? item.types[1].type.name : ""}
-                number={item.id}
-              />
-              </Grid>
-            )
-        )}
-        
-      </Grid>) : (<CircularProgress />)}
-      
+      {isLoaded ? (
+        <Grid container spacing={3} justifyContent="center">
+          {axiosPoke
+            .sort((a, b) => a.id - b.id)
+            .map(
+              (item) =>
+                item.name.includes(filter) && (
+                  <Grid item>
+                    <Pokecard
+                      key={item.id}
+                      name={changeToTitleCase(item.name)}
+                      img={item.sprites.other.dream_world.front_default}
+                      type={item.types[0].type.name}
+                      type2={item.types[1] ? item.types[1].type.name : ""}
+                      number={item.id}
+                    />
+                  </Grid>
+                )
+            )}
+        </Grid>
+      ) : (
+        <CircularProgress />
+      )}
+
       {/* <div className="Pokedex"></div> */}
       {/* <button onClick={handleLoadMore}>Load More</button> */}
     </>

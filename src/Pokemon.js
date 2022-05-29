@@ -1,17 +1,17 @@
-// import React from 'react'
+// ==== React and Node imports
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useParams,useNavigate  } from "react-router-dom";
+// ==== MUI imports
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Button from '@mui/material/Button';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';  
+import Button from "@mui/material/Button";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+// ==== Component imports
 import PokemonNav from "./components/PokemnNav";
 import Stats from "./components/Stats";
 import Breeding from "./components/Breeding";
@@ -45,8 +45,8 @@ const Pokemon = () => {
   const history = useNavigate();
 
   const theme = useTheme();
-  const lgBreak = useMediaQuery(theme.breakpoints.only('md'));
-  const prvNextWidth = (lgBreak ? "66%" : "100%");
+  const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
+  const prvNextWidth = lgBreak ? "66%" : "100%";
 
   useEffect(() => {
     // fetchPokemons()
@@ -123,14 +123,14 @@ const Pokemon = () => {
     setIsLoaded(true);
   };
 
-  function handlePrev(){
-    history(`/${axiosPoke.id -1}`)
-    history(0)
+  function handlePrev() {
+    history(`/${axiosPoke.id - 1}`);
+    history(0);
   }
 
-  function handleNext(){
-    history(`/${axiosPoke.id +1}`)
-    history(0)
+  function handleNext() {
+    history(`/${axiosPoke.id + 1}`);
+    history(0);
   }
 
   return (
@@ -141,11 +141,25 @@ const Pokemon = () => {
             name={changeToTitleCase(axiosPoke.name)}
             id={axiosPoke.id}
           />
-          <Grid container sx={{ mt: 15, mx: "auto" }} height={50} style={{ width: prvNextWidth,  display: "flex", justifyContent: "space-between" }}>
-        
-          <Button color="inherit" onClick={handlePrev}><ArrowBackIosIcon/>Prev</Button>
-          
-          <Button color="inherit" onClick={handleNext}>Next<ArrowForwardIosIcon/></Button>
+          <Grid
+            container
+            sx={{ mt: 15, mx: "auto" }}
+            height={50}
+            style={{
+              width: prvNextWidth,
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Button color="inherit" onClick={handlePrev}>
+              <ArrowBackIosIcon />
+              Prev
+            </Button>
+
+            <Button color="inherit" onClick={handleNext}>
+              Next
+              <ArrowForwardIosIcon />
+            </Button>
           </Grid>
           <Box
             margin={0}
@@ -176,6 +190,7 @@ const Pokemon = () => {
                       src={axiosPoke.sprites.other.dream_world.front_default}
                     />
                   </div>
+                  <p>{pokemonSpecies.flavor_text_entries[0].flavor_text}</p>
                   <Stats stats={axiosPoke.stats} />
                 </Box>
               </Grid>
@@ -202,7 +217,6 @@ const Pokemon = () => {
                     // category={pokemonSpecies.genera[7].genus}
                     egg={pokemonSpecies.egg_groups}
                   />
-                  
                 </Box>
               </Grid>
             </Grid>
@@ -211,7 +225,7 @@ const Pokemon = () => {
         </div>
       ) : (
         <div>
-        <CircularProgress />
+          <CircularProgress />
         </div>
       )}
     </div>

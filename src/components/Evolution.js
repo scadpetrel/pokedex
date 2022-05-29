@@ -92,7 +92,7 @@ const Evolution = (props) => {
         }}
         width="auto"
       >
-        <Typography variant="h4">
+        <Typography variant="h4" gutterBottom>
           Evolution
         </Typography>
         <div className="Evolution-chain">

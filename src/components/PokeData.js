@@ -60,7 +60,7 @@ const PokeData = (props) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid className="dataItem" item xs={6}>
+            <Grid className="dataItem" item xs={12} sm={6}>
               <Typography mb={1} variant="h6">
                 {props.types.length > 1 ? "Types" : "Type" }
               </Typography>
@@ -72,7 +72,7 @@ const PokeData = (props) => {
                 ))}
               </Box>
             </Grid>
-            <Grid className="dataItem" item xs={6}>
+            <Grid className="dataItem" item xs={12} sm={6}>
               <Typography mb={1} variant="h6">
                 Abilities
               </Typography>

@@ -18,16 +18,20 @@ const DataContainer = styled(Box)(({ theme }) => ({
     alignItems: "center",
   },
   "& span": {
-    padding: "0px 1rem",
+    paddingBottom: ".3rem",
     // display: "flex",
     // alignItems: "center",
   },
+  "& .MuiChip-labelMedium": {
+    fontSize: "16px",
+    padding: "14px"
+  }
 }));
 
 const PokeData = (props) => {
   return (
     <>
-      <DataContainer sx={{ p: 3, mb: 3, boxSizing: "border-box" }} width="100%">
+      <DataContainer sx={{ p: 3, mb: 3, boxSizing: "border-box" }}>
         <Typography variant="h4" mb={4} gutterBottom>
           Pokedex Data
         </Typography>
@@ -72,7 +76,7 @@ const PokeData = (props) => {
               <Typography mb={1} variant="h6">
                 Abilities
               </Typography>
-              <Box style={{ display: "flex", justifyContent: "center" }}>
+              <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 {props.abilities.map((ability) => (
                   <span>
                   <Chip label={ability.ability.name} variant="outlined"/>

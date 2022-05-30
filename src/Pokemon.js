@@ -1,7 +1,7 @@
 // ==== React and Node imports
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams,useNavigate  } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // ==== MUI imports
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -9,8 +9,9 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { useTheme } from "@mui/material/styles";
+import { useTheme, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Typography } from "@mui/material";
 // ==== Component imports
 import PokemonNav from "./components/PokemnNav";
 import Stats from "./components/Stats";
@@ -26,33 +27,30 @@ import {
   // genderRatio,
   convertFeetInches,
   genderFemale,
-  genderMale
+  genderMale,
 } from "./helper";
 import "./scss/Pokemon.scss";
-import { ThemeContext } from "@emotion/react";
-import { Typography } from "@mui/material";
+// import { ThemeContext } from "@emotion/react";
 
 const Pokemon = () => {
   const { pokemonId } = useParams();
   const [axiosPoke, setAxiosPoke] = useState([]);
   const [pokemonSpecies, setPokemonSpecies] = useState([]);
   const [evolution, setEvolution] = useState([]);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
   // const navigate = useNavigate();
   // let height = convertToMeeter(axiosPoke.height);
   // let name = changeToTitleCase(axiosPoke.name);
 
   // ==== Display variables
-  let pounds = convertToPounds(axiosPoke.weight)
+  let pounds = convertToPounds(axiosPoke.weight);
   let weight = convertToKilogram(axiosPoke.weight);
   let meter = convertMeter(axiosPoke.height);
-  let ftIn = convertFeetInches(axiosPoke.height)
+  let ftIn = convertFeetInches(axiosPoke.height);
   // let gender = genderRatio(pokemonSpecies.gender_rate);
- 
-  
+
   let api_evolution = "";
- 
 
   const history = useNavigate();
 
@@ -60,6 +58,22 @@ const Pokemon = () => {
   const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
   const prvNextWidth = lgBreak ? "66%" : "100%";
+
+  const NavigationPrev = styled(Button)(({ theme }) => ({
+    width: "50%",
+    display: "flex",
+    justifyContent: "flex-start",
+  }));
+  const NavigationNext = styled(Button)(({ theme }) => ({
+    width: "50%",
+    display: "flex",
+    justifyContent: "flex-end",
+  }));
+  const NavigationPlaceholder = styled("div")(({ theme }) => ({
+    width: "50%",
+    display: "flex",
+    justifyContent: "flex-end",
+  }));
 
   useEffect(() => {
     axiosPokemon();
@@ -95,7 +109,7 @@ const Pokemon = () => {
   };
 
   const getSpecies = async () => {
-    let pullDescription = []
+    let pullDescription = [];
     await axios
       .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`)
       .then(function (response) {
@@ -105,11 +119,13 @@ const Pokemon = () => {
         api_evolution = data.evolution_chain.url;
         // console.log(data.flavor_text_entries);
         // filter out english blue flavor text and set to state
-        pullDescription = data.flavor_text_entries.filter(text => text.language.name == "en" && text.version.name == "blue")
-        setDescription(pullDescription)
-        console.log(pullDescription)
+        pullDescription = data.flavor_text_entries.filter(
+          (text) => text.language.name == "en"
+        );
+        // set first english text available
+        setDescription(pullDescription[0].flavor_text);
+        console.log(pullDescription[0].flavor_text);
         getEvolution();
-        
       });
   };
 
@@ -134,24 +150,20 @@ const Pokemon = () => {
 
         evoData = evoData["evolves_to"][0];
       } while (!!evoData && evoData.hasOwnProperty("evolves_to"));
-
-
       setEvolution(evoChain);
     });
-
-
     setIsLoaded(true);
-  
-    
   };
 
-   // filter english blue and red flavor text. 
-   const filterFlavorText = () => {
-    let filteredItems = pokemonSpecies.flavor_text_entries.filter(poke => poke.language.name == "en" && poke.version.name == "blue")
-    console.log("in filter flavor")
-    console.log(filteredItems)
-    setDescription(filteredItems)
-  }
+  // ==== filter english+blue flavor text ***INACTIVE***
+  const filterFlavorText = () => {
+    let filteredItems = pokemonSpecies.flavor_text_entries.filter(
+      (poke) => poke.language.name == "en" && poke.version.name == "blue"
+    );
+    console.log("in filter flavor");
+    console.log(filteredItems);
+    setDescription(filteredItems);
+  };
 
   function handlePrev() {
     history(`/${axiosPoke.id - 1}`);
@@ -162,14 +174,12 @@ const Pokemon = () => {
     history(`/${axiosPoke.id + 1}`);
     history(0);
   }
-  
+
   // let description = filterFlavorText(pokemonSpecies.flavor_text_entries)
 
   return (
-    
     <div>
       {isLoaded ? (
-        
         <div>
           <PokemonNav
             name={changeToTitleCase(axiosPoke.name)}
@@ -185,15 +195,28 @@ const Pokemon = () => {
               justifyContent: "space-between",
             }}
           >
-            <Button color="inherit" onClick={handlePrev}>
-              <ArrowBackIosIcon />
-              Prev
-            </Button>
-
-            <Button color="inherit" onClick={handleNext}>
+            {" "}
+            {axiosPoke.id === 1 ? (
+              <NavigationPlaceholder />
+            ) : (
+              <NavigationPrev
+                className="prev"
+                color="inherit"
+                onClick={handlePrev}
+              >
+                <ArrowBackIosIcon />
+                Prev
+              </NavigationPrev>
+            )}
+            {axiosPoke.id === 898 ? <NavigationPlaceholder/> : (<NavigationNext
+              className="next"
+              color="inherit"
+              onClick={handleNext}
+            >
               Next
               <ArrowForwardIosIcon />
-            </Button>
+            </NavigationNext>)}
+            
           </Grid>
           <Box
             margin={0}
@@ -220,13 +243,17 @@ const Pokemon = () => {
                   <div
                     className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
                   >
-                    <img
-                      src={axiosPoke.sprites.other.dream_world.front_default}
-                    />
+                    {!axiosPoke.sprites.other.dream_world.front_default ? <img className="imgAlt" src={axiosPoke.sprites.other.home.front_default}/> : <img className="imgPrimary" src={axiosPoke.sprites.other.dream_world.front_default}/>}
+                    
                   </div>
-                  <Typography mt={2} variant="body1">
-                  {description[0].flavor_text}
-                  </Typography>
+                  {description.length === 0 ? (
+                    "No description found"
+                  ) : (
+                    <Typography mt={2} variant="body1">
+                      {description}
+                    </Typography>
+                  )}
+
                   <Stats stats={axiosPoke.stats} />
                 </Box>
               </Grid>

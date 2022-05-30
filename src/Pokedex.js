@@ -92,10 +92,10 @@ const Pokedex = () => {
               // console.log(data)
               setAxiosPoke((curState) => [...curState, data]);
             });
-          newPokemonData[idx + 1] = {
-            id: idx + 1,
-            name: response.data.name,
-          };
+          // newPokemonData[idx + 1] = {
+          //   id: idx + 1,
+          //   name: response.data.name,
+          // };
         });
 
         setIsLoaded(true);

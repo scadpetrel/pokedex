@@ -68,8 +68,8 @@ const Breeding = (props) => {
               {/* <div className="gender"><span>{props.genderMale}<MaleIcon style={{ color: "blue"}}/></span><span>{props.genderFemale}<FemaleIcon/></span></div> */}
             </div>
           </Grid>
-          <Grid container spacing={3} p={3}>
-            <Grid item xs={6}>
+          <Grid container spacing={3} p={3} pl={6}>
+            <Grid item xs={12} sm={6}>
               <div className="dataBlock">
                 <Typography pb={2} variant="h6">
                   {props.egg.length > 1 ? "Egg Groups" : "Egg Group"}
@@ -83,7 +83,7 @@ const Breeding = (props) => {
                 </div>
               </div>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6} >
               <div className="dataBlock">
                 <Typography pb={2} variant="h6">
                   Hatch Cycle

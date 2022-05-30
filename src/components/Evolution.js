@@ -20,12 +20,20 @@ const EvolutionContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "rgba(255, 255, 255, 0.8)",
   "& .Evolution-chain": {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: "row",
+      alignItems: "center",
+    },
+   
     "& svg": {
-      alignSelf: "flex-end",
+      alignSelf: "center",
       // marginBottom: "10px",
       color: "#4eba94",
+      [theme.breakpoints.up("sm")]: {
+        alignSelf: "flex-end"
+      }
     },
     "& svg:last-of-type": {
       display: "none",
@@ -39,14 +47,20 @@ const EvolutionImg = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  // boxSizing: "border-box",
+  overflow: "hidden",
 
   "& img": {
-    height: "4rem",
-    width: "4rem",
+    height: "5rem",
+    width: "5rem",
     margin: "15px",
     padding: "15px",
+    transition: ".3s ease-in-out",
     "&:hover": {
-      backgroundColor: "white",
+      transform: "scale(1.15)",
+      // borderBottom: "1.5px solid #4eba94",
+      // borderRadius: "4px",
+      // backgroundColor: "rgba(255, 255, 255, 0.8)",
     },
   },
 }));

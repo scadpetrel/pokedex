@@ -1,15 +1,15 @@
-// Handle responsive arrow display -- could refactor into component
-.Evolution-chain {
+// // Handle responsive arrow display -- could refactor into component
+// .Evolution-chain {
  
 
-  .fa-arrow-down {
-    display: none;
-  }
+//   .fa-arrow-down {
+//     display: none;
+//   }
  
-  .Evolution-down {
-    display: none;
-  }
-}
+//   .Evolution-down {
+//     display: none;
+//   }
+// }
 
 @media only screen and (max-width: 600px) {
   .Evolution-chain {

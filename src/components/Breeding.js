@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
+import { margin } from "@mui/system";
 
 const BreedingStat = styled(Box)(({ theme }) => ({
   border: "1.5px solid #4eba94",
@@ -22,9 +23,10 @@ const BreedingStat = styled(Box)(({ theme }) => ({
     justifyContent: "center",
 
     "& span": {
-      padding: "0px 1rem",
+      padding: "0px .5rem",
       display: "flex",
       alignItems: "center",
+      fontSize: "16px",
     },
   },
 }));
@@ -77,7 +79,7 @@ const Breeding = (props) => {
                 <div className="dataItem">
                   {props.egg.map((egg) => (
                     <span>
-                      <Chip label={egg.name} />
+                      <Chip label={egg.name} style={{ padding: ".5rem"}}/>
                     </span>
                   ))}
                 </div>
@@ -88,11 +90,11 @@ const Breeding = (props) => {
                 <Typography pb={2} variant="h6">
                   Hatch Cycle
                 </Typography>
-                <Typography variant="body1">
-                  <div>
-                    <strong>{props.eggCycle}</strong> ({eggStepsLow} -{" "}
-                    {eggStepsHigh})
-                  </div>
+                <Typography variant="body1" style={{ display: "flex" }}>
+                
+                    <strong>{props.eggCycle}</strong> <Typography variant="body2" pl={1}>({eggStepsLow} -{" "}
+                    {eggStepsHigh})</Typography>
+                  
                 </Typography>
               </div>
             </Grid>

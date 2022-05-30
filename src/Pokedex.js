@@ -66,7 +66,7 @@ const Pokedex = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleSearchChange = (evt) => {
-    setFilter(evt.target.value);
+    setFilter(evt.target.value.toLowerCase());
   };
 
   useEffect(() => {

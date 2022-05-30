@@ -61,11 +61,17 @@ const Pokemon = () => {
 
   const NavigationPrev = styled(Button)(({ theme }) => ({
     width: "50%",
+    [theme.breakpoints.up("lg")]: {
+      width: "49%"
+    },
     display: "flex",
     justifyContent: "flex-start",
   }));
   const NavigationNext = styled(Button)(({ theme }) => ({
     width: "50%",
+    [theme.breakpoints.up("lg")]: {
+      width: "49%"
+    },
     display: "flex",
     justifyContent: "flex-end",
   }));

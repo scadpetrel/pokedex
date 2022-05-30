@@ -19,13 +19,11 @@ const DataContainer = styled(Box)(({ theme }) => ({
   },
   "& span": {
     paddingBottom: ".3rem",
-    // display: "flex",
-    // alignItems: "center",
   },
   "& .MuiChip-labelMedium": {
     fontSize: "16px",
-    padding: "14px"
-  }
+    padding: "14px",
+  },
 }));
 
 const PokeData = (props) => {
@@ -49,25 +47,29 @@ const PokeData = (props) => {
               <Typography color="#ac0031" variant="subtitle2">
                 Height
               </Typography>
-              <Typography variant="body1">{props.meter} / {props.ftIn}</Typography>
-              
+              <Typography variant="body1">
+                {props.meter} / {props.ftIn}
+              </Typography>
             </Grid>
             <Grid item className="dataItem" mr="auto" pt={2} xs={4}>
               <Typography color="#ac0031" variant="subtitle2">
                 Weight
               </Typography>
-              <Typography variant="body1"> {props.weight} kg / {props.pounds}</Typography>
+              <Typography variant="body1">
+                {/* {" "} */}
+                {props.weight} kg / {props.pounds}
+              </Typography>
             </Grid>
           </Grid>
           <Grid container>
             <Grid className="dataItem" item xs={12} sm={6}>
               <Typography mb={1} variant="h6">
-                {props.types.length > 1 ? "Types" : "Type" }
+                {props.types.length > 1 ? "Types" : "Type"}
               </Typography>
               <Box style={{ display: "flex", justifyContent: "center" }}>
                 {props.types.map((type) => (
                   <span>
-                  <Chip className={type.type.name} label={type.type.name} />
+                    <Chip className={type.type.name} label={type.type.name} style={{ padding: ".5rem"}}/>
                   </span>
                 ))}
               </Box>
@@ -76,10 +78,17 @@ const PokeData = (props) => {
               <Typography mb={1} variant="h6">
                 Abilities
               </Typography>
-              <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+              <Box
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 {props.abilities.map((ability) => (
                   <span>
-                  <Chip label={ability.ability.name} variant="outlined"/>
+                    <Chip label={ability.ability.name} variant="outlined" />
                   </span>
                 ))}
               </Box>

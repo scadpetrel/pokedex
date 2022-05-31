@@ -23,6 +23,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+// Component styles
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -277,13 +278,14 @@ const Pokedex = () => {
           spacing={3}
           justifyContent="center"
           style={{ marginTop: "100px" }}
+          className="pokedex"
         >
           {generationFilter
             .sort((a, b) => a.id - b.id)
             .map(
               (item) =>
                 item.name.includes(filter) && (
-                  <Grid item>
+                  <Grid key={item.name + "-" + item.id} item>
                     <Pokecard
                       key={item.id}
                       name={changeToTitleCase(item.name)}

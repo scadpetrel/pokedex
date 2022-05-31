@@ -28,59 +28,106 @@
   padding: 1rem;
 }
 
+.pokedex {
+
+  & .MuiChip-filled {
+    background-color: rgba(255, 255,255, 0.25);
+  }
+}
 /* backgrounds */
 .App .normal{ 
-  background: linear-gradient(lighten($normal, 30), lighten($normal, 20) );
+  background: linear-gradient(lighten($normal, 30), lighten($normal, 10) );
   // background-color: lighten($normal, 30);
 }
 .App .fire{ 
-  background-color: lighten($fire, 30);
+  background: linear-gradient(lighten($fire, 30), lighten($fire, 20) );
+  // background-color: lighten($fire, 30);
 }
 .App .water{ 
-  background-color: lighten($water, 25);
+  background: linear-gradient(lighten($water, 30), lighten($water, 20) );
+
+  & .MuiChip-filled {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  // background-color: lighten($water, 25);
 }
 .App .grass{ 
-  background-color: lighten($grass, 30);
+  background: linear-gradient(lighten($grass, 35), lighten($grass, 20) );
+  // background-color: lighten($grass, 30);
 }
 .App .electric{ 
-  background-color: lighten($electric, 25);
+  background: linear-gradient(lighten($electric, 30), lighten($electric, 10) );
+
+  & .MuiChip-filled {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  // background-color: lighten($electric, 25);
 }
 .App .ice{ 
-  background-color: lighten($ice, 25);
+  background: linear-gradient(lighten($ice, 30), lighten($ice, 20) );
+
+  & .MuiChip-filled {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  // background-color: lighten($ice, 25);
 }
 .App .fighting{ 
-  background-color: lighten($fighting, 40);
+  background: linear-gradient(lighten($fighting, 30), lighten($fighting, 20) );
+  // background-color: lighten($fighting, 40);
 }
 .App .poison{
-  background-color: lighten($poison, 45);
+  background: linear-gradient(lighten($poison, 40), lighten($poison, 20) );
+  // background-color: lighten($poison, 45);
 }
 .App .ground{ 
-  background-color: lighten($ground, 28);
+  background: linear-gradient(lighten($ground, 30), lighten($ground, 10) );
+  // background-color: lighten($ground, 28);
 }
 .App .flying{ 
-  background-color: lighten($flying, 30);
+  background: linear-gradient(lighten($flying, 30), lighten($flying, 20) );
+
+  & .MuiChip-filled {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  // background-color: lighten($flying, 30);
 }
 .App .psychic{ 
-  background-color: lighten($psycic, 28);
+  background: linear-gradient(lighten($psycic, 30), lighten($psycic, 20) );
+  // background-color: lighten($psycic, 28);
 }
 .App .bug{ 
-  background-color: lighten($bug, 43);
+  background: linear-gradient(lighten($bug, 35), lighten($bug, 20) );
+  // background-color: lighten($bug, 43);
 }
 .App .rock{ 
-  background-color: lighten($rock, 35);
+  background: linear-gradient(lighten($rock, 30), lighten($rock, 20) );
+  // background-color: lighten($rock, 35);
 }
 .App .ghost{ 
-  background-color: lighten($ghost, 30);
+  background: linear-gradient(lighten($ghost, 30), lighten($ghost, 20) );
+  // background-color: lighten($ghost, 30);
 }
 .App .dark{ 
-  background-color: lighten($dark, 30);
+  background: linear-gradient(lighten($dark, 30), lighten($dark, 20) );
+  // background-color: lighten($dark, 30);
 }
 .App .dragon{ 
-  background-color: lighten($dragon, 30);
+  background: linear-gradient(lighten($dragon, 30), lighten($dragon, 20) );
+  // background-color: lighten($dragon, 30);
 }
 .App .steel{ 
-  background-color: lighten($steel, 30);
+  background: linear-gradient(lighten($steel, 30), lighten($steel, 20) );
+
+  & .MuiChip-filled {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  // background-color: lighten($steel, 30);
 }
 .App .fairy { 
-  background-color: lighten($fairy, 10);
+  background: linear-gradient(lighten($fairy, 30), lighten($fairy, 20) );
+
+  & .MuiChip-filled {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  // background-color: lighten($fairy, 10);
 }

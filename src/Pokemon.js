@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+// import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import { useTheme, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Typography } from "@mui/material";
@@ -60,26 +61,35 @@ const Pokemon = () => {
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
   const prvNextWidth = lgBreak ? "66%" : "100%";
 
+  // Component styles
   const NavigationPrev = styled(Button)(({ theme }) => ({
     width: "50%",
+    marginTop: "10px",
+    color: theme.palette.grey[600],
+    display: "flex",
+    justifyContent: "flex-start",
     [theme.breakpoints.up("lg")]: {
       width: "49%"
     },
-    display: "flex",
-    justifyContent: "flex-start",
+    "& span": {
+      // color: theme.palette.grey[600]
+    }
   }));
   const NavigationNext = styled(Button)(({ theme }) => ({
     width: "50%",
+    marginTop: "10px",
+    color: theme.palette.grey[600],
+    display: "flex",
+    justifyContent: "flex-end",
     [theme.breakpoints.up("lg")]: {
       width: "49%"
     },
-    display: "flex",
-    justifyContent: "flex-end",
   }));
   const NavigationPlaceholder = styled("div")(({ theme }) => ({
     width: "50%",
     display: "flex",
     justifyContent: "flex-end",
+    marginTop: "10px",
   }));
 
   useEffect(() => {
@@ -298,9 +308,16 @@ const Pokemon = () => {
           </Box>
         </div>
       ) : (
-        <div>
+        <Box
+            style={{
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
          <Loading/>
-        </div>
+        </Box>
       )}
     </div>
   );

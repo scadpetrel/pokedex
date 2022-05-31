@@ -12,6 +12,7 @@ body {
 
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -34,7 +35,7 @@ body {
   height: 150px;
   width: 150px;
   /*animation: fill 2s ease 1 infinite;*/
-  animation: fill 2s ease 1s infinite;
+  animation: fill 3s ease 1s infinite;
 }
 }
 
@@ -73,4 +74,8 @@ body {
       height: 150px;
       background-color: var(--secondary);
   }
+}
+
+.loadingText {
+  padding: 1rem 0px;
 }

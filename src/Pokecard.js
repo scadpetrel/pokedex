@@ -18,6 +18,8 @@ const Pokecard = (props) => {
   const backgroundType = `Pokecard ${props.type}`;
   const history = useNavigate();
     // const link = props.number;
+
+    let image = !props.img ? props.imgAlt : props.img
   const handleMouseEnter = () => {
     setHover(18)
   }
@@ -32,7 +34,7 @@ const Pokecard = (props) => {
           <Typography variant="overline" display="block" gutterBottom>
             {props.number}
           </Typography>
-          <CardMedia component="img" image={props.img} alt={props.name} />
+          <CardMedia component="img" image={image} alt={props.name} />
           <Typography gutterBottom variant="h5" component="div">
             {props.name}
           </Typography>

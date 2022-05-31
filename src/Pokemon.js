@@ -18,6 +18,7 @@ import Stats from "./components/Stats";
 import Breeding from "./components/Breeding";
 import Evolution from "./components/Evolution";
 import PokeData from "./components/PokeData";
+import Loading from './components/Loading'
 import { blueGrey, grey } from "@mui/material/colors";
 import {
   changeToTitleCase,
@@ -141,11 +142,11 @@ const Pokemon = () => {
       const { data } = response;
       console.log(data);
       // console.log(pokemonSpecies.evolution_chain.url)
-      var evoChain = [];
-      var evoData = data.chain;
+      let evoChain = [];
+      let evoData = data.chain;
 
       do {
-        var evoDetails = evoData["evolution_details"][0];
+        let evoDetails = evoData["evolution_details"][0];
 
         evoChain.push({
           species_name: evoData.species.name,
@@ -298,7 +299,7 @@ const Pokemon = () => {
         </div>
       ) : (
         <div>
-          <CircularProgress />
+         <Loading/>
         </div>
       )}
     </div>

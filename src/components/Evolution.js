@@ -2,12 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { changeToTitleCase } from "../helper";
+// MUI components
 import Box from "@mui/material/Box";
 import { styled, useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import useMediaQuery from "@mui/material/useMediaQuery";
+// Styles
 import "../scss/Evolution.scss";
 
 // component sytles =============
@@ -26,10 +28,8 @@ const EvolutionContainer = styled(Box)(({ theme }) => ({
       flexDirection: "row",
       alignItems: "center",
     },
-   
     "& svg": {
       alignSelf: "center",
-      // marginBottom: "10px",
       color: "#4eba94",
       [theme.breakpoints.up("sm")]: {
         alignSelf: "flex-end"
@@ -96,6 +96,7 @@ const Evolution = (props) => {
                 id: details.data.id,
                 name: details.data.name,
                 img: details.data.sprites.other.dream_world.front_default,
+                imgAlt: details.data.sprites.other.home.front_default
               },
             ])
         );
@@ -116,9 +117,10 @@ const Evolution = (props) => {
         <div className="Evolution-chain">
           {evolution.map((evo) => (
             <>
+              
               <EvolutionImg>
                 <a href={`/${evo.id}`}>
-                  <img src={evo.img} />
+                  {!evo.img ? <img src={evo.imgAlt} /> : <img src={evo.img} />}
                 </a>
                 <Typography variant="body1">
                   {changeToTitleCase(evo.name)}

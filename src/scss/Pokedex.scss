@@ -8,3 +8,16 @@
   margin: 0 auto;
   padding: 0;
 }
+
+.App .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+  // border-color: 
+  border: 1px solid rgba(0,0,0, 0.7);
+  // background-color: red;
+  // color: black;
+}
+
+.App .MuiInputLabel-root.Mui-focused {
+  color: black;
+}
+
+// MuiFormLabel-filled

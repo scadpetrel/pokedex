@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Pokecard from "./Pokecard";
-import Loading from './components/Loading'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-// import TextField from "@mui/material/TextField";
-// import InputLabel from "@mui/material/InputLabel";
-// import InputAdornment from "@mui/material/InputAdornment";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
@@ -16,7 +14,9 @@ import SearchIcon from "@mui/icons-material/Search";
 // import { styled } from "@mui/material/styles";
 import { changeToTitleCase } from "./helper.js";
 import "./scss/Pokedex.scss";
-import axios from "axios";
+import Pokecard from "./Pokecard";
+import Loading from './components/Loading'
+
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -65,8 +65,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 const Pokedex = () => {
-  // const theme = useTheme();
+  const history = useNavigate();
   // const [pokemons, setPokemons] = useState([]);
   // const [loadMore, setLoadMore] = useState([
   //   "https://pokeapi.co/api/v2/pokemon",
@@ -79,17 +80,43 @@ const Pokedex = () => {
   const [generation, setGeneration] = React.useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
   const [displayAll, setDisplayAll] = useState(true);
+  const [searchLabel, setSearchLabel] = useState("")
 
   let displayGroup = displayAll ? pokemon : generationFilter;
+  // let getSearchLabel = () => {
+  //   switch (generationFilter[0].id) {
+  //     case 1:
+  //       setSearchLabel("Search Gen I")
+  //       break;
+  //     case 152:
+  //       setSearchLabel("Search Gen II")
+  //       break;
+  //     default: 
+  //     setSearchLabel("Search...")  
+  //   }
+  // }
 
   const handleSearchChange = (evt) => {
     setFilter(evt.target.value.toLowerCase());
   };
 
+  function handleGetRandomPokemon(){
+    let randPokemon = pickRandomNumber()
+    history(`/${randPokemon}`)
+    // history(0)
+  }
+
   useEffect(() => {
     // axiosPokemon();
     getPokemon();
   }, []);
+
+  const pickRandomNumber = () => {
+    console.log("in random")
+    const randNumber = Math.floor(Math.random() * 898) + 1
+    console.log(randNumber)
+    return randNumber
+  }
 
   const filterRange = (arr, a, b) => {
     // setGenerationFilter([]);
@@ -109,28 +136,39 @@ const Pokedex = () => {
     switch (event.target.value) {
       case 1:
         handleFilterClick(pokemon, 1, 151);
+        setSearchLabel("Search Gen I...")
         break;
       case 2:
         handleFilterClick(pokemon, 152, 251);
+        setSearchLabel("Search Gen II...")
         break;
       case 3:
         handleFilterClick(pokemon, 252, 386);
+        setSearchLabel("Search Gen III...")
         break;
       case 4:
         handleFilterClick(pokemon, 387, 493);
+        setSearchLabel("Search Gen IV...")
         break;
       case 5:
         handleFilterClick(pokemon, 494, 649);
+        setSearchLabel("Search Gen V...")
         break;
       case 6:
         handleFilterClick(pokemon, 650, 721);
+        setSearchLabel("Search Gen VI...")
         break;
       case 7:
         handleFilterClick(pokemon, 722, 809);
+        setSearchLabel("Search Gen VII...")
         break;
       case 8:
         handleFilterClick(pokemon, 810, 898);
+        setSearchLabel("Search Gen VIII...")
         break;
+      case 9:
+        handleFilterClick(pokemon, 1, 898);
+        setSearchLabel("Search All...")  
     }
 
     setGeneration(event.target.value);
@@ -174,12 +212,15 @@ const Pokedex = () => {
           },
         ]);
       }
+      setSearchLabel("Search Gen I...")
     } catch (err) {
       console.error(err);
     }
     setTimeout(() => {
       // filterRange(pokemon, 1, 151);
+      
       setIsLoaded(true);
+      
     }, 2300);
   };
 
@@ -231,14 +272,16 @@ const Pokedex = () => {
         >
           <Box mb={2} sx={{ width: 220, }}>
             <FormControl fullWidth>
-              <InputLabel id="select-pokemon-generation">Generation</InputLabel>
+              <InputLabel  id="select-pokemon-generation" >Generation</InputLabel>
               <Select
                 labelId="select-pokemon-generation"
-                id="select-generation"
+                id="select-pokemon"
                 value={generation}
                 label="Generation I"
                 onChange={handleGenerationChange}
-                style={{ height: 40 }}
+                style={{ height: 40, borderColor: "#000" }}
+                
+                // sx={{ width: "500px" }}
               >
                 <MenuItem value={1}>Generation I</MenuItem>
                 <MenuItem value={2}>Generation II</MenuItem>
@@ -248,6 +291,7 @@ const Pokedex = () => {
                 <MenuItem value={6}>Generation VI</MenuItem>
                 <MenuItem value={7}>Generation VII</MenuItem>
                 <MenuItem value={8}>Generation VIII</MenuItem>
+                <MenuItem value={9}>All Generations</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -259,11 +303,12 @@ const Pokedex = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder={searchLabel}
               inputProps={{ "aria-label": "search" }}
               onChange={handleSearchChange}
             />
           </Search>
+          <button onClick={handleGetRandomPokemon}>Random</button>
           {/* </Box> */}
           {/* </div> */}
           {/* <div> */}

@@ -116,18 +116,18 @@ const Evolution = (props) => {
         </Typography>
         <div className="Evolution-chain">
           {evolution.map((evo) => (
-            <>
+            <div key={`chainBlock-${evo.name}`}>
               
-              <EvolutionImg>
+              <EvolutionImg key={`img-${evo.name}`}>
                 <a href={`/${evo.id}`}>
-                  {!evo.img ? <img src={evo.imgAlt} /> : <img src={evo.img} />}
+                  {!evo.img ? <img key={`imageAlt-${evo.name}`} src={evo.imgAlt} /> : <img key={`imageMain-${evo.name}`} src={evo.img} />}
                 </a>
-                <Typography variant="body1">
+                <Typography variant="body1" key={evo.name}>
                   {changeToTitleCase(evo.name)}
                 </Typography>
               </EvolutionImg>
-              {smUp ? <ArrowRightAltIcon /> : <ArrowDownwardIcon />}
-            </>
+              {smUp ? <ArrowRightAltIcon key={`arrowRight-${evo.name}`}/> : <ArrowDownwardIcon key={`arrowDown-${evo.name}`}/>}
+            </div>
           ))}
         </div>
       </EvolutionContainer>

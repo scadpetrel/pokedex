@@ -270,6 +270,8 @@ const Pokedex = () => {
             justifyContent: "space-between",
           }}
         >
+          
+          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
           <Box mb={2} sx={{ width: 220, }}>
             <FormControl fullWidth>
               <InputLabel  id="select-pokemon-generation" >Generation</InputLabel>
@@ -279,9 +281,9 @@ const Pokedex = () => {
                 value={generation}
                 label="Generation I"
                 onChange={handleGenerationChange}
-                style={{ height: 40, borderColor: "#000" }}
+                color="secondary"
+                style={{ height: 40 }}
                 
-                // sx={{ width: "500px" }}
               >
                 <MenuItem value={1}>Generation I</MenuItem>
                 <MenuItem value={2}>Generation II</MenuItem>
@@ -298,7 +300,7 @@ const Pokedex = () => {
           {/* <div> */}
           {/* <Box sx={{ height: 75, display: "flex", alignItems: "flex-end" }}> */}
           {/* <SearchIcon sx={{ color: "action.active", mr: 1, my: 1 }} /> */}
-          <Search>
+          <Search style={{ marginLeft: 20 }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -308,7 +310,8 @@ const Pokedex = () => {
               onChange={handleSearchChange}
             />
           </Search>
-          <button onClick={handleGetRandomPokemon}>Random</button>
+          </Box>
+          <Button onClick={handleGetRandomPokemon} color="secondary" variant="contained" sx={{ mb: 2}}>Random</Button>
           {/* </Box> */}
           {/* </div> */}
           {/* <div> */}

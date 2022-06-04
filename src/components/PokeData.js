@@ -68,8 +68,8 @@ const PokeData = (props) => {
               </Typography>
               <Box style={{ display: "flex", justifyContent: "center" }}>
                 {props.types.map((type) => (
-                  <span>
-                    <Chip className={type.type.name} label={type.type.name} style={{ padding: ".5rem"}}/>
+                  <span key={`typesKey-${type.type.name}`}>
+                    <Chip key={type.type.name} className={type.type.name} label={type.type.name} style={{ padding: ".5rem"}}/>
                   </span>
                 ))}
               </Box>
@@ -87,8 +87,8 @@ const PokeData = (props) => {
                 }}
               >
                 {props.abilities.map((ability) => (
-                  <span>
-                    <Chip label={ability.ability.name} variant="outlined" />
+                  <span key={`abilitySpan-${ability.ability.name}`}>
+                    <Chip key={ability.ability.name} label={ability.ability.name} variant="outlined" />
                   </span>
                 ))}
               </Box>

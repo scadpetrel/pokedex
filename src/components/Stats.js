@@ -33,11 +33,11 @@ const Stats = (props) => {
         </Typography>
         <Grid container spacing={2}>
           {props.stats.map((stat) => (
-            <StatsGrid item xs={12} sm={4} md={6} lg={4}>
-              <Typography color="#ac0031" variant="subtitle2">
+            <StatsGrid key={`${stat.stat.name}-${stat.base_stat}`} item xs={12} sm={4} md={6} lg={4}>
+              <Typography key={stat.stat.name}color="#ac0031" variant="subtitle2">
                 <span>{changeToTitleCase(stat.stat.name)}</span>
               </Typography>
-              <Typography variant="body1">{stat.base_stat}</Typography>
+              <Typography key={stat.base_stat} variant="body1">{stat.base_stat}</Typography>
             </StatsGrid>
           ))}
         </Grid>

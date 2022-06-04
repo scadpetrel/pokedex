@@ -78,8 +78,8 @@ const Breeding = (props) => {
                 </Typography>
                 <div className="dataItem">
                   {props.egg.map((egg) => (
-                    <span>
-                      <Chip label={egg.name} style={{ padding: ".5rem"}}/>
+                    <span key={`eggName-span-${egg.name}`}>
+                      <Chip key={egg.name} label={egg.name} style={{ padding: ".5rem"}}/>
                     </span>
                   ))}
                 </div>
@@ -92,7 +92,7 @@ const Breeding = (props) => {
                 </Typography>
                 <Typography variant="body1" style={{ display: "flex" }}>
                 
-                    <strong>{props.eggCycle}</strong> <Typography variant="body2" pl={1}>({eggStepsLow} -{" "}
+                    <strong>{props.eggCycle}</strong> <Typography component={'span'} variant="body2" pl={1}>({eggStepsLow} -{" "}
                     {eggStepsHigh})</Typography>
                   
                 </Typography>

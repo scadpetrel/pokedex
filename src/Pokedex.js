@@ -274,7 +274,7 @@ const Pokedex = () => {
           <Box sx={{ display: 'flex', flexDirection: 'row' }}>
           <Box mb={2} sx={{ width: 220, }}>
             <FormControl fullWidth>
-              <InputLabel  id="select-pokemon-generation" >Generation</InputLabel>
+              <InputLabel  id="select-pokemon-generation" >Select Generation</InputLabel>
               <Select
                 labelId="select-pokemon-generation"
                 id="select-pokemon"
@@ -357,7 +357,6 @@ const Pokedex = () => {
               alignItems: "center",
             }}
           >
-            {/* <CircularProgress style={{ color: "black" }} /> */}
             <Loading/>
           </Box>
         </>

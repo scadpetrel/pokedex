@@ -19,7 +19,7 @@ import Stats from "./components/Stats";
 import Breeding from "./components/Breeding";
 import Evolution from "./components/Evolution";
 import PokeData from "./components/PokeData";
-import Loading from './components/Loading'
+import Loading from "./components/Loading";
 import { blueGrey, grey } from "@mui/material/colors";
 import {
   changeToTitleCase,
@@ -40,20 +40,19 @@ const Pokemon = () => {
   const [pokemonSpecies, setPokemonSpecies] = useState([]);
   const [evolution, setEvolution] = useState([]);
   const [description, setDescription] = useState("");
+  const [nextPrev, setNextPrev] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  // const navigate = useNavigate();
-  // let height = convertToMeeter(axiosPoke.height);
-  // let name = changeToTitleCase(axiosPoke.name);
 
   // ==== Display variables
   let pounds = convertToPounds(axiosPoke.weight);
   let weight = convertToKilogram(axiosPoke.weight);
   let meter = convertMeter(axiosPoke.height);
   let ftIn = convertFeetInches(axiosPoke.height);
-  // let gender = genderRatio(pokemonSpecies.gender_rate);
 
+  // Evolution variable to pass from get species info to evolution info
   let api_evolution = "";
 
+  // useNavigate
   const history = useNavigate();
 
   // ==== Theme and layout variables
@@ -69,11 +68,11 @@ const Pokemon = () => {
     display: "flex",
     justifyContent: "flex-start",
     [theme.breakpoints.up("lg")]: {
-      width: "49%"
+      width: "49%",
     },
     "& span": {
       // color: theme.palette.grey[600]
-    }
+    },
   }));
   const NavigationNext = styled(Button)(({ theme }) => ({
     width: "50%",
@@ -82,9 +81,10 @@ const Pokemon = () => {
     display: "flex",
     justifyContent: "flex-end",
     [theme.breakpoints.up("lg")]: {
-      width: "49%"
+      width: "49%",
     },
   }));
+
   const NavigationPlaceholder = styled("div")(({ theme }) => ({
     width: "50%",
     display: "flex",
@@ -131,18 +131,17 @@ const Pokemon = () => {
       .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`)
       .then(function (response) {
         const { data } = response;
-        // console.log(data);
         setPokemonSpecies(data);
         api_evolution = data.evolution_chain.url;
-        // console.log(data.flavor_text_entries);
         // filter out english blue flavor text and set to state
         pullDescription = data.flavor_text_entries.filter(
           (text) => text.language.name == "en"
         );
         // set first english text available
         setDescription(pullDescription[0].flavor_text);
-        console.log(pullDescription[0].flavor_text);
+        // Start next get functions
         getEvolution();
+        getNextPrevNames();
       });
   };
 
@@ -150,8 +149,6 @@ const Pokemon = () => {
   const getEvolution = async () => {
     await axios.get(api_evolution).then(function (response) {
       const { data } = response;
-      console.log(data);
-      // console.log(pokemonSpecies.evolution_chain.url)
       let evoChain = [];
       let evoData = data.chain;
 
@@ -172,16 +169,31 @@ const Pokemon = () => {
     setIsLoaded(true);
   };
 
+  const getNextPrevNames = async () => {
+    const prevNum = Number(pokemonId) - 1;
+    const nextNum = Number(pokemonId) + 1;
+    let prevRes = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${prevNum}`
+    );
+    let nextRes = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${nextNum}`
+    );
+    console.log("prev next");
+    console.log(prevRes.data.name);
+    setNextPrev({ previous: prevRes.data.name, next: nextRes.data.name });
+  };
+
   // ==== filter english+blue flavor text ***INACTIVE***
   const filterFlavorText = () => {
     let filteredItems = pokemonSpecies.flavor_text_entries.filter(
       (poke) => poke.language.name == "en" && poke.version.name == "blue"
     );
-    console.log("in filter flavor");
-    console.log(filteredItems);
+    // console.log("in filter flavor");
+    // console.log(filteredItems);
     setDescription(filteredItems);
   };
 
+  // Navigation for next and previous links
   function handlePrev() {
     history(`/${axiosPoke.id - 1}`);
     history(0);
@@ -191,8 +203,6 @@ const Pokemon = () => {
     history(`/${axiosPoke.id + 1}`);
     history(0);
   }
-
-  // let description = filterFlavorText(pokemonSpecies.flavor_text_entries)
 
   return (
     <div>
@@ -222,18 +232,21 @@ const Pokemon = () => {
                 onClick={handlePrev}
               >
                 <ArrowBackIosIcon />
-                Prev
+                {nextPrev.previous}
               </NavigationPrev>
             )}
-            {axiosPoke.id === 898 ? <NavigationPlaceholder/> : (<NavigationNext
-              className="next"
-              color="inherit"
-              onClick={handleNext}
-            >
-              Next
-              <ArrowForwardIosIcon />
-            </NavigationNext>)}
-            
+            {axiosPoke.id === 898 ? (
+              <NavigationPlaceholder />
+            ) : (
+              <NavigationNext
+                className="next"
+                color="inherit"
+                onClick={handleNext}
+              >
+                {nextPrev.next}
+                <ArrowForwardIosIcon />
+              </NavigationNext>
+            )}
           </Grid>
           <Box
             margin={0}
@@ -241,7 +254,6 @@ const Pokemon = () => {
             style={{ display: "flex", justifyContent: "space-between" }}
             sx={{ p: 0 }}
           >
-            {/* <Button color="inherit" onClick={handlePrev}><ArrowBackIosIcon/></Button> */}
             <Grid
               container
               spacing={3}
@@ -250,8 +262,6 @@ const Pokemon = () => {
             >
               <Grid item xs={12} sm={10} md={8} lg={3}>
                 <Box
-                  // marginRight={2}
-                  // width="50%"
                   height="auto"
                   width="auto"
                   style={{ backgroundColor: blueGrey[50] }}
@@ -260,8 +270,17 @@ const Pokemon = () => {
                   <div
                     className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
                   >
-                    {!axiosPoke.sprites.other.dream_world.front_default ? <img className="imgAlt" src={axiosPoke.sprites.other.home.front_default}/> : <img className="imgPrimary" src={axiosPoke.sprites.other.dream_world.front_default}/>}
-                    
+                    {!axiosPoke.sprites.other.dream_world.front_default ? (
+                      <img
+                        className="imgAlt"
+                        src={axiosPoke.sprites.other.home.front_default}
+                      />
+                    ) : (
+                      <img
+                        className="imgPrimary"
+                        src={axiosPoke.sprites.other.dream_world.front_default}
+                      />
+                    )}
                   </div>
                   {description.length === 0 ? (
                     "No description found"
@@ -276,8 +295,6 @@ const Pokemon = () => {
               </Grid>
               <Grid item xs={12} sm={10} md={8} lg={3}>
                 <Box
-                  // marginLeft={2}
-                  // width="50%"
                   height="auto"
                   width="auto"
                   style={{ backgroundColor: blueGrey[50] }}
@@ -298,25 +315,23 @@ const Pokemon = () => {
                     genderRate={pokemonSpecies.gender_rate}
                     genderMale={genderMale(pokemonSpecies.gender_rate)}
                     genderFemale={genderFemale(pokemonSpecies.gender_rate)}
-                    // category={pokemonSpecies.genera[7].genus}
                     egg={pokemonSpecies.egg_groups}
                   />
                 </Box>
               </Grid>
             </Grid>
-            {/* <Button color="inherit" onClick={handleNext}><ArrowForwardIosIcon/></Button> */}
           </Box>
         </div>
       ) : (
         <Box
-            style={{
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-         <Loading/>
+          style={{
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Loading />
         </Box>
       )}
     </div>

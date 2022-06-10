@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+// Material UI imports
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
@@ -10,18 +10,15 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
-// import CircularProgress from "@mui/material/CircularProgress";
-// import { styled } from "@mui/material/styles";
-import { changeToTitleCase } from "./helper.js";
-import "./scss/Pokedex.scss";
-import Pokecard from "./Pokecard";
-import Loading from './components/Loading'
-
-
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+// Compontent and style imports
+import { changeToTitleCase } from "./helper.js";
+import "./scss/Pokedex.scss";
+import Pokecard from "./Pokecard";
+import Loading from "./components/Loading";
 
 // Component styles
 const Search = styled("div")(({ theme }) => ({
@@ -65,69 +62,52 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
 const Pokedex = () => {
   const history = useNavigate();
   // const [pokemons, setPokemons] = useState([]);
   // const [loadMore, setLoadMore] = useState([
   //   "https://pokeapi.co/api/v2/pokemon",
   // ]);
+
+  // All Pokemon data
   const [pokemon, setPokemon] = useState([]);
-  // will decomission axiosPoke after refactor
-  const [axiosPoke, setAxiosPoke] = useState([]);
-  const [filter, setFilter] = useState("");
+  // Current displayed generation
   const [generationFilter, setGenerationFilter] = useState([]);
+  // Search field
+  const [filter, setFilter] = useState("");
+  // Generation number for switch statement - could refactor and use something else 
   const [generation, setGeneration] = React.useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [displayAll, setDisplayAll] = useState(true);
-  const [searchLabel, setSearchLabel] = useState("")
-
-  let displayGroup = displayAll ? pokemon : generationFilter;
-  // let getSearchLabel = () => {
-  //   switch (generationFilter[0].id) {
-  //     case 1:
-  //       setSearchLabel("Search Gen I")
-  //       break;
-  //     case 152:
-  //       setSearchLabel("Search Gen II")
-  //       break;
-  //     default: 
-  //     setSearchLabel("Search...")  
-  //   }
-  // }
+  // Generation name for search
+  const [searchLabel, setSearchLabel] = useState("");
 
   const handleSearchChange = (evt) => {
     setFilter(evt.target.value.toLowerCase());
   };
 
-  function handleGetRandomPokemon(){
-    let randPokemon = pickRandomNumber()
-    history(`/${randPokemon}`)
+  function handleGetRandomPokemon() {
+    let randPokemon = pickRandomNumber();
+    history(`/${randPokemon}`);
     // history(0)
   }
 
   useEffect(() => {
-    // axiosPokemon();
     getPokemon();
   }, []);
 
   const pickRandomNumber = () => {
-    console.log("in random")
-    const randNumber = Math.floor(Math.random() * 898) + 1
-    console.log(randNumber)
-    return randNumber
-  }
+    console.log("in random");
+    const randNumber = Math.floor(Math.random() * 898) + 1;
+    console.log(randNumber);
+    return randNumber;
+  };
 
   const filterRange = (arr, a, b) => {
-    // setGenerationFilter([]);
     let result = arr.filter((item) => a <= item.id && item.id <= b);
     console.log("filtering");
-
     setGenerationFilter((curState) => [...result]);
-    console.log(result);
-    setDisplayAll(false);
   };
-// ****DEPRECIATED****
+  // ****DEPRECIATED****
   const handleFilterClick = (arr, a, b) => {
     filterRange(arr, a, b);
   };
@@ -136,39 +116,40 @@ const Pokedex = () => {
     switch (event.target.value) {
       case 1:
         handleFilterClick(pokemon, 1, 151);
-        setSearchLabel("Search Gen I...")
+        setSearchLabel("Search Gen I...");
         break;
       case 2:
         handleFilterClick(pokemon, 152, 251);
-        setSearchLabel("Search Gen II...")
+        setSearchLabel("Search Gen II...");
         break;
       case 3:
         handleFilterClick(pokemon, 252, 386);
-        setSearchLabel("Search Gen III...")
+        setSearchLabel("Search Gen III...");
         break;
       case 4:
         handleFilterClick(pokemon, 387, 493);
-        setSearchLabel("Search Gen IV...")
+        setSearchLabel("Search Gen IV...");
         break;
       case 5:
         handleFilterClick(pokemon, 494, 649);
-        setSearchLabel("Search Gen V...")
+        setSearchLabel("Search Gen V...");
         break;
       case 6:
         handleFilterClick(pokemon, 650, 721);
-        setSearchLabel("Search Gen VI...")
+        setSearchLabel("Search Gen VI...");
         break;
       case 7:
         handleFilterClick(pokemon, 722, 809);
-        setSearchLabel("Search Gen VII...")
+        setSearchLabel("Search Gen VII...");
         break;
       case 8:
         handleFilterClick(pokemon, 810, 898);
-        setSearchLabel("Search Gen VIII...")
+        setSearchLabel("Search Gen VIII...");
         break;
-      case 9:
+      default: 
         handleFilterClick(pokemon, 1, 898);
-        setSearchLabel("Search All...")  
+        setSearchLabel("Search All...");
+
     }
 
     setGeneration(event.target.value);
@@ -212,52 +193,18 @@ const Pokedex = () => {
           },
         ]);
       }
-      setSearchLabel("Search Gen I...")
+      setSearchLabel("Search Gen I...");
     } catch (err) {
       console.error(err);
     }
     setTimeout(() => {
-      // filterRange(pokemon, 1, 151);
-      
       setIsLoaded(true);
-      
     }, 2300);
   };
 
-  // axios fetch from pokeapi.co ***DEPRECIATED***
-  const axiosPokemon = async () => {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=898")
-      .then(function (response) {
-        const { data } = response;
-        const { results } = data;
-        // console.log(results)
-        const newPokemonData = {};
-        results.forEach((p, idx) => {
-          axios
-            .get(`https://pokeapi.co/api/v2/pokemon/${idx + 1}`)
-            .then(function (response) {
-              const { data } = response;
-              // console.log(data)
-              setAxiosPoke((curState) => [...curState, data]);
-            });
-          // newPokemonData[idx + 1] = {
-          //   id: idx + 1,
-          //   name: response.data.name,
-          // };
-        });
-        // filterRange(axiosPoke, 1, 898)
-
-        // setAxiosPoke(newPokemonData)
-      });
-
-    setIsLoaded(true);
-  };
-
-  // axiosPoke.map((el) => console.log(el.types[1]));
   return (
     <>
-      <AppBar position="fixed">
+      {/* <AppBar color="primary" style={{ height: 100}}> */}
         <Toolbar
           color="primary"
           style={{
@@ -268,57 +215,57 @@ const Pokedex = () => {
             flexDirection: "row",
             alignItems: "flex-end",
             justifyContent: "space-between",
+           
           }}
         >
-          
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-          <Box mb={2} sx={{ width: 220, }}>
-            <FormControl fullWidth>
-              <InputLabel  id="select-pokemon-generation" >Select Generation</InputLabel>
-              <Select
-                labelId="select-pokemon-generation"
-                id="select-pokemon"
-                value={generation}
-                label="Generation I"
-                onChange={handleGenerationChange}
-                color="secondary"
-                style={{ height: 40 }}
-                
-              >
-                <MenuItem value={1}>Generation I</MenuItem>
-                <MenuItem value={2}>Generation II</MenuItem>
-                <MenuItem value={3}>Generation III</MenuItem>
-                <MenuItem value={4}>Generation IV</MenuItem>
-                <MenuItem value={5}>Generation V</MenuItem>
-                <MenuItem value={6}>Generation VI</MenuItem>
-                <MenuItem value={7}>Generation VII</MenuItem>
-                <MenuItem value={8}>Generation VIII</MenuItem>
-                <MenuItem value={9}>All Generations</MenuItem>
-              </Select>
-            </FormControl>
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Box mb={2} sx={{ width: 220 }}>
+              <FormControl fullWidth>
+                <InputLabel id="select-pokemon-generation">
+                  Select Generation
+                </InputLabel>
+                <Select
+                  labelId="select-pokemon-generation"
+                  id="select-pokemon"
+                  value={generation}
+                  label="Generation I"
+                  onChange={handleGenerationChange}
+                  color="secondary"
+                  style={{ height: 40 }}
+                >
+                  <MenuItem value={1}>Generation I</MenuItem>
+                  <MenuItem value={2}>Generation II</MenuItem>
+                  <MenuItem value={3}>Generation III</MenuItem>
+                  <MenuItem value={4}>Generation IV</MenuItem>
+                  <MenuItem value={5}>Generation V</MenuItem>
+                  <MenuItem value={6}>Generation VI</MenuItem>
+                  <MenuItem value={7}>Generation VII</MenuItem>
+                  <MenuItem value={8}>Generation VIII</MenuItem>
+                  <MenuItem value={9}>All Generations</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Search style={{ marginLeft: 20 }}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder={searchLabel}
+                inputProps={{ "aria-label": "search" }}
+                onChange={handleSearchChange}
+              />
+            </Search>
           </Box>
-          {/* <div> */}
-          {/* <Box sx={{ height: 75, display: "flex", alignItems: "flex-end" }}> */}
-          {/* <SearchIcon sx={{ color: "action.active", mr: 1, my: 1 }} /> */}
-          <Search style={{ marginLeft: 20 }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder={searchLabel}
-              inputProps={{ "aria-label": "search" }}
-              onChange={handleSearchChange}
-            />
-          </Search>
-          </Box>
-          <Button onClick={handleGetRandomPokemon} color="secondary" variant="contained" sx={{ mb: 2}}>Random</Button>
-          {/* </Box> */}
-          {/* </div> */}
-          {/* <div> */}
-          
-          {/* </div> */}
+          <Button
+            onClick={handleGetRandomPokemon}
+            color="secondary"
+            variant="contained"
+            sx={{ mb: 2 }}
+          >
+            Random
+          </Button>
         </Toolbar>
-      </AppBar>
+      {/* </AppBar> */}
 
       {isLoaded ? (
         <Grid
@@ -357,7 +304,7 @@ const Pokedex = () => {
               alignItems: "center",
             }}
           >
-            <Loading/>
+            <Loading />
           </Box>
         </>
       )}

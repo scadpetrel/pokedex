@@ -56,7 +56,6 @@ const PokeData = (props) => {
                 Weight
               </Typography>
               <Typography variant="body1">
-                {/* {" "} */}
                 {props.weight} kg / {props.pounds}
               </Typography>
             </Grid>

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 // ==== MUI imports
-import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -20,7 +19,7 @@ import Breeding from "./components/Breeding";
 import Evolution from "./components/Evolution";
 import PokeData from "./components/PokeData";
 import Loading from "./components/Loading";
-import { blueGrey, grey } from "@mui/material/colors";
+import { blueGrey } from "@mui/material/colors";
 import {
   changeToTitleCase,
   convertMeter,
@@ -189,7 +188,6 @@ const Pokemon = () => {
       (poke) => poke.language.name == "en" && poke.version.name == "blue"
     );
     // console.log("in filter flavor");
-    // console.log(filteredItems);
     setDescription(filteredItems);
   };
 

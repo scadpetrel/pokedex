@@ -47,9 +47,7 @@ const EvolutionImg = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  // boxSizing: "border-box",
   overflow: "hidden",
-
   "& img": {
     height: "5rem",
     width: "5rem",
@@ -58,9 +56,6 @@ const EvolutionImg = styled("div")(({ theme }) => ({
     transition: ".3s ease-in-out",
     "&:hover": {
       transform: "scale(1.15)",
-      // borderBottom: "1.5px solid #4eba94",
-      // borderRadius: "4px",
-      // backgroundColor: "rgba(255, 255, 255, 0.8)",
     },
   },
 }));
@@ -117,7 +112,6 @@ const Evolution = (props) => {
         <div className="Evolution-chain">
           {evolution.map((evo) => (
             <div key={`chainBlock-${evo.name}`}>
-              
               <EvolutionImg key={`img-${evo.name}`}>
                 <a href={`/${evo.id}`}>
                   {!evo.img ? <img key={`imageAlt-${evo.name}`} src={evo.imgAlt} /> : <img key={`imageMain-${evo.name}`} src={evo.img} />}

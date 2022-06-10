@@ -1,6 +1,17 @@
-# Getting Started with Create React App
+# Pokedex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About The Project
+Pokedex - pokeapi.co
+### Built With
+
+* [React.js](https://reactjs.org/)
+* [React Router](https://reactrouter.com/)
+* [Axios](https://axios-http.com/)
+* [Material UI](https://mui.com/)
+
+### Getting Started
+
+## Roadmap
 
 ## Available Scripts
 
@@ -69,9 +80,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## Dependencies
+## License
 
-- Axios
-- Material UI
-- Material UI Icons
-- React Router
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+## Contact
+

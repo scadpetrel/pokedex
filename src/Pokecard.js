@@ -6,8 +6,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Chip from '@mui/material/Chip';
 import Typography from "@mui/material/Typography";
-// import { createBrowserHistory } from "history";
-// import { Router, Route, Switch, useHistory, create } from 'react-router-dom';
 import "./scss/Pokecard.scss";
 import { Box } from "@mui/system";
 
@@ -42,13 +40,6 @@ const Pokecard = (props) => {
           <Chip sx={{ mr:1 }}label={props.type}/>
           {props.type2 ? (<><Chip label={props.type2}/></>) : ('')}
           </Box>
-
-          {/* <Typography variant="subtitle1" gutterBottom component="div">
-            {props.type}
-          </Typography> */}
-          {/* <Typography variant="subtitle1" gutterBottom component="div">
-            {props.type2}
-          </Typography> */}
         </CardContent>
       </Card>
     </Grid>

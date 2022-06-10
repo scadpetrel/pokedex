@@ -43,7 +43,6 @@ const Breeding = (props) => {
               Breeding
             </Typography>
           </Grid>
-          {/* <div className="dataBlock"><span>Height:</span>{props.height}<span>Weight:</span> {props.weight} kg</div> */}
           <Grid item xs={12}>
             <div className="dataBlock">
               <Typography pb={2} variant="h6">
@@ -67,7 +66,6 @@ const Breeding = (props) => {
                   </Typography>
                 </div>
               )}
-              {/* <div className="gender"><span>{props.genderMale}<MaleIcon style={{ color: "blue"}}/></span><span>{props.genderFemale}<FemaleIcon/></span></div> */}
             </div>
           </Grid>
           <Grid container spacing={3} p={3} pl={6}>
@@ -79,22 +77,26 @@ const Breeding = (props) => {
                 <div className="dataItem">
                   {props.egg.map((egg) => (
                     <span key={`eggName-span-${egg.name}`}>
-                      <Chip key={egg.name} label={egg.name} style={{ padding: ".5rem"}}/>
+                      <Chip
+                        key={egg.name}
+                        label={egg.name}
+                        style={{ padding: ".5rem" }}
+                      />
                     </span>
                   ))}
                 </div>
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} >
+            <Grid item xs={12} sm={6}>
               <div className="dataBlock">
                 <Typography pb={2} variant="h6">
                   Hatch Cycle
                 </Typography>
                 <Typography variant="body1" style={{ display: "flex" }}>
-                
-                    <strong>{props.eggCycle}</strong> <Typography component={'span'} variant="body2" pl={1}>({eggStepsLow} -{" "}
-                    {eggStepsHigh})</Typography>
-                  
+                  <strong>{props.eggCycle}</strong>{" "}
+                  <Typography component={"span"} variant="body2" pl={1}>
+                    ({eggStepsLow} - {eggStepsHigh})
+                  </Typography>
                 </Typography>
               </div>
             </Grid>

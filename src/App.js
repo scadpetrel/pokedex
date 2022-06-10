@@ -7,7 +7,6 @@ import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Raleway from './fonts/Raleway-VariableFont_wght.ttf'
 
-const font = "Raleway";
 
 const theme = createTheme({
   typography: {

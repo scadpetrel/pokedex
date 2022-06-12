@@ -87,7 +87,7 @@ const Pokedex = () => {
 
   function handleGetRandomPokemon() {
     let randPokemon = pickRandomNumber();
-    history(`/${randPokemon}`);
+    history(`pokemon/${randPokemon}`);
     // history(0)
   }
 

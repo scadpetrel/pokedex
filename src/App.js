@@ -2,6 +2,7 @@
 import "./scss/App.scss";
 import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
+import NotFound from './NotFound'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -50,8 +51,9 @@ function App() {
         <Container>
           <BrowserRouter forceRefresh >
             <Routes>
+              <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Pokedex />} />
-              <Route path="/:pokemonId" element={<Pokemon />} />
+              <Route path="pokemon/:pokemonId" element={<Pokemon />} />
             </Routes>
           </BrowserRouter>
         </Container>

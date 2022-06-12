@@ -96,14 +96,15 @@ const Pokemon = () => {
   }, []);
 
   const axiosPokemon = async () => {
-    await axios
+    try {
+      await axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
       .then(function (response) {
         const { data } = response;
         // const { results } = data;
         // console.log(results)
         const newPokemonData = {};
-        // console.log(data.name)
+        console.log(data.name)
         setAxiosPoke(data);
         getSpecies();
         // results.forEach((p, idx) => {
@@ -122,6 +123,11 @@ const Pokemon = () => {
         // })
         // setAxiosPoke(newPokemonData)
       });
+    } catch (err) {
+      console.log("loading error", err)
+      history('/404-pokemon')
+    }
+    
   };
 
   const getSpecies = async () => {
@@ -177,8 +183,8 @@ const Pokemon = () => {
     let nextRes = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${nextNum}`
     );
-    console.log("prev next");
-    console.log(prevRes.data.name);
+    // console.log("prev next");
+    // console.log(prevRes.data.name);
     setNextPrev({ previous: prevRes.data.name, next: nextRes.data.name });
   };
 

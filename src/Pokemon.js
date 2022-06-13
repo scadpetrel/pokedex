@@ -92,43 +92,44 @@ const Pokemon = () => {
   }));
 
   useEffect(() => {
-    axiosPokemon();
+    const axiosPokemon = async () => {
+      try {
+        await axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        .then(function (response) {
+          const { data } = response;
+          // const { results } = data;
+          // console.log(results)
+          // const newPokemonData = {};
+          console.log(data.name)
+          setAxiosPoke(data);
+          getSpecies();
+          // results.forEach((p, idx) => {
+          // axios
+          //   .get(`https://pokeapi.co/api/v2/pokemon/${idx + 1}`)
+          //   .then(function (response) {
+          //     const { data } = response;
+          //     // console.log(data)
+          //     setAxiosPoke(curState => [...curState, data])
+          //   })
+          //   newPokemonData[idx + 1] = {
+          //     id: idx + 1,
+          //     name: response.data.name,
+  
+          //   }
+          // })
+          // setAxiosPoke(newPokemonData)
+        });
+      } catch (err) {
+        console.log("loading error", err)
+        history('/404-pokemon')
+      }
+      
+    };
+    axiosPokemon()
   }, []);
 
-  const axiosPokemon = async () => {
-    try {
-      await axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-      .then(function (response) {
-        const { data } = response;
-        // const { results } = data;
-        // console.log(results)
-        const newPokemonData = {};
-        console.log(data.name)
-        setAxiosPoke(data);
-        getSpecies();
-        // results.forEach((p, idx) => {
-        // axios
-        //   .get(`https://pokeapi.co/api/v2/pokemon/${idx + 1}`)
-        //   .then(function (response) {
-        //     const { data } = response;
-        //     // console.log(data)
-        //     setAxiosPoke(curState => [...curState, data])
-        //   })
-        //   newPokemonData[idx + 1] = {
-        //     id: idx + 1,
-        //     name: response.data.name,
-
-        //   }
-        // })
-        // setAxiosPoke(newPokemonData)
-      });
-    } catch (err) {
-      console.log("loading error", err)
-      history('/404-pokemon')
-    }
-    
-  };
+  
 
   const getSpecies = async () => {
     let pullDescription = [];
@@ -140,7 +141,7 @@ const Pokemon = () => {
         api_evolution = data.evolution_chain.url;
         // filter out english blue flavor text and set to state
         pullDescription = data.flavor_text_entries.filter(
-          (text) => text.language.name == "en"
+          (text) => text.language.name === "en"
         );
         // set first english text available
         setDescription(pullDescription[0].flavor_text);
@@ -188,23 +189,14 @@ const Pokemon = () => {
     setNextPrev({ previous: prevRes.data.name, next: nextRes.data.name });
   };
 
-  // ==== filter english+blue flavor text ***INACTIVE***
-  const filterFlavorText = () => {
-    let filteredItems = pokemonSpecies.flavor_text_entries.filter(
-      (poke) => poke.language.name == "en" && poke.version.name == "blue"
-    );
-    // console.log("in filter flavor");
-    setDescription(filteredItems);
-  };
-
   // Navigation for next and previous links
   function handlePrev() {
-    history(`/${axiosPoke.id - 1}`);
+    history(`/pokemon/${axiosPoke.id - 1}`);
     history(0);
   }
 
   function handleNext() {
-    history(`/${axiosPoke.id + 1}`);
+    history(`/pokemon/${axiosPoke.id + 1}`);
     history(0);
   }
 
@@ -276,12 +268,12 @@ const Pokemon = () => {
                   >
                     {!axiosPoke.sprites.other.dream_world.front_default ? (
                       <img
-                        className="imgAlt"
+                        className="imgAlt" alt={`${axiosPoke.name} artwork`}
                         src={axiosPoke.sprites.other.home.front_default}
                       />
                     ) : (
                       <img
-                        className="imgPrimary"
+                        className="imgPrimary"  alt={`${axiosPoke.name} artwork`}
                         src={axiosPoke.sprites.other.dream_world.front_default}
                       />
                     )}

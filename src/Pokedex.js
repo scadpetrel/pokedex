@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // Material UI imports
-import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -204,7 +203,6 @@ const Pokedex = () => {
 
   return (
     <>
-      {/* <AppBar color="primary" style={{ height: 100}}> */}
         <Toolbar
           color="primary"
           style={{
@@ -265,8 +263,6 @@ const Pokedex = () => {
             Random
           </Button>
         </Toolbar>
-      {/* </AppBar> */}
-
       {isLoaded ? (
         <Grid
           container

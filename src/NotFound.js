@@ -18,7 +18,7 @@ const NotFound = () => {
             <div className="pokeball-center"></div>
           </div>
           <Typography className="loadingText" variant="h6">
-            {location.pathname == '/404-pokemon' ? 'Pokemon not in database' : 'Nothing was found'}
+            {location.pathname === '/404-pokemon' ? 'Pokemon not in database' : 'Nothing was found'}
           </Typography>
           <Button variant="contained" onClick={handleHome}>Return Home</Button>
         </div>

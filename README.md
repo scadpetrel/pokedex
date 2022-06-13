@@ -1,7 +1,10 @@
 # Pokedex
 
 ## About The Project
-Pokedex - pokeapi.co
+Simple React pokedex using pokeapi.co. Main pokedex displays a list of pokemon and is filterable by generation and lets users search within the current displayed generation. Pokemon details page has image, stats, essential data, evolution, and breeding info displays. 
+
+Visual elements built with MUI and Emotion styled components. API data fetch using Axios. Routing with React Router.
+
 ### Built With
 
 * [React.js](https://reactjs.org/)

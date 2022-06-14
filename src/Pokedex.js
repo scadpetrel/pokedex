@@ -166,7 +166,6 @@ const Pokedex = () => {
           `https://pokeapi.co/api/v2/pokemon/${idx + 1}`
         );
         let pkmn = details.data;
-        // console.log(pkmn)
         setPokemon((curState) => [
           ...curState,
           {

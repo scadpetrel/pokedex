@@ -95,41 +95,20 @@ const Pokemon = () => {
     const axiosPokemon = async () => {
       try {
         await axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-        .then(function (response) {
-          const { data } = response;
-          // const { results } = data;
-          // console.log(results)
-          // const newPokemonData = {};
-          console.log(data.name)
-          setAxiosPoke(data);
+          .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+          .then(function (response) {
+            const { data } = response;
+            console.log(data.name);
+            setAxiosPoke(data);
+          })
           getSpecies();
-          // results.forEach((p, idx) => {
-          // axios
-          //   .get(`https://pokeapi.co/api/v2/pokemon/${idx + 1}`)
-          //   .then(function (response) {
-          //     const { data } = response;
-          //     // console.log(data)
-          //     setAxiosPoke(curState => [...curState, data])
-          //   })
-          //   newPokemonData[idx + 1] = {
-          //     id: idx + 1,
-          //     name: response.data.name,
-  
-          //   }
-          // })
-          // setAxiosPoke(newPokemonData)
-        });
       } catch (err) {
-        console.log("loading error", err)
-        history('/404-pokemon')
+        console.log("loading error", err);
+        history("/404-pokemon");
       }
-      
     };
-    axiosPokemon()
+    axiosPokemon();
   }, []);
-
-  
 
   const getSpecies = async () => {
     let pullDescription = [];
@@ -146,9 +125,9 @@ const Pokemon = () => {
         // set first english text available
         setDescription(pullDescription[0].flavor_text);
         // Start next get functions
-        getEvolution();
-        getNextPrevNames();
-      });
+      })
+      getEvolution();
+      getNextPrevNames();
   };
 
   // ==== Get evolution chain names
@@ -268,12 +247,14 @@ const Pokemon = () => {
                   >
                     {!axiosPoke.sprites.other.dream_world.front_default ? (
                       <img
-                        className="imgAlt" alt={`${axiosPoke.name} artwork`}
+                        className="imgAlt"
+                        alt={`${axiosPoke.name} artwork`}
                         src={axiosPoke.sprites.other.home.front_default}
                       />
                     ) : (
                       <img
-                        className="imgPrimary"  alt={`${axiosPoke.name} artwork`}
+                        className="imgPrimary"
+                        alt={`${axiosPoke.name} artwork`}
                         src={axiosPoke.sprites.other.dream_world.front_default}
                       />
                     )}

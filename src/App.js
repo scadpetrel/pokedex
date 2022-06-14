@@ -5,7 +5,7 @@ import Pokemon from "./Pokemon";
 import NotFound from './NotFound'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Container from "@mui/material/Container";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme, } from "@mui/material/styles";
 import Raleway from './fonts/Raleway-VariableFont_wght.ttf'
 
 

@@ -19,7 +19,7 @@ const PokemonNav = (props) => {
     <Box sx={{   flexGrow: 1 }}>
     <AppBar sx={{ flexDirection: 'row', justifyContent: 'center' }}position="fixed">
     <CatchingPokemonIcon onClick={handleHome} style={{ fontSize: "2.5rem", position: "absolute", left: "20", top: "15"}}/>
-     <Typography variant="h3" component="h1" align="center" gutterBottom>
+     <Typography variant="h3" component="h1" align="center" gutterBottom fontSize={{ xs: '2rem', sm: '2.5rem', lg: '3rem'}}>
         {props.name} #{props.id}
       </Typography>
     </AppBar>

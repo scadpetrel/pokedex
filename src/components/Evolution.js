@@ -113,7 +113,7 @@ const Evolution = (props) => {
           {evolution.map((evo) => (
             <div key={`chainBlock-${evo.name}`}>
               <EvolutionImg key={`img-${evo.name}`}>
-                <a href={`/${evo.id}`}>
+                <a href={`/pokemon/${evo.id}`}>
                   {!evo.img ? <img key={`imageAlt-${evo.name}`} src={evo.imgAlt} /> : <img key={`imageMain-${evo.name}`} src={evo.img} />}
                 </a>
                 <Typography variant="body1" key={evo.name}>

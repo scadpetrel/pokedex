@@ -2,17 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // Material UI imports
-import Toolbar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
 import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
-import SearchIcon from "@mui/icons-material/Search";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 // Compontent and style imports
 import PokedexNav from "./components/PokedexNav";
 import { changeToTitleCase } from "./helper.js";
@@ -29,7 +21,7 @@ const Pokedex = () => {
   // Search field
   const [filter, setFilter] = useState("");
   // Generation number for switch statement - could refactor and use something else
-  const [generation, setGeneration] = React.useState(1);
+  const [generation, setGeneration] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
   // Generation name for search
   const [searchLabel, setSearchLabel] = useState("");
@@ -67,46 +59,48 @@ const Pokedex = () => {
     filterRange(arr, a, b);
   };
 
-  const handleGenerationChange = (event) => {
-    switch (event.target.value) {
+  const handleGenerationChange = (value) => {
+    console.log("generation change: ", typeof(value));
+    switch (value) {
       case 1:
-        handleFilterClick(pokemon, 1, 151);
+        filterRange(pokemon, 1, 151);
         setSearchLabel("Search Gen I...");
         break;
       case 2:
-        handleFilterClick(pokemon, 152, 251);
+        filterRange(pokemon, 152, 251);
         setSearchLabel("Search Gen II...");
         break;
       case 3:
-        handleFilterClick(pokemon, 252, 386);
+        filterRange(pokemon, 252, 386);
         setSearchLabel("Search Gen III...");
         break;
       case 4:
-        handleFilterClick(pokemon, 387, 493);
+        filterRange(pokemon, 387, 493);
         setSearchLabel("Search Gen IV...");
         break;
       case 5:
-        handleFilterClick(pokemon, 494, 649);
+        filterRange(pokemon, 494, 649);
         setSearchLabel("Search Gen V...");
         break;
       case 6:
-        handleFilterClick(pokemon, 650, 721);
+        filterRange(pokemon, 650, 721);
         setSearchLabel("Search Gen VI...");
         break;
       case 7:
-        handleFilterClick(pokemon, 722, 809);
+        filterRange(pokemon, 722, 809);
         setSearchLabel("Search Gen VII...");
         break;
       case 8:
-        handleFilterClick(pokemon, 810, 898);
+        filterRange(pokemon, 810, 898);
         setSearchLabel("Search Gen VIII...");
         break;
       default:
-        handleFilterClick(pokemon, 1, 898);
+        filterRange(pokemon, 1, 898);
         setSearchLabel("Search All...");
     }
-
-    setGeneration(event.target.value);
+    setGeneration(value);
+      setIsLoaded(true);
+ 
   };
 
   const getPokemon = async () => {
@@ -163,6 +157,7 @@ const Pokedex = () => {
         searchLabel={searchLabel}
         handleSearchChange={handleSearchChange}
         handleGetRandomPokemon={handleGetRandomPokemon}
+        setIsLoaded={setIsLoaded}
       />
       {isLoaded ? (
         <Grid

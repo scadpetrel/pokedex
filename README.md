@@ -16,6 +16,21 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 
 ## Roadmap
 
+### Todo
+- [ ] Fix responsive styles on small phones
+  - [ ] Pokedex - header bar too tall 
+  - [ ] Pokedex - random button does not fit
+  - [ ] Pokemon - Deta fields need more horizontal spacing. ex. between height and weight
+
+
+- [ ] Add loading state for generation filter
+- [ ] refactor styles into MUI styled
+- [ ] separate styles into scoped js stylesheets
+- [ ] move dynamic background colors into JS object in variable file
+- [ ] create hover state for return to pokedex page from pokemon detail(header)
+- [ ] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
+- [ ] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
+
 ## Available Scripts
 
 In the project directory, you can run:

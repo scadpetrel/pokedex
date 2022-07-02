@@ -1,4 +1,3 @@
-// import NewPullPoke from "./Pokedex";
 import "./scss/App.scss";
 import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
@@ -7,7 +6,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme, } from "@mui/material/styles";
 import Raleway from './fonts/Raleway-VariableFont_wght.ttf'
-
 
 const theme = createTheme({
   typography: {

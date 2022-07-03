@@ -28,6 +28,16 @@ const BreedingStat = styled(Box)(({ theme }) => ({
       alignItems: "center",
       fontSize: "16px",
     },
+    "& .gender:first-of-type": {
+      
+        marginRight: theme.spacing(2)
+      
+    },
+    "& .gender:last-of-type": {
+     
+        marginLeft: theme.spacing(2)
+      
+    },
   },
 }));
 
@@ -51,14 +61,14 @@ const Breeding = (props) => {
               {props.genderRate === -1 ? (
                 "Genderless"
               ) : (
-                <div className="dataItem">
-                  <Typography variant="body1">
+                <div className="dataItem genderBlock">
+                  <Typography variant="body1" className="gender">
                     <span>
                       {props.genderMale}
                       <MaleIcon style={{ color: "blue" }} />
                     </span>
                   </Typography>
-                  <Typography variant="body1">
+                  <Typography variant="body1" className="gender">
                     <span>
                       {props.genderFemale}
                       <FemaleIcon style={{ color: "rgb(224, 61, 88)" }} />

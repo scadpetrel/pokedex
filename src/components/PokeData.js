@@ -16,6 +16,7 @@ const DataContainer = styled(Box)(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    textAlign: "center",
   },
   "& span": {
     paddingBottom: ".3rem",
@@ -23,6 +24,11 @@ const DataContainer = styled(Box)(({ theme }) => ({
   "& .MuiChip-labelMedium": {
     fontSize: "16px",
     padding: "14px",
+  },
+  "& .heightWeight .dataItem": {
+    [theme.breakpoints.down("sm")]: {
+    margin: "0 auto",
+  },
   },
 }));
 
@@ -42,7 +48,7 @@ const PokeData = (props) => {
               <Chip label={props.category} variant="outlined" />
             </Typography>
           </Grid>
-          <Grid container mb={3}>
+          <Grid container mb={3} className="heightWeight">
             <Grid item className="dataItem" ml="auto" pt={2} xs={4}>
               <Typography color="#ac0031" variant="subtitle2">
                 Height

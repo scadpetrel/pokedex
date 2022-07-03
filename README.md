@@ -21,7 +21,7 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
   - [x] Pokedex - refactor generation select into separate component
   - [x] Pokedex - header bar too tall 
   - [x] Pokedex - random button does not fit
-  - [ ] Pokemon - Data fields need more horizontal spacing. ex. between height and weight
+  - [x] Pokemon - Data fields need more horizontal spacing. ex. between height and weight
 
 
 - [ ] Add loading state for generation filter

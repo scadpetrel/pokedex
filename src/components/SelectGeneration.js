@@ -53,9 +53,7 @@ export default function SelectGeneration({
   };
 
   const handleClose = (event, reason) => {
-    if (reason !== "backdropClick") {
       setOpen(false);
-    }
   };
 
   const switchLoading = (e) => {
@@ -86,7 +84,7 @@ export default function SelectGeneration({
         <ArrowDropDownIcon />
       </GenerationSelectButton>
 
-      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Select a Generation</DialogTitle>
         <DialogContent>
           <Box component="form">

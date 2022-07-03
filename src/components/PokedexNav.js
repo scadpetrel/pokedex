@@ -10,7 +10,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 // Compontent and style imports
 import { changeToTitleCase } from "../helper.js";
-import "../scss/Pokedex.scss";
 import SelectGeneration from "./SelectGeneration.js";
 
 // Component styles

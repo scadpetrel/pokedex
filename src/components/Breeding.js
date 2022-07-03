@@ -29,14 +29,10 @@ const BreedingStat = styled(Box)(({ theme }) => ({
       fontSize: "16px",
     },
     "& .gender:first-of-type": {
-      
         marginRight: theme.spacing(2)
-      
     },
     "& .gender:last-of-type": {
-     
         marginLeft: theme.spacing(2)
-      
     },
   },
 }));

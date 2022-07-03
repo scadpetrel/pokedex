@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { changeToTitleCase } from "../helper";
-import "../scss/Stats.scss";
 
 const StatsContainer = styled(Box)(({ theme }) => ({
   border: "1.5px solid #4eba94",

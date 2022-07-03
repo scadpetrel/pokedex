@@ -9,8 +9,6 @@ import Typography from "@mui/material/Typography";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import useMediaQuery from "@mui/material/useMediaQuery";
-// Styles
-import "../scss/Evolution.scss";
 
 // component sytles =============
 const EvolutionContainer = styled(Box)(({ theme }) => ({

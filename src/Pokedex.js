@@ -8,9 +8,17 @@ import Box from "@mui/material/Box";
 // Compontent and style imports
 import PokedexNav from "./components/PokedexNav";
 import { changeToTitleCase } from "./helper.js";
-import "./scss/Pokedex.scss";
 import Pokecard from "./Pokecard";
 import Loading from "./components/Loading";
+
+const PokedexGrid = styled(Grid)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  width: "80vw",
+  margin: "0 auto",
+  padding: "0",
+}));
 
 const Pokedex = () => {
   const history = useNavigate();
@@ -160,7 +168,7 @@ const Pokedex = () => {
         setIsLoaded={setIsLoaded}
       />
       {isLoaded ? (
-        <Grid
+        <PokedexGrid
           container
           spacing={3}
           justifyContent="center"
@@ -185,7 +193,7 @@ const Pokedex = () => {
                   </Grid>
                 )
             )}
-        </Grid>
+        </PokedexGrid>
       ) : (
         <>
           <Box

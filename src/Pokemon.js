@@ -30,7 +30,6 @@ import {
   genderFemale,
   genderMale,
 } from "./helper";
-import "./scss/Pokemon.scss";
 // import { ThemeContext } from "@emotion/react";
 
 const Pokemon = () => {
@@ -90,6 +89,25 @@ const Pokemon = () => {
     justifyContent: "flex-end",
     marginTop: "10px",
   }));
+
+  const PokemonImage = styled("div")(({ theme }) => ({
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "auto",
+    borderRadius: "10px",
+    border: "1.5px solid #4eba94",
+    padding: "35px",
+    "& .imgPrimary": {
+      height: "75%",
+      width: "75%",
+    },
+    "& .imgAlt": {
+      height: "100%",
+      width: "100%",
+    },
+  }));
+    
 
   useEffect(() => {
     const axiosPokemon = async () => {
@@ -242,7 +260,7 @@ const Pokemon = () => {
                   style={{ backgroundColor: blueGrey[50] }}
                   sx={{ p: 2, boxShadow: 4 }}
                 >
-                  <div
+                  <PokemonImage
                     className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
                   >
                     {!axiosPoke.sprites.other.dream_world.front_default ? (
@@ -258,7 +276,7 @@ const Pokemon = () => {
                         src={axiosPoke.sprites.other.dream_world.front_default}
                       />
                     )}
-                  </div>
+                  </PokemonImage>
                   {description.length === 0 ? (
                     "No description found"
                   ) : (

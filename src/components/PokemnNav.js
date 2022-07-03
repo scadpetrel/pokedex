@@ -5,7 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import { styled } from "@mui/material/styles";
-import "../scss/PokemonNav.scss";
+// import "../scss/PokemonNav.scss";
 import { changeToTitleCase } from "../helper";
 import { Home } from "@mui/icons-material";
 
@@ -32,7 +32,7 @@ const PokemonNav = (props) => {
     console.log("home click")
   }
 
-  let name = changeToTitleCase(props.name);
+  // let name = changeToTitleCase(props.name);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

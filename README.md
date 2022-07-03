@@ -23,16 +23,20 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
   - [x] Pokedex - random button does not fit
   - [x] Pokemon - Data fields need more horizontal spacing. ex. between height and weight
 
-
-- [ ] Add loading state for generation filter
 - [ ] refactor styles into MUI styled
 - [ ] separate styles into scoped js stylesheets
 - [ ] move dynamic background colors into JS object in variable file
+  - [ ] refactor pokecard css into js
+- [ ] refactor loading component css into js  
 - [ ] create hover state for return to pokedex page from pokemon detail(header)
 - [ ] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
 - [ ] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
 - [ ] rendering optimizations
 - [ ] fetch optimizations
+
+- [ ] Add loading state for generation filter
+  - [ ] investigate having the filtered state be derived from url param. this could allow the back button to return to the previously filterd state.
+  - [ ] url params and router should fix the annoying filter from all to single generation slowness.
 
 - [ ] Data Store 
   - [ ] user auth

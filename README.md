@@ -18,9 +18,10 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 
 ### Todo
 - [ ] Fix responsive styles on small phones
-  - [ ] Pokedex - header bar too tall 
-  - [ ] Pokedex - random button does not fit
-  - [ ] Pokemon - Deta fields need more horizontal spacing. ex. between height and weight
+  - [x] Pokedex - refactor generation select into separate component
+  - [x] Pokedex - header bar too tall 
+  - [x] Pokedex - random button does not fit
+  - [ ] Pokemon - Data fields need more horizontal spacing. ex. between height and weight
 
 
 - [ ] Add loading state for generation filter
@@ -30,6 +31,12 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [ ] create hover state for return to pokedex page from pokemon detail(header)
 - [ ] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
 - [ ] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
+- [ ] rendering optimizations
+- [ ] fetch optimizations
+
+- [ ] Data Store 
+  - [ ] user auth
+  - [ ] select favorites
 
 ## Available Scripts
 

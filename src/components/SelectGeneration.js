@@ -28,18 +28,6 @@ export default function SelectGeneration({
   const [open, setOpen] = React.useState(false);
   const [selection, setSelection] = React.useState("");
 
-  // const generationNames = {
-  //   1: "Generation I",
-  //   2: "Generation II",
-  //   3: "Generation III",
-  //   4: "Generation IV",
-  //   5: "Generation V",
-  //   6: "Generation VI",
-  //   7: "Generation VII",
-  //   8: "Generation VIII",
-  //   9: "All Generations",
-  // };
-
   const generationNames = [
     { value: 1, full: "Generation I", short: "Gen I" },
     { value: 2, full: "Generation II", short: "Gen II" },
@@ -81,10 +69,13 @@ export default function SelectGeneration({
   const handleSelectChoice = (event) => {
     handleGenerationChange(event.target.value);
   };
+
+  const handleClickSelect = (event) => {
+    console.log("Click Select:", event.target.value);
+  }
   return (
     <div>
       <GenerationSelectButton
-        style={{}}
         onClick={handleClickOpen}
         color="secondary"
         variant="contained"
@@ -107,6 +98,7 @@ export default function SelectGeneration({
                 value={generation}
                 // label="Generation I"
                 onChange={switchLoading}
+                onClick={handleClickSelect}
                 color="secondary"
               >
                 {generationNames.map((item) => (

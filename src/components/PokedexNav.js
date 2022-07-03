@@ -7,10 +7,6 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 // Compontent and style imports
 import { changeToTitleCase } from "../helper.js";
@@ -18,6 +14,35 @@ import "../scss/Pokedex.scss";
 import SelectGeneration from "./SelectGeneration.js";
 
 // Component styles
+
+const PokedexToolbar = styled(Toolbar)(({ theme }) => ({
+  padding: "0 4rem",
+  height: "80px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "flex-end",
+  [theme.breakpoints.down("lg")]: {
+    padding: "0 3rem",
+  },
+  [theme.breakpoints.down("md")]: {
+    padding: "0 2rem",
+    height: "75px",
+  },
+  [theme.breakpoints.down("sm")]: {
+    height: "65px",
+  },
+}));
+
+const PokedexToolbarButtonContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  width: "100%",
+  justifyContent: "flex-start",
+  marginBottom: theme.spacing(2),
+  [theme.breakpoints.down("sm")]: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1.5),
+  },
+}));
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -32,8 +57,13 @@ const Search = styled("div")(({ theme }) => ({
   transition: theme.transitions.create("width"),
   [theme.breakpoints.down("sm")]: {
     width: "3rem",
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
     "&:focus-within": {
       width: "100%",
+      "& svg": {
+        display: "none",
+      },
     },
   },
 }));
@@ -48,9 +78,6 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(0, 1.5),
-    "& .icon:focus-within": {
-      color: "red"
-    },
   },
 }));
 
@@ -64,6 +91,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     width: "100%",
     [theme.breakpoints.up("md")]: {
       width: "20ch",
+    },
+    [theme.breakpoints.down("sm")]: {
+      "&:focus-within": {
+        paddingLeft: ".3rem",
+      },
     },
   },
 }));
@@ -103,29 +135,26 @@ function PokedexNav({
   }, []);
 
   return (
-    <Toolbar
-      color="primary"
-      style={{
-        paddingLeft: "12%",
-        paddingRight: "12%",
-        height: "100px",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-end",
-       
-      }}
-    >
-      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }} className="menu-container">
-      <Box mb={2}  style={{display: "flex", width: "100%", justifyContent: "flex-start"}} className="button-container">
-        <SelectGeneration
-          generation={generation}
-          handleGenerationChange={handleGenerationChange}
-          setIsLoaded={setIsLoaded}
-          width={width}
-        />
-        
+    <PokedexToolbar color="primary">
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+        className="menu-container"
+      >
+        <PokedexToolbarButtonContainer className="button-container">
+          <SelectGeneration
+            generation={generation}
+            handleGenerationChange={handleGenerationChange}
+            setIsLoaded={setIsLoaded}
+            width={width}
+          />
+
           {/* <FormControl fullWidth> */}
-            {/* <InputLabel id="select-pokemon-generation">
+          {/* <InputLabel id="select-pokemon-generation">
               Select Generation
             </InputLabel>
             <GenerationSelect
@@ -156,10 +185,10 @@ function PokedexNav({
           >
             {width < 600 ? <ShuffleIcon /> : "Random"}
           </RandomButton>
-        </Box>
+        </PokedexToolbarButtonContainer>
         <Search style={{ marginLeft: 20 }}>
           <SearchIconWrapper>
-            <SearchIcon focusable={true} className="icon"/>
+            <SearchIcon focusable={true} className="icon" />
           </SearchIconWrapper>
           <StyledInputBase
             placeholder={searchLabel}
@@ -168,7 +197,7 @@ function PokedexNav({
           />
         </Search>
       </Box>
-    </Toolbar>
+    </PokedexToolbar>
   );
 }
 

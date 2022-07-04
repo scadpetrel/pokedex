@@ -17,17 +17,19 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 ## Roadmap
 
 ### Todo
+**Responsive Fixes**
 - [ ] Fix responsive styles on small phones
   - [x] Pokedex - refactor generation select into separate component
   - [x] Pokedex - header bar too tall 
   - [x] Pokedex - random button does not fit
   - [x] Pokemon - Data fields need more horizontal spacing. ex. between height and weight
 
+**Optimizations and Refinements**
 - [ ] refactor styles into MUI styled
 - [ ] separate styles into scoped js stylesheets
 - [x] move dynamic background colors into JS object in variable file
   - [x] refactor pokecard css into js
-- [ ] refactor loading component css into js
+- [x] refactor loading component css into js
 - [ ] convert common styles to variables
 - [ ] pokedexNav - switch from event listener to const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
@@ -37,10 +39,10 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [ ] rendering optimizations
 - [ ] fetch optimizations
 
-** Style Tweaks **
+**Style Tweaks**
 - [ ] add padding under right column in pokemon view
 
-** Feature Adddition**
+**Feature Adddition**
 - [ ] Add loading state for generation filter
   - [ ] investigate having the filtered state be derived from url param. this could allow the back button to return to the previously filterd state.
   - [ ] url params and router should fix the annoying filter from all to single generation slowness.

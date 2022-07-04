@@ -2,7 +2,8 @@ import React from 'react'
 import { useNavigate, useLocation } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import "./scss/Loading.scss";
+// import "./scss/Loading.scss";
+import { LoadingContainer } from './components/LoadingStyles';
 
 const NotFound = () => {
   let location = useLocation();
@@ -12,7 +13,7 @@ const NotFound = () => {
     history('/')
   }
     return (
-      <div style={{ height: '100vh'}}>
+      <LoadingContainer style={{ height: '100vh'}}>
         <div className="container">
           <div className="pokeball-404">
             <div className="pokeball-center"></div>
@@ -22,7 +23,7 @@ const NotFound = () => {
           </Typography>
           <Button variant="contained" onClick={handleHome}>Return Home</Button>
         </div>
-      </div>
+      </LoadingContainer>
     );
 }
 

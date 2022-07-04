@@ -28,8 +28,8 @@ const DataContainer = styled(Box)(({ theme }) => ({
   },
   "& .heightWeight .dataItem": {
     [theme.breakpoints.down("sm")]: {
-    margin: "0 auto",
-  },
+      margin: "0 auto",
+    },
   },
 }));
 
@@ -75,7 +75,15 @@ const PokeData = (props) => {
               <Box style={{ display: "flex", justifyContent: "center" }}>
                 {props.types.map((type) => (
                   <span key={`typesKey-${type.type.name}`}>
-                    <Chip key={type.type.name} className={type.type.name} label={type.type.name} style={{ padding: ".5rem", background: alpha(`${typeColors[type.type.name]}`, 0.2)}}/>
+                    <Chip
+                      key={type.type.name}
+                      className={type.type.name}
+                      label={type.type.name}
+                      style={{
+                        padding: ".5rem",
+                        background: alpha(`${typeColors[type.type.name]}`, 0.2),
+                      }}
+                    />
                   </span>
                 ))}
               </Box>
@@ -94,7 +102,11 @@ const PokeData = (props) => {
               >
                 {props.abilities.map((ability) => (
                   <span key={`abilitySpan-${ability.ability.name}`}>
-                    <Chip key={ability.ability.name} label={ability.ability.name} variant="outlined" />
+                    <Chip
+                      key={ability.ability.name}
+                      label={ability.ability.name}
+                      variant="outlined"
+                    />
                   </span>
                 ))}
               </Box>

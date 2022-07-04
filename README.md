@@ -28,6 +28,7 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [x] move dynamic background colors into JS object in variable file
   - [x] refactor pokecard css into js
 - [ ] refactor loading component css into js
+- [ ] convert common styles to variables
 - [ ] pokedexNav - switch from event listener to const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
 - [ ] create hover state for return to pokedex page from pokemon detail(header)

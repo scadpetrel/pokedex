@@ -1,48 +1,23 @@
 import React from "react";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Chip from "@mui/material/Chip";
-import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import FemaleIcon from "@mui/icons-material/Female";
-import MaleIcon from "@mui/icons-material/Male";
-import { margin } from "@mui/system";
+import {
+  BreedingStat,
+  MalePokemonIcon,
+  FemalePokemonIcon,
+  HatchCyleBlock,
+  EggGroupBlock,
+} from "./BreedingStyles";
 
-const BreedingStat = styled(Box)(({ theme }) => ({
-  border: "1.5px solid #4eba94",
-  borderRadius: "4px",
-  backgroundColor: "rgba(255, 255, 255, 0.8)",
-  "& .dataBlock": {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  "& .dataItem": {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+const Breeding = ({eggCycle, genderRate, genderFemale, genderMale, egg }) => {
+ 
+  // Hatch cycle conversion
+  const eggStepsHigh = eggCycle * 257;
+  const eggStepsLow = eggCycle * 257 - 256;
 
-    "& span": {
-      padding: "0px .5rem",
-      display: "flex",
-      alignItems: "center",
-      fontSize: "16px",
-    },
-    "& .gender:first-of-type": {
-        marginRight: theme.spacing(2)
-    },
-    "& .gender:last-of-type": {
-        marginLeft: theme.spacing(2)
-    },
-  },
-}));
-
-const Breeding = (props) => {
-  const eggStepsHigh = props.eggCycle * 257;
-  const eggStepsLow = props.eggCycle * 257 - 256;
   return (
-    <>
-      <BreedingStat sx={{ overflow: "auto", p: 3, boxSizing: "border-box" }}>
+      <BreedingStat>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="h4" gutterBottom align="center">
@@ -54,20 +29,20 @@ const Breeding = (props) => {
               <Typography pb={2} variant="h6">
                 Gender
               </Typography>
-              {props.genderRate === -1 ? (
+              {genderRate === -1 ? (
                 "Genderless"
               ) : (
                 <div className="dataItem genderBlock">
                   <Typography variant="body1" className="gender">
                     <span>
-                      {props.genderMale}
-                      <MaleIcon style={{ color: "blue" }} />
+                      {genderMale}
+                      <MalePokemonIcon />
                     </span>
                   </Typography>
                   <Typography variant="body1" className="gender">
                     <span>
-                      {props.genderFemale}
-                      <FemaleIcon style={{ color: "rgb(224, 61, 88)" }} />
+                      {genderFemale}
+                      <FemalePokemonIcon />
                     </span>
                   </Typography>
                 </div>
@@ -76,40 +51,39 @@ const Breeding = (props) => {
           </Grid>
           <Grid container spacing={3} p={3} pl={6}>
             <Grid item xs={12} sm={6}>
-              <div className="dataBlock">
+              <EggGroupBlock className="dataBlock">
                 <Typography pb={2} variant="h6">
-                  {props.egg.length > 1 ? "Egg Groups" : "Egg Group"}
+                  {egg.length > 1 ? "Egg Groups" : "Egg Group"}
                 </Typography>
                 <div className="dataItem">
-                  {props.egg.map((egg) => (
+                  {egg.map((egg) => (
                     <span key={`eggName-span-${egg.name}`}>
                       <Chip
                         key={egg.name}
                         label={egg.name}
-                        style={{ padding: ".5rem" }}
+                        className="eggGroupChip"
                       />
                     </span>
                   ))}
                 </div>
-              </div>
+              </EggGroupBlock>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <div className="dataBlock">
+              <HatchCyleBlock className="dataBlock">
                 <Typography pb={2} variant="h6">
                   Hatch Cycle
                 </Typography>
-                <Typography variant="body1" style={{ display: "flex" }}>
-                  <strong>{props.eggCycle}</strong>{" "}
+                <Typography variant="body1" className="hatchCycleBody">
+                  <strong>{eggCycle}</strong>
                   <Typography component={"span"} variant="body2" pl={1}>
                     ({eggStepsLow} - {eggStepsHigh})
                   </Typography>
                 </Typography>
-              </div>
+              </HatchCyleBlock>
             </Grid>
           </Grid>
         </Grid>
       </BreedingStat>
-    </>
   );
 };
 

@@ -27,12 +27,17 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [ ] separate styles into scoped js stylesheets
 - [x] move dynamic background colors into JS object in variable file
   - [x] refactor pokecard css into js
-- [ ] refactor loading component css into js  
+- [ ] refactor loading component css into js
+- [ ] pokedexNav - switch from event listener to const theme = useTheme();
+  const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
 - [ ] create hover state for return to pokedex page from pokemon detail(header)
 - [ ] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
 - [ ] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
 - [ ] rendering optimizations
 - [ ] fetch optimizations
+
+** Style Tweaks **
+- [ ] add padding under right column in pokemon view
 
 ** Feature Adddition**
 - [ ] Add loading state for generation filter

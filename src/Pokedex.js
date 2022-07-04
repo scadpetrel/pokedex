@@ -158,7 +158,7 @@ const Pokedex = () => {
   };
 
   return (
-    <>
+    <div className="DexContainer" >
       <PokedexNav
         generation={generation}
         handleGenerationChange={handleGenerationChange}
@@ -171,8 +171,7 @@ const Pokedex = () => {
         <PokedexGrid
           container
           spacing={3}
-          justifyContent="center"
-          style={{ marginTop: "100px" }}
+          style={{ marginTop: "100px", width: "100%", marginLeft: "auto", marginRight: "auto" }}
           className="pokedex"
         >
           {generationFilter
@@ -208,7 +207,7 @@ const Pokedex = () => {
           </Box>
         </>
       )}
-    </>
+    </div>
   );
 };
 

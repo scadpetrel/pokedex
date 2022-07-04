@@ -24,7 +24,8 @@ const Pokecard = (props) => {
     setHover(1);
   };
   return (
-    <Grid item xl={3} lg={3} md={4} sm={6} xs={12}>
+    <Grid item >
+      {/* xl={3} lg={3} md={4} sm={6} xs={12} */}
       <Card
         elevation={hover}
         sx={{ width: 225, height: 343 }}

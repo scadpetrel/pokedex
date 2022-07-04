@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Container style={{maxWidth: 1800}}>
+        <Container maxWidth="false" sx={{ maxWidth: 2000}}>
           <BrowserRouter forceRefresh >
             <Routes>
               <Route path="*" element={<NotFound />} />

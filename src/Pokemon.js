@@ -30,6 +30,7 @@ import {
   genderFemale,
   genderMale,
 } from "./helper";
+import { cardGradients, typeColors } from "./helpers/colorVariables";
 // import { ThemeContext } from "@emotion/react";
 
 const Pokemon = () => {
@@ -46,6 +47,7 @@ const Pokemon = () => {
   let weight = convertToKilogram(axiosPoke.weight);
   let meter = convertMeter(axiosPoke.height);
   let ftIn = convertFeetInches(axiosPoke.height);
+
 
   // Evolution variable to pass from get species info to evolution info
   let api_evolution = "";
@@ -261,6 +263,7 @@ const Pokemon = () => {
                   sx={{ p: 2, boxShadow: 4 }}
                 >
                   <PokemonImage
+                  style={{ background: `${cardGradients[axiosPoke.types[0].type.name]}`  }}
                     className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
                   >
                     {!axiosPoke.sprites.other.dream_world.front_default ? (

@@ -80,7 +80,7 @@ const Evolution = (props) => {
         )
       )
       .then(function (response) {
-        console.log(response[0].data.sprites);
+        // console.log(response[0].data.sprites);
         response.map(
           (details) =>
             (evoData = [
@@ -93,7 +93,7 @@ const Evolution = (props) => {
               },
             ])
         );
-        console.log(evoData);
+        // console.log(evoData);
         setEvolution(evoData);
       });
   };

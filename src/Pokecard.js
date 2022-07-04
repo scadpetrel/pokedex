@@ -7,6 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import "./scss/Pokecard.scss";
+import { cardGradients } from "./helpers/colorVariables";
 import { Box } from "@mui/system";
 
 const Pokecard = (props) => {
@@ -32,7 +33,8 @@ const Pokecard = (props) => {
         style={{ cursor: "pointer" }}
         onClick={() => history(`pokemon/${props.number}`)}
       >
-        <CardContent className={backgroundType}>
+        <CardContent className={backgroundType} style={{background: `${cardGradients[props.type]}`}} >
+        {/* style={{background: `${cardGradients[props.type]}`}} */}
           <Typography variant="overline" display="block" gutterBottom>
             {props.number}
           </Typography>

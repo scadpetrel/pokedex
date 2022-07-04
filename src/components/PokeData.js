@@ -3,7 +3,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
+import { cardGradients, typeColors } from "../helpers/colorVariables";
 
 const DataContainer = styled(Box)(({ theme }) => ({
   border: "1.5px solid #4eba94",
@@ -74,7 +75,7 @@ const PokeData = (props) => {
               <Box style={{ display: "flex", justifyContent: "center" }}>
                 {props.types.map((type) => (
                   <span key={`typesKey-${type.type.name}`}>
-                    <Chip key={type.type.name} className={type.type.name} label={type.type.name} style={{ padding: ".5rem"}}/>
+                    <Chip key={type.type.name} className={type.type.name} label={type.type.name} style={{ padding: ".5rem", background: alpha(`${typeColors[type.type.name]}`, 0.2)}}/>
                   </span>
                 ))}
               </Box>

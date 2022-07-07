@@ -18,6 +18,16 @@ const PokedexGrid = styled(Grid)(({ theme }) => ({
   width: "80vw",
   margin: "0 auto",
   padding: "0",
+  marginTop: "100px",
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "70px",
+  },
+}));
+
+const PokedexItemWrapperGrid = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down(481)]: {
+    paddingLeft: "0 !important",
+  },
 }));
 
 const Pokedex = () => {
@@ -171,7 +181,7 @@ const Pokedex = () => {
         <PokedexGrid
           container
           spacing={3}
-          style={{ marginTop: "100px", width: "100%", marginLeft: "auto", marginRight: "auto" }}
+          style={{ width: "100%", marginLeft: "auto", marginRight: "auto" }}
           className="pokedex"
         >
           {generationFilter
@@ -179,7 +189,7 @@ const Pokedex = () => {
             .map(
               (item) =>
                 item.name.includes(filter) && (
-                  <Grid key={item.name + "-" + item.id} item>
+                  <PokedexItemWrapperGrid key={item.name + "-" + item.id} item>
                     <Pokecard
                       key={item.id}
                       name={changeToTitleCase(item.name)}
@@ -189,7 +199,7 @@ const Pokedex = () => {
                       type2={item.types[1] ? item.types[1].type.name : ""}
                       number={item.id}
                     />
-                  </Grid>
+                  </PokedexItemWrapperGrid>
                 )
             )}
         </PokedexGrid>

@@ -9,19 +9,20 @@ import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 export const PokedexToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "0 4rem",
-  height: "80px",
+  height: "75px",
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-end",
   [theme.breakpoints.down("lg")]: {
-    padding: "0 3rem",
+    padding: "0 2.5rem",
   },
   [theme.breakpoints.down("md")]: {
-    padding: "0 2rem",
+    padding: "0 1.5rem",
     height: "75px",
   },
   [theme.breakpoints.down("sm")]: {
     height: "65px",
+    padding: "0 1rem",
   },
   "& .menu-container": {
     display: "flex",
@@ -48,21 +49,28 @@ export const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.8),
   },
-  marginRight: theme.spacing(2),
+  marginRight: theme.spacing(0),
   marginBottom: theme.spacing(2),
   marginLeft: 0,
   width: "atuo",
   transition: theme.transitions.create(["width", "display"]),
+  "&:hover": {
+    "& svg": {
+      color: "rgba(0, 0, 0, 0.6)",
+    },
+  },
   [theme.breakpoints.down("sm")]: {
     width: "3rem",
     marginBottom: theme.spacing(1),
     marginTop: theme.spacing(1),
+    marginLeft: theme.spacing(2),
     "&:focus-within": {
       width: "100%",
       "& svg": {
         display: "none",
       },
     },
+    
   },
 }));
 
@@ -74,6 +82,7 @@ export const SearchIconWrapper = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  color: "rgba(0,0,0,0.4)",
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(0, 1.5),
   },

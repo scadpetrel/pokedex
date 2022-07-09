@@ -25,8 +25,8 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
   - [x] Pokemon - Data fields need more horizontal spacing. ex. between height and weight
 
 **Optimizations and Refinements**
-- [ ] refactor styles into MUI styled
-- [ ] separate styles into scoped js stylesheets
+- [x] refactor styles into MUI styled
+- [x] separate styles into scoped js stylesheets
 - [x] move dynamic background colors into JS object in variable file
   - [x] refactor pokecard css into js
 - [x] refactor loading component css into js

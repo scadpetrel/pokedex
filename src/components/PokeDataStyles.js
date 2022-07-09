@@ -2,9 +2,9 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 
 export const DataContainer = styled(Box)(({ theme }) => ({
-  border: "1.5px solid #4eba94",
-  borderRadius: "4px",
-  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  // border: "1.5px solid #4eba94",
+  // borderRadius: "4px",
+  // backgroundColor: "rgba(255, 255, 255, 0.8)",
   display: "flex",
   alignItems: "center",
   flexDirection: "column",  

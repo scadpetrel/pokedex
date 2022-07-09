@@ -4,9 +4,9 @@ import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
 
 export const BreedingStat = styled(Box)(({ theme }) => ({
-  border: "1.5px solid #4eba94",
-  borderRadius: "4px",
-  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  // border: "1.5px solid #4eba94",
+  // borderRadius: "4px",
+  // backgroundColor: "rgba(255, 255, 255, 0.8)",
   overflow: "auto",
   padding: theme.spacing(3),
   boxSizing: "border-box",

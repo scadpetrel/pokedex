@@ -17,7 +17,7 @@ const Breeding = ({eggCycle, genderRate, genderFemale, genderMale, egg }) => {
   const eggStepsLow = eggCycle * 257 - 256;
 
   return (
-      <BreedingStat>
+      <BreedingStat className="PokemonInfoBox">
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="h4" gutterBottom align="center">

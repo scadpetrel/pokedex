@@ -2,28 +2,13 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { styled } from "@mui/material/styles";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
-const GenerationSelectButton = styled(Button)(({ theme }) => ({
-  padding: theme.spacing(1, 2),
-  color: "black",
-  // width: "calc(100% + 24px)",
-  width: "100%",
-  whiteSpace: "nowrap",
-}));
-
-const DialogCancelConfirm = styled(DialogActions)(({ theme }) => ({
-  "& button": {
-    color: "black",
-  },
-}));
+import { GenerationSelectButton, DialogCancelConfirm } from "./SelectGenerationStyles";
 
 export default function SelectGeneration({
   generation,

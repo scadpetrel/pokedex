@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 import { changeToTitleCase } from "../helper";
 
 const StatsContainer = styled(Box)(({ theme }) => ({
-  border: "1.5px solid #4eba94",
-  borderRadius: "4px",
-  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  // border: "1.5px solid #4eba94",
+  // borderRadius: "4px",
+  // backgroundColor: "rgba(255, 255, 255, 0.8)",
   display: "flex",
   justifyContent: "center",
   flexWrap: "wrap",
@@ -26,7 +26,7 @@ const StatsGrid = styled(Grid)(({ theme }) => ({
 const Stats = (props) => {
   return (
     <>
-      <StatsContainer sx={{ mt: 3, p: 2, boxSizing: "border-box" }}>
+      <StatsContainer sx={{ mt: 3, p: 2, boxSizing: "border-box" }} className="PokemonInfoBox">
         <Typography variant="h4" mb={4} gutterBottom>
           Stats
         </Typography>

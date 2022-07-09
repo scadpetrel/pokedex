@@ -26,14 +26,12 @@ const Pokecard = (props) => {
   };
   return (
     <Grid item >
-      {/* xl={3} lg={3} md={4} sm={6} xs={12} */}
       <StyledPokecard
         elevation={hover}
         onMouseOver={handleMouseEnter}
         onMouseOut={handleMouseOut}
         style={{ cursor: "pointer", }}
         onClick={() => history(`pokemon/${props.number}`)}
-        
       >
         <PokeCardContent className={backgroundType} style={{ background: `${cardGradients[props.type]}`}} >
         {/* style={{background: `${cardGradients[props.type]}`}} */}

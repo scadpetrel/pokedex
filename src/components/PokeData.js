@@ -10,7 +10,7 @@ import { DataContainer } from "./PokeDataStyles";
 const PokeData = ({category, meter, ftIn, weight, pounds, types, abilities}) => {
   return (
     <>
-      <DataContainer>
+      <DataContainer className="PokemonInfoBox">
         <Typography variant="h4" gutterBottom>
           Pokedex Data
         </Typography>

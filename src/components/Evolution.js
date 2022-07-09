@@ -44,7 +44,6 @@ const Evolution = (props) => {
                 },
               ])
           );
-          // console.log(evoData);
           setEvolution(evoData);
         });
     };
@@ -52,7 +51,7 @@ const Evolution = (props) => {
   }, [props.evolution]);
 
   return (
-      <EvolutionContainer>
+      <EvolutionContainer className="PokemonInfoBox">
         <Typography variant="h4" gutterBottom>
           Evolution
         </Typography>

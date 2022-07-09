@@ -5,7 +5,6 @@ import { useParams, useNavigate } from "react-router-dom";
 // ==== MUI imports
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 // import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
@@ -19,7 +18,6 @@ import Breeding from "./components/Breeding";
 import Evolution from "./components/Evolution";
 import PokeData from "./components/PokeData";
 import Loading from "./components/Loading";
-import { blueGrey } from "@mui/material/colors";
 import {
   changeToTitleCase,
   convertMeter,
@@ -30,7 +28,16 @@ import {
   genderFemale,
   genderMale,
 } from "./helper";
-import { cardGradients, typeColors } from "./helpers/colorVariables";
+import { cardGradients } from "./helpers/colorVariables";
+import {
+  NavigatePrevNextContainer,
+  NavigationPrev,
+  NavigationNext,
+  NavigationPlaceholder,
+  PokemonImage,
+  PokemonPageContainer,
+} from "./PokemonStyles";
+import { LoadingContainer } from "./PokedexStyles";
 // import { ThemeContext } from "@emotion/react";
 
 const Pokemon = () => {
@@ -48,7 +55,6 @@ const Pokemon = () => {
   let meter = convertMeter(axiosPoke.height);
   let ftIn = convertFeetInches(axiosPoke.height);
 
-
   // Evolution variable to pass from get species info to evolution info
   let api_evolution = "";
 
@@ -58,58 +64,7 @@ const Pokemon = () => {
   // ==== Theme and layout variables
   const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
-  const prvNextWidth = lgBreak ? "66%" : "100%";
-
-  // Component styles
-  const NavigationPrev = styled(Button)(({ theme }) => ({
-    width: "50%",
-    marginTop: "10px",
-    color: theme.palette.grey[600],
-    display: "flex",
-    justifyContent: "flex-start",
-    [theme.breakpoints.up("lg")]: {
-      width: "49%",
-    },
-    "& span": {
-      // color: theme.palette.grey[600]
-    },
-  }));
-  const NavigationNext = styled(Button)(({ theme }) => ({
-    width: "50%",
-    marginTop: "10px",
-    color: theme.palette.grey[600],
-    display: "flex",
-    justifyContent: "flex-end",
-    [theme.breakpoints.up("lg")]: {
-      width: "49%",
-    },
-  }));
-
-  const NavigationPlaceholder = styled("div")(({ theme }) => ({
-    width: "50%",
-    display: "flex",
-    justifyContent: "flex-end",
-    marginTop: "10px",
-  }));
-
-  const PokemonImage = styled("div")(({ theme }) => ({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "auto",
-    borderRadius: "10px",
-    border: "1.5px solid #4eba94",
-    padding: "35px",
-    "& .imgPrimary": {
-      height: "75%",
-      width: "75%",
-    },
-    "& .imgAlt": {
-      height: "100%",
-      width: "100%",
-    },
-  }));
-    
+  // const prvNextWidth = lgBreak ? "66%" : "100%";
 
   useEffect(() => {
     const axiosPokemon = async () => {
@@ -120,8 +75,8 @@ const Pokemon = () => {
             const { data } = response;
             console.log(data.name);
             setAxiosPoke(data);
-          })
-          getSpecies();
+          });
+        getSpecies();
       } catch (err) {
         console.log("loading error", err);
         history("/404-pokemon");
@@ -145,9 +100,9 @@ const Pokemon = () => {
         // set first english text available
         setDescription(pullDescription[0].flavor_text);
         // Start next get functions
-      })
-      getEvolution();
-      getNextPrevNames();
+      });
+    getEvolution();
+    getNextPrevNames();
   };
 
   // ==== Get evolution chain names
@@ -207,15 +162,8 @@ const Pokemon = () => {
             name={changeToTitleCase(axiosPoke.name)}
             id={axiosPoke.id}
           />
-          <Grid
+          <NavigatePrevNextContainer
             container
-            sx={{ mt: 8, mx: "auto" }}
-            height={50}
-            style={{
-              width: prvNextWidth,
-              display: "flex",
-              justifyContent: "space-between",
-            }}
           >
             {" "}
             {axiosPoke.id === 1 ? (
@@ -242,13 +190,8 @@ const Pokemon = () => {
                 <ArrowForwardIosIcon />
               </NavigationNext>
             )}
-          </Grid>
-          <Box
-            margin={0}
-            marginTop={0}
-            style={{ display: "flex", justifyContent: "space-between" }}
-            sx={{ p: 0 }}
-          >
+          </NavigatePrevNextContainer>
+          <PokemonPageContainer>
             <Grid
               container
               spacing={3}
@@ -256,14 +199,13 @@ const Pokemon = () => {
               columns={{ xs: 12, md: 12, lg: 6 }}
             >
               <Grid item xs={12} sm={10} md={8} lg={3}>
-                <Box
-                  height="auto"
-                  width="auto"
-                  style={{ backgroundColor: blueGrey[50] }}
-                  sx={{ p: 2, boxShadow: 4 }}
-                >
+                <Box className="Pokemon-info-container">
                   <PokemonImage
-                  style={{ background: `${cardGradients[axiosPoke.types[0].type.name]}`  }}
+                    style={{
+                      background: `${
+                        cardGradients[axiosPoke.types[0].type.name]
+                      }`,
+                    }}
                     className={`Pokemon-img-background ${axiosPoke.types[0].type.name}`}
                   >
                     {!axiosPoke.sprites.other.dream_world.front_default ? (
@@ -287,17 +229,11 @@ const Pokemon = () => {
                       {description}
                     </Typography>
                   )}
-
                   <Stats stats={axiosPoke.stats} />
                 </Box>
               </Grid>
               <Grid item xs={12} sm={10} md={8} lg={3}>
-                <Box
-                  height="auto"
-                  width="auto"
-                  style={{ backgroundColor: blueGrey[50] }}
-                  sx={{ p: 2, boxShadow: 4 }}
-                >
+                <Box className="Pokemon-info-container">
                   <PokeData
                     ftIn={ftIn}
                     meter={meter}
@@ -318,19 +254,12 @@ const Pokemon = () => {
                 </Box>
               </Grid>
             </Grid>
-          </Box>
+          </PokemonPageContainer>
         </div>
       ) : (
-        <Box
-          style={{
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <LoadingContainer>
           <Loading />
-        </Box>
+        </LoadingContainer>
       )}
     </div>
   );

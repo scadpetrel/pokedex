@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const GenerationSelectButton = styled(Button)(({ theme }) => ({
@@ -17,6 +17,12 @@ const GenerationSelectButton = styled(Button)(({ theme }) => ({
   // width: "calc(100% + 24px)",
   width: "100%",
   whiteSpace: "nowrap",
+}));
+
+const DialogCancelConfirm = styled(DialogActions)(({ theme }) => ({
+  "& button": {
+    color: "black",
+  },
 }));
 
 export default function SelectGeneration({
@@ -96,7 +102,7 @@ export default function SelectGeneration({
                 value={generation}
                 // label="Generation I"
                 onChange={switchLoading}
-                onClick={handleClickSelect}
+                // onClick={handleClickSelect}
                 color="secondary"
               >
                 {generationNames.map((item) => (
@@ -108,14 +114,14 @@ export default function SelectGeneration({
             </FormControl>
           </Box>
         </DialogContent>
-        <DialogActions>
-          <Button style={{ color: "black" }} onClick={handleClose}>
+        <DialogCancelConfirm>
+          <Button onClick={handleClose}>
             Cancel
           </Button>
-          <Button style={{ color: "black" }} onClick={handleClose}>
+          <Button onClick={handleClose}>
             Ok
           </Button>
-        </DialogActions>
+        </DialogCancelConfirm>
       </Dialog>
     </div>
   );

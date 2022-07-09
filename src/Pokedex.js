@@ -2,33 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // Material UI imports
-import Grid from "@mui/material/Grid";
-import { styled, alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 // Compontent and style imports
 import PokedexNav from "./components/PokedexNav";
 import { changeToTitleCase } from "./helper.js";
 import Pokecard from "./Pokecard";
 import Loading from "./components/Loading";
-
-const PokedexGrid = styled(Grid)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  flexWrap: "wrap",
-  width: "80vw",
-  margin: "0 auto",
-  padding: "0",
-  marginTop: "100px",
-  [theme.breakpoints.down("sm")]: {
-    marginTop: "70px",
-  },
-}));
-
-const PokedexItemWrapperGrid = styled(Grid)(({ theme }) => ({
-  [theme.breakpoints.down(481)]: {
-    paddingLeft: "0 !important",
-  },
-}));
+import { PokedexGrid, PokedexItemWrapperGrid, LoadingContainer } from "./PokedexStyles";
 
 const Pokedex = () => {
   const history = useNavigate();
@@ -181,7 +160,6 @@ const Pokedex = () => {
         <PokedexGrid
           container
           spacing={3}
-          style={{ width: "100%", marginLeft: "auto", marginRight: "auto" }}
           className="pokedex"
         >
           {generationFilter
@@ -204,18 +182,9 @@ const Pokedex = () => {
             )}
         </PokedexGrid>
       ) : (
-        <>
-          <Box
-            style={{
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <LoadingContainer>
             <Loading />
-          </Box>
-        </>
+          </LoadingContainer>
       )}
     </div>
   );

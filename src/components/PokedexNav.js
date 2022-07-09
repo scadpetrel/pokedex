@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Material UI imports
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
@@ -29,9 +29,7 @@ function PokedexNav({
 
   return (
     <PokedexToolbar color="primary">
-      <Box
-        className="menu-container"
-      >
+      <Box className="menu-container">
         <PokedexToolbarButtonContainer className="button-container">
           <SelectGeneration
             generation={generation}
@@ -39,35 +37,10 @@ function PokedexNav({
             setIsLoaded={setIsLoaded}
             width={width}
           />
-          {/* <FormControl fullWidth> */}
-          {/* <InputLabel id="select-pokemon-generation">
-              Select Generation
-            </InputLabel>
-            <GenerationSelect
-              labelId="select-pokemon-generation"
-              id="select-pokemon"
-              value={generation}
-              label="Generation I"
-              onChange={handleGenerationChange}
-              color="secondary"
-             
-            >
-              <MenuItem value={1}>Generation I</MenuItem>
-              <MenuItem value={2}>Generation II</MenuItem>
-              <MenuItem value={3}>Generation III</MenuItem>
-              <MenuItem value={4}>Generation IV</MenuItem>
-              <MenuItem value={5}>Generation V</MenuItem>
-              <MenuItem value={6}>Generation VI</MenuItem>
-              <MenuItem value={7}>Generation VII</MenuItem>
-              <MenuItem value={8}>Generation VIII</MenuItem>
-              <MenuItem value={9}>All Generations</MenuItem>
-            </GenerationSelect> */}
-          {/* </FormControl> */}
           <RandomButton
             onClick={handleGetRandomPokemon}
             color="secondary"
             variant="contained"
-            sx={{ mb: 0 }}
           >
             {width < 600 ? <ShuffleIcon /> : "Random"}
           </RandomButton>

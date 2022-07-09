@@ -111,6 +111,7 @@ export const RandomButton = styled(Button)(({ theme }) => ({
   width: "auto",
   padding: theme.spacing(1, 2),
   marginLeft: theme.spacing(2),
+  marginBottom: theme.spacing(0),
   [theme.breakpoints.down("sm")]: {
     // width: "1px",
   },

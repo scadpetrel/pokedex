@@ -36,7 +36,7 @@ const theme = createTheme({
       main: "#82edc4",
       dark: "#4eba94",
     },
-    pokered: {
+    pokemonRed: {
       main: "#ac0031",
     }
   },

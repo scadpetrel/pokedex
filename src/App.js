@@ -2,7 +2,7 @@ import "./scss/App.scss";
 import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
 import NotFound from './NotFound'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme, } from "@mui/material/styles";
 import Raleway from './fonts/Raleway-VariableFont_wght.ttf'
@@ -50,7 +50,7 @@ function App() {
           <BrowserRouter forceRefresh >
             <Routes>
               <Route path="*" element={<NotFound />} />
-              <Route exact path="/" element={<Pokedex />} />
+              <Route exact path="/"  replace element={<Navigate to="/generation/1" />} />
               <Route exact path="/generation/:id" element={<Pokedex />} />
               <Route path="pokemon/:pokemonId" element={<Pokemon />} />
             </Routes>

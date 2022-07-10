@@ -30,8 +30,10 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [x] move dynamic background colors into JS object in variable file
   - [x] refactor pokecard css into js
 - [x] refactor loading component css into js
+- [ ] move pokedex helper functions to /helpers. create apiHelper.js and move helpers.js into the subfolder.
 - [ ] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
 - [ ] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
+- [ ] display error if api fetch fails
 - [ ] convert common styles to variables
 - [ ] pokedexNav - switch from event listener to const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
@@ -45,9 +47,9 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [x] create hover state for return to pokedex page from pokemon detail(header)
 
 **Feature Adddition**
-- [ ] Add loading state for generation filter
-  - [ ] investigate having the filtered state be derived from url param. this could allow the back button to return to the previously filterd state.
-  - [ ] url params and router should fix the annoying filter from all to single generation slowness.
+- [x] Add loading state for generation filter
+  - [x] investigate having the filtered state be derived from url param. this could allow the back button to return to the previously filterd state.
+  - [x] url params and router should fix the annoying filter from all to single generation slowness.
 
 - [ ] Data Store 
   - [ ] user auth

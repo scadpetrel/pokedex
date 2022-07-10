@@ -10,7 +10,7 @@ const PokemonNav = (props) => {
   const history = useNavigate();
 
   function handleHome() {
-    history("/");
+    history(-1);
     console.log("home click")
   }
 

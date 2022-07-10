@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -18,6 +19,8 @@ export default function SelectGeneration({
 }) {
   const [open, setOpen] = React.useState(false);
   const [selection, setSelection] = React.useState("");
+  const history = useNavigate();
+
 
   const generationNames = [
     { value: 1, full: "Generation I", short: "Gen I" },
@@ -56,7 +59,10 @@ export default function SelectGeneration({
   };
 
   const handleSelectChoice = (event) => {
-    handleGenerationChange(event.target.value);
+    history(`/generation/${event.target.value}`, { replace: true });
+    history(0);
+    setOpen(false);
+    // handleGenerationChange(event.target.value);
   };
 
   const handleClickSelect = (event) => {
@@ -86,7 +92,8 @@ export default function SelectGeneration({
                 id="select-pokemon"
                 value={generation}
                 // label="Generation I"
-                onChange={switchLoading}
+                // onChange={switchLoading}
+                onChange={handleSelectChoice}
                 // onClick={handleClickSelect}
                 color="secondary"
               >

@@ -31,7 +31,7 @@ const Pokecard = (props) => {
         onMouseOver={handleMouseEnter}
         onMouseOut={handleMouseOut}
         style={{ cursor: "pointer", }}
-        onClick={() => history(`pokemon/${props.number}`)}
+        onClick={() => history(`/pokemon/${props.number}`)}
       >
         <PokeCardContent className={backgroundType} style={{ background: `${cardGradients[props.type]}`}} >
         {/* style={{background: `${cardGradients[props.type]}`}} */}

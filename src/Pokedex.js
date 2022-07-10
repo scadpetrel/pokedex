@@ -13,6 +13,7 @@ import { PokedexGrid, PokedexItemWrapperGrid, LoadingContainer } from "./Pokedex
 
 const Pokedex = () => {
   const { id } = useParams();
+  // const savePokemon = JSON.parse(localStorage.getItem("pokemon"));
   const history = useNavigate();
   // All Pokemon data
   const [pokemon, setPokemon] = useState([]);
@@ -41,12 +42,18 @@ const Pokedex = () => {
     getPokemon();
     console.log("getPokemon");
   }, []);
-let generationId = id;
+
+  // filter to selected generation and
   // save api fetch to local storage
   useEffect(() => {
-    console.log(generationId)
+    // console.log(generationId)
     // filterRange(pokemon, 1, 151)
-    handleGenerationChange(Number(generation));
+    
+    // handleGenerationChange(Number(generation));
+   
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 800);
     // setGenerationFilter2((curState) => [
     //   ...curState,
     //   {
@@ -63,10 +70,6 @@ let generationId = id;
 
   }, [pokemon]);
 
-  useEffect(() => {
-    // setIsLoaded(true);
-  }, [generationFilter]);
-
   const pickRandomNumber = () => {
     console.log("in random");
     const randNumber = Math.floor(Math.random() * 898) + 1;
@@ -74,6 +77,7 @@ let generationId = id;
     return randNumber;
   };
 
+  // ****DEPRECIATED****
   const filterRange = (arr, a, b) => {
     let result = arr.filter((item) => a <= item.id && item.id <= b);
     console.log("filtering");
@@ -83,9 +87,9 @@ let generationId = id;
   const handleFilterClick = (arr, a, b) => {
     filterRange(arr, a, b);
   };
-
+  // ****DEPRECIATED****
   const handleGenerationChange = async (value) => {
-    console.log("generation change: ", typeof(value));
+    console.log("generation change: ", value);
     switch (value) {
       case 1:
         filterRange(pokemon, 1, 151);
@@ -130,16 +134,50 @@ let generationId = id;
  
   };
 
+  // switch statement to filter by generation using url param to create offset and limit
+  const getApiLimitAndOffset = (value) => {
+    switch (value) {
+      case 1:
+        return { limit: 151, offset: 0 };
+      case 2:
+        return { limit: 100, offset: 151 };
+      case 3:
+        return { limit: 135, offset: 251 };
+      case 4:
+        return { limit: 107, offset: 386 };
+      case 5:
+        return { limit: 156, offset: 493 };
+      case 6:
+        return { limit: 72, offset: 649 };
+      case 7:
+        return { limit: 88, offset: 721 };
+      case 8:
+        return { limit: 89, offset: 809 };
+      default:
+        return { limit: 898, offset: 0 };
+    }
+  }
+
+ const apiQuery = getApiLimitAndOffset(Number(generation));
+//  console.log(`limit=${apiQuery.limit}&offset=${apiQuery.offset}`);
+
+  // Gen I limit=151&offset=0
+  // Gen II limit=100&offset=151
+  // Gen III limit=135&offset=251
+  // Gen IV limit=107&offset=386
+  // Gen V limit=156&offset=493
+  // Gen VI limit=72&offset=649
+  // Gen VII limit=88&offset=721
+  // Gen VIII limit=89&offset=809
+
   const getPokemon = async () => {
     try {
       // get list of pokemon names
-      let res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=898");
-      // console.log(res.data.results);
-      let data = res.data.results;
-      // get additional details from new endpoint
+      let res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${apiQuery.limit}&offset=${apiQuery.offset}`);
+      let data = await res.data.results;      // get additional details from new endpoint
       data.forEach(async (p, idx) => {
         let details = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${idx + 1}`
+          `https://pokeapi.co/api/v2/pokemon/${p.name}`
         );
         let pkmn = details.data;
         setPokemon((curState) => [
@@ -171,7 +209,7 @@ let generationId = id;
       //     },
       //   ]);
       // }
-      setSearchLabel("Search Gen I...");
+      // setSearchLabel("Search Gen I...");
     } catch (err) {
       console.error(err);
     }
@@ -196,7 +234,7 @@ let generationId = id;
           spacing={3}
           className="pokedex"
         >
-          {generationFilter
+          {pokemon
             .sort((a, b) => a.id - b.id)
             .map(
               (item) =>

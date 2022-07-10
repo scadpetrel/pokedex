@@ -44,15 +44,15 @@ export const HomeLink = styled(CatchingPokemonIcon)(({ theme }) => ({
 
 export const PokemonTitleHeading = styled(Typography)(({ theme }) => ({
   align: "center",
-  fontSize: "3rem",
+  fontSize: "2.5rem",
   marginLeft: 15,
   marginBottom: 5,
   marginTop: 5,
   [theme.breakpoints.down("sm")]: {
-    fontSize: "2.5rem",
+    fontSize: "2rem",
   },
   [theme.breakpoints.down("xs")]: {
-    fontSize: "2rem",
+    fontSize: "1.5rem",
   },
   // fontSize={{ xs: "2rem", sm: "2.5rem", lg: "3rem" }}
   // style={{ marginLeft: 15, marginBottom: 5, marginTop: 5}}

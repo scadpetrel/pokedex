@@ -51,6 +51,7 @@ function App() {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Pokedex />} />
+              <Route exact path="/generation/:id" element={<Pokedex />} />
               <Route path="pokemon/:pokemonId" element={<Pokemon />} />
             </Routes>
           </BrowserRouter>

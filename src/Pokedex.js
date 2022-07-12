@@ -9,7 +9,7 @@ import Pokecard from "./Pokecard";
 import Loading from "./components/Loading";
 import { PokedexGrid, PokedexItemWrapperGrid, LoadingContainer } from "./PokedexStyles";
 
-const Pokedex = () => {
+const Pokedex = (props) => {
   const { id } = useParams();
   const history = useNavigate();
   const [pokemon, setPokemon] = useState([]); // All Pokemon data

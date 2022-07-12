@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -15,7 +15,7 @@ const Pokecard = (props) => {
   const [hover, setHover] = useState(1);
   const backgroundType = `Pokecard ${props.type}`;
   const history = useNavigate();
-
+  const location = useLocation();
   let image = !props.img ? props.imgAlt : props.img;
   const handleMouseEnter = () => {
     setHover(18);
@@ -24,14 +24,21 @@ const Pokecard = (props) => {
   const handleMouseOut = () => {
     setHover(1);
   };
+
+  // link to pokemon and save path for return to home
+  const handleLink = () => {
+    history(`/pokemon/${props.number}`)
+    localStorage.setItem( 'pokedexPath', location.pathname )
+  }
   return (
     <Grid item >
+      {/* <Link to={`/pokemon/${props.number}`} state={{ from: location.pathname }} > */}
       <StyledPokecard
         elevation={hover}
         onMouseOver={handleMouseEnter}
         onMouseOut={handleMouseOut}
         style={{ cursor: "pointer", }}
-        onClick={() => history(`/pokemon/${props.number}`)}
+        onClick={handleLink}
       >
         <PokeCardContent className={backgroundType} style={{ background: `${cardGradients[props.type]}`}} >
         {/* style={{background: `${cardGradients[props.type]}`}} */}
@@ -54,6 +61,7 @@ const Pokecard = (props) => {
           </PokeTypeChips>
         </PokeCardContent>
       </StyledPokecard>
+      {/* </Link> */}
     </Grid>
   );
 };

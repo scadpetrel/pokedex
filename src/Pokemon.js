@@ -1,7 +1,7 @@
 // ==== React and Node imports
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 // ==== MUI imports
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -40,7 +40,7 @@ import {
 import { LoadingContainer } from "./PokedexStyles";
 // import { ThemeContext } from "@emotion/react";
 
-const Pokemon = () => {
+const Pokemon = (props) => {
   const { pokemonId } = useParams();
   const [axiosPoke, setAxiosPoke] = useState([]);
   const [pokemonSpecies, setPokemonSpecies] = useState([]);
@@ -65,7 +65,7 @@ const Pokemon = () => {
   const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
   // const prvNextWidth = lgBreak ? "66%" : "100%";
-
+  
   useEffect(() => {
     const axiosPokemon = async () => {
       try {

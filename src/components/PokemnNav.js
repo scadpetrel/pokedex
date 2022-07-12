@@ -8,15 +8,14 @@ import { HomeLink, PokemonTitleHeading } from "./PokemnNavStyles";
 
 const PokemonNav = (props) => {
   const history = useNavigate();
+  const homePath = localStorage.getItem('pokedexPath')
+  console.log(homePath)
 
   function handleHome() {
-    history(-1);
-    console.log("home click")
+    history(`${homePath}`)
   }
 
-  // let name = changeToTitleCase(props.name);
-
-  return (
+    return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         sx={{ flexDirection: "row", justifyContent: "center" }}

@@ -60,7 +60,7 @@ export default function SelectGeneration({
 
   const handleSelectChoice = (event) => {
     navigate(`/generation/${event.target.value}`, {replace: true});
-    navigate(0);
+    // navigate(0);
     setOpen(false);
     // setIsLoaded(false);
     // handleGenerationChange(event.target.value);

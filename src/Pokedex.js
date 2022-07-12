@@ -14,7 +14,7 @@ const Pokedex = (props) => {
   const history = useNavigate();
   const [pokemon, setPokemon] = useState([]); // All Pokemon data
   const [filter, setFilter] = useState("");  // Search field
-  const [generation] = useState(id); // Current generation number. Was used for switch statement. Could be regular variable now.
+  const [generation, setGeneration] = useState(id); // Current generation number. Was used for switch statement. Could be regular variable now.
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchLabel, setSearchLabel] = useState("");   // Generation name for search
 
@@ -28,7 +28,7 @@ const Pokedex = (props) => {
   }
   // **** fetch all pokemon
   useEffect(() => {
-
+    setPokemon([]);
     // **** Generation limit, offset and serach label for select menu. Passed to getPokemon function to fetch a genearation and set search label.
   const getApiLimitAndOffset = (value) => {
     switch (value) {
@@ -99,6 +99,13 @@ const Pokedex = (props) => {
     // window.localStorage.setItem("pokemon", JSON.stringify(pokemon));
     // console.log("Saving to local storage");
   }, [pokemon]);
+
+  useEffect(() => {
+  console.log("id changed")
+  setGeneration(id)
+  setIsLoaded(false)
+  }, [id]);
+
 
   const pickRandomNumber = () => {
     console.log("in random");

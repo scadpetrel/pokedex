@@ -29,7 +29,7 @@ export const LoadingContainer = styled("div")(({ theme }) => ({
       height: "150px",
       width: "150px",
       /*animation: fill 2s ease 1 infinite;*/
-      animation: "fill 3s ease 1s infinite"
+      animation: "fill 2.4s ease 0s infinite"
     },
   },
   "& .pokeball-center": {

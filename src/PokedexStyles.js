@@ -26,6 +26,7 @@ export const PokedexItemWrapperGrid = styled(Grid)(({ theme }) => ({
 
 export const LoadingContainer = styled(Box)(({ theme }) => ({
   height: "100vh",
+  width: "100vw",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",

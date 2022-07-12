@@ -19,7 +19,7 @@ export default function SelectGeneration({
 }) {
   const [open, setOpen] = React.useState(false);
   const [selection, setSelection] = React.useState("");
-  const history = useNavigate();
+  const navigate = useNavigate();
 
 
   const generationNames = [
@@ -59,9 +59,10 @@ export default function SelectGeneration({
   };
 
   const handleSelectChoice = (event) => {
-    history(`/generation/${event.target.value}`, { replace: true });
-    history(0);
+    navigate(`/generation/${event.target.value}`, {replace: true});
+    navigate(0);
     setOpen(false);
+    // setIsLoaded(false);
     // handleGenerationChange(event.target.value);
   };
 

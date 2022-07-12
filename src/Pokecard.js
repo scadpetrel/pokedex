@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 // import "./scss/Pokecard.scss";
 import { StyledPokecard, PokeTypeChips, PokeCardContent } from "./PokecardStyles";
 import { cardGradients } from "./helpers/colorVariables";
-import { Box } from "@mui/system";
-
 
 const Pokecard = (props) => {
   const [hover, setHover] = useState(1);

@@ -3,7 +3,6 @@ import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
 import NotFound from './NotFound'
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { useState } from "react";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme, } from "@mui/material/styles";
 import Raleway from './fonts/Raleway-VariableFont_wght.ttf'
@@ -53,7 +52,7 @@ function App() {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/"  replace element={<Navigate to="/generation/1" />} />
-              <Route exact path="/generation/:id" element={<Pokedex />} />
+              <Route exact path="generation/:id" element={<Pokedex key={window.location.pathname}/>} />
               <Route exact path="pokemon/:pokemonId" element={<Pokemon />} />
             </Routes>
           </BrowserRouter>

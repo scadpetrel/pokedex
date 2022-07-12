@@ -14,7 +14,7 @@ const Pokedex = (props) => {
   const history = useNavigate();
   const [pokemon, setPokemon] = useState([]); // All Pokemon data
   const [filter, setFilter] = useState("");  // Search field
-  const [generation, setGeneration] = useState(id); // Current generation number. Was used for switch statement. Could be regular variable now.
+  const [generation] = useState(id); // Current generation number. Was used for switch statement. Could be regular variable now.
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchLabel, setSearchLabel] = useState("");   // Generation name for search
 
@@ -28,28 +28,8 @@ const Pokedex = (props) => {
   }
   // **** fetch all pokemon
   useEffect(() => {
-    getPokemon();
-    console.log("getPokemon");
-  }, []);
 
-  // **** set state to loaded after pokemon state is updated. Slight delay to allow for render
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 800);
-    
-    // window.localStorage.setItem("pokemon", JSON.stringify(pokemon));
-    // console.log("Saving to local storage");
-  }, [pokemon]);
-
-  const pickRandomNumber = () => {
-    console.log("in random");
-    const randNumber = Math.floor(Math.random() * 898) + 1;
-    console.log(randNumber);
-    return randNumber;
-  };
-
-  // **** Generation limit, offset and serach label for select menu. Passed to getPokemon function to fetch a genearation and set search label.
+    // **** Generation limit, offset and serach label for select menu. Passed to getPokemon function to fetch a genearation and set search label.
   const getApiLimitAndOffset = (value) => {
     switch (value) {
       case 1:
@@ -75,36 +55,59 @@ const Pokedex = (props) => {
 
   // **** Main fetch function. Get list from /pokemon using limit and offset. Get details for fetched list by name. Create object and set pokemon state.
   const Query = getApiLimitAndOffset(Number(generation));
-  const getPokemon = async () => {
-    try {
-      // get list of pokemon names
-      let res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${Query.limit}&offset=${Query.offset}`);
-      let data = await res.data.results;      // get additional details from new endpoint
-      data.forEach(async (p, idx) => {
-        let details = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${p.name}`
-        );
-        let pkmn = details.data;
-        setSearchLabel(Query.searchLabel);
-        setPokemon((curState) => [
-          ...curState,
-          {
-            id: pkmn.id,
-            name: pkmn.name,
-            // sprites: pkmn.sprites,
-            types: pkmn.types,
-            img: pkmn.sprites.other.dream_world.front_default,
-            imgAlt: pkmn.sprites.other.home.front_default,
-            // type: pkmn.types[0].type.name,
-            // type2: pkmn.types[1].type.name,
-          },
-        ]);
-      });
-     
-    } catch (err) {
-      console.error(err);
-    }
+    const getPokemon = async () => {
+      try {
+        // get list of pokemon names
+        let res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${Query.limit}&offset=${Query.offset}`);
+        let data = await res.data.results;      // get additional details from new endpoint
+        data.forEach(async (p, idx) => {
+          let details = await axios.get(
+            `https://pokeapi.co/api/v2/pokemon/${p.name}`
+          );
+          let pkmn = details.data;
+          setSearchLabel(Query.searchLabel);
+          setPokemon((curState) => [
+            ...curState,
+            {
+              id: pkmn.id,
+              name: pkmn.name,
+              // sprites: pkmn.sprites,
+              types: pkmn.types,
+              img: pkmn.sprites.other.dream_world.front_default,
+              imgAlt: pkmn.sprites.other.home.front_default,
+              // type: pkmn.types[0].type.name,
+              // type2: pkmn.types[1].type.name,
+            },
+          ]);
+        });
+       
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
+    getPokemon();
+    console.log("getPokemon");
+  }, [generation]);
+
+  // **** set state to loaded after pokemon state is updated. Slight delay to allow for render
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 800);
+    
+    // window.localStorage.setItem("pokemon", JSON.stringify(pokemon));
+    // console.log("Saving to local storage");
+  }, [pokemon]);
+
+  const pickRandomNumber = () => {
+    console.log("in random");
+    const randNumber = Math.floor(Math.random() * 898) + 1;
+    console.log(randNumber);
+    return randNumber;
   };
+
+  
 
   return (
     <div className="DexContainer" >

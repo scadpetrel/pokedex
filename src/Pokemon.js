@@ -42,6 +42,7 @@ import { LoadingContainer } from "./PokedexStyles";
 
 const Pokemon = (props) => {
   const { pokemonId } = useParams();
+  const [id, setId] = useState(pokemonId);
   const [axiosPoke, setAxiosPoke] = useState([]);
   const [pokemonSpecies, setPokemonSpecies] = useState([]);
   const [evolution, setEvolution] = useState([]);
@@ -83,7 +84,12 @@ const Pokemon = (props) => {
       }
     };
     axiosPokemon();
-  }, []);
+  }, [id]);
+
+  useEffect(() => {
+    console.log("pokemon ID changed")
+    setId(pokemonId);
+  }, [pokemonId]);
 
   const getSpecies = async () => {
     let pullDescription = [];
@@ -146,12 +152,12 @@ const Pokemon = (props) => {
   // Navigation for next and previous links
   function handlePrev() {
     history(`/pokemon/${axiosPoke.id - 1}`);
-    history(0);
+    // history(0);
   }
 
   function handleNext() {
     history(`/pokemon/${axiosPoke.id + 1}`);
-    history(0);
+    // history(0);
   }
 
   return (

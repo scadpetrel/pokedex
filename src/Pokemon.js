@@ -1,5 +1,5 @@
 // ==== React and Node imports
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 // ==== MUI imports
@@ -57,7 +57,7 @@ const Pokemon = (props) => {
   let ftIn = convertFeetInches(axiosPoke.height);
 
   // Evolution variable to pass from get species info to evolution info
-  let api_evolution = "";
+  let api_evolution = useRef();
 
   // useNavigate
   const history = useNavigate();
@@ -71,7 +71,7 @@ const Pokemon = (props) => {
     const axiosPokemon = async () => {
       try {
         await axios
-          .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+          .get(`https://pokeapi.co/api/v2/pokemon/${id}`)
           .then(function (response) {
             const { data } = response;
             console.log(data.name);
@@ -84,6 +84,65 @@ const Pokemon = (props) => {
       }
     };
     axiosPokemon();
+    const getSpecies = async () => {
+      let pullDescription = [];
+      await axios
+        .get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
+        .then(function (response) {
+          const { data } = response;
+          setPokemonSpecies(data);
+          api_evolution.current = data.evolution_chain.url;
+          // filter out english blue flavor text and set to state
+          pullDescription = data.flavor_text_entries.filter(
+            (text) => text.language.name === "en"
+          );
+          // set first english text available
+          setDescription(pullDescription[0].flavor_text);
+          // Start next get functions
+        });
+      getEvolution();
+      getNextPrevNames();
+    };
+  
+    // ==== Get evolution chain names
+    const getEvolution = async () => {
+      await axios.get(api_evolution.current).then(function (response) {
+        const { data } = response;
+        let evoChain = [];
+        let evoData = data.chain;
+  
+        do {
+          let evoDetails = evoData["evolution_details"][0];
+  
+          evoChain.push({
+            species_name: evoData.species.name,
+            min_level: !evoDetails ? 1 : evoDetails.min_level,
+            trigger_name: !evoDetails ? null : evoDetails.trigger.name,
+            item: !evoDetails ? null : evoDetails.item,
+          });
+  
+          evoData = evoData["evolves_to"][0];
+        } while (!!evoData && evoData.hasOwnProperty("evolves_to"));
+        setEvolution(evoChain);
+      });
+      setIsLoaded(true);
+    };
+  
+    const getNextPrevNames = async () => {
+      const prevNum = Number(id) - 1;
+      const nextNum = Number(id) + 1;
+      let prevRes = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${prevNum}`
+      );
+      let nextRes = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${nextNum}`
+      );
+      // console.log("prev next");
+      // console.log(prevRes.data.name);
+      setNextPrev({ previous: prevRes.data.name, next: nextRes.data.name });
+    };
+    // for history to 404 page
+    //eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {
@@ -91,63 +150,7 @@ const Pokemon = (props) => {
     setId(pokemonId);
   }, [pokemonId]);
 
-  const getSpecies = async () => {
-    let pullDescription = [];
-    await axios
-      .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`)
-      .then(function (response) {
-        const { data } = response;
-        setPokemonSpecies(data);
-        api_evolution = data.evolution_chain.url;
-        // filter out english blue flavor text and set to state
-        pullDescription = data.flavor_text_entries.filter(
-          (text) => text.language.name === "en"
-        );
-        // set first english text available
-        setDescription(pullDescription[0].flavor_text);
-        // Start next get functions
-      });
-    getEvolution();
-    getNextPrevNames();
-  };
-
-  // ==== Get evolution chain names
-  const getEvolution = async () => {
-    await axios.get(api_evolution).then(function (response) {
-      const { data } = response;
-      let evoChain = [];
-      let evoData = data.chain;
-
-      do {
-        let evoDetails = evoData["evolution_details"][0];
-
-        evoChain.push({
-          species_name: evoData.species.name,
-          min_level: !evoDetails ? 1 : evoDetails.min_level,
-          trigger_name: !evoDetails ? null : evoDetails.trigger.name,
-          item: !evoDetails ? null : evoDetails.item,
-        });
-
-        evoData = evoData["evolves_to"][0];
-      } while (!!evoData && evoData.hasOwnProperty("evolves_to"));
-      setEvolution(evoChain);
-    });
-    setIsLoaded(true);
-  };
-
-  const getNextPrevNames = async () => {
-    const prevNum = Number(pokemonId) - 1;
-    const nextNum = Number(pokemonId) + 1;
-    let prevRes = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${prevNum}`
-    );
-    let nextRes = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${nextNum}`
-    );
-    // console.log("prev next");
-    // console.log(prevRes.data.name);
-    setNextPrev({ previous: prevRes.data.name, next: nextRes.data.name });
-  };
+  
 
   // Navigation for next and previous links
   function handlePrev() {

@@ -1,15 +1,15 @@
 // ==== React and Node imports
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // ==== MUI imports
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 // import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import { useTheme, styled } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
+// import { useTheme } from "@mui/material/styles";
+// import useMediaQuery from "@mui/material/useMediaQuery";
 import { Typography } from "@mui/material";
 // ==== Component imports
 import PokemonNav from "./components/PokemnNav";
@@ -63,8 +63,8 @@ const Pokemon = (props) => {
   const history = useNavigate();
 
   // ==== Theme and layout variables
-  const theme = useTheme();
-  const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
+  // const theme = useTheme();
+  // const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
   // const prvNextWidth = lgBreak ? "66%" : "100%";
   
   useEffect(() => {

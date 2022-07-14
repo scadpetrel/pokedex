@@ -21,7 +21,7 @@ const Evolution = (props) => {
   // Fetch evolution data from API
   useEffect(() => {
     const getEvolutionDetails = async () => {
-      console.log("getEvolutionDetails");
+      // console.log("getEvolutionDetails");
       let evoData = [];
       axios
         .all(

@@ -60,7 +60,7 @@ const Pokemon = (props) => {
   let api_evolution = useRef();
 
   // useNavigate
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   // ==== Theme and layout variables
   // const theme = useTheme();
@@ -68,19 +68,21 @@ const Pokemon = (props) => {
   // const prvNextWidth = lgBreak ? "66%" : "100%";
   
   useEffect(() => {
+    if (Number(id) > 898 || Number(id) < 1) {
+      navigate('/404-pokemon')
+    }
     const axiosPokemon = async () => {
       try {
         await axios
           .get(`https://pokeapi.co/api/v2/pokemon/${id}`)
           .then(function (response) {
             const { data } = response;
-            console.log(data.name);
             setAxiosPoke(data);
           });
         getSpecies();
       } catch (err) {
         console.log("loading error", err);
-        history("/404-pokemon");
+        navigate("/404-pokemon");
       }
     };
     axiosPokemon();
@@ -129,24 +131,44 @@ const Pokemon = (props) => {
     };
   
     const getNextPrevNames = async () => {
+      let pokemonNumber = Number(id);
       const prevNum = Number(id) - 1;
       const nextNum = Number(id) + 1;
-      let prevRes = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${prevNum}`
-      );
-      let nextRes = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${nextNum}`
-      );
-      // console.log("prev next");
-      // console.log(prevRes.data.name);
-      setNextPrev({ previous: prevRes.data.name, next: nextRes.data.name });
+      let prevRes = '';
+      let nextRes = '';
+
+      async function getPrevious(){
+        return prevRes = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${prevNum}`
+        );
+      }
+      async function getNext(){
+        return nextRes = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${nextNum}`
+        );
+      }
+      // do not fetch for previous on 1 and do not fetch next on 898
+      switch (pokemonNumber) {
+        case 1:
+          await getNext()
+          setNextPrev({ previous: null, next: nextRes.data.name });
+          break;
+        case 898:
+          await getPrevious()
+          setNextPrev({ previous: prevRes.data.name, next: null });
+          break;
+        default:
+          await getNext()
+          await getPrevious()
+          setNextPrev({ previous: prevRes.data.name, next: nextRes.data.name });
+      }
     };
-    // for history to 404 page
+    // for navigate to 404 page
     //eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {
-    console.log("pokemon ID changed")
+    // console.log("pokemon ID changed")
     setId(pokemonId);
   }, [pokemonId]);
 
@@ -154,13 +176,13 @@ const Pokemon = (props) => {
 
   // Navigation for next and previous links
   function handlePrev() {
-    history(`/pokemon/${axiosPoke.id - 1}`);
-    // history(0);
+    navigate(`/pokemon/${axiosPoke.id - 1}`);
+    // navigate(0);
   }
 
   function handleNext() {
-    history(`/pokemon/${axiosPoke.id + 1}`);
-    // history(0);
+    navigate(`/pokemon/${axiosPoke.id + 1}`);
+    // navigate(0);
   }
 
   return (

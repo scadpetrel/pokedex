@@ -9,7 +9,7 @@ import { HomeLink, PokemonTitleHeading } from "./PokemnNavStyles";
 const PokemonNav = (props) => {
   const history = useNavigate();
   const homePath = localStorage.getItem('pokedexPath')
-  console.log(homePath)
+  // console.log("incomming path:" homePath)
 
   function handleHome() {
     history(`${homePath}`)

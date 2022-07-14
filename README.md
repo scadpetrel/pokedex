@@ -31,8 +31,8 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
   - [x] refactor pokecard css into js
 - [x] refactor loading component css into js
 - [ ] move pokedex helper functions to /helpers. create apiHelper.js and move helpers.js into the subfolder.
-- [ ] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
-- [ ] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
+- [x] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
+- [x] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
 - [ ] display error if api fetch fails
 - [ ] convert common styles to variables
 - [ ] pokedexNav - switch from event listener to const theme = useTheme();

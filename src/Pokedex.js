@@ -63,7 +63,7 @@ const Pokedex = (props) => {
     const getPokemon = async () => {
       try {
         // get list of pokemon names
-        let res = await axios.get(`https://pokeap.co/api/v2/pokemon?limit=${Query.limit}&offset=${Query.offset}`);
+        let res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${Query.limit}&offset=${Query.offset}`);
         let data = await res.data.results;      // get additional details from new endpoint
         data.forEach(async (p, idx) => {
           let details = await axios.get(
@@ -88,16 +88,24 @@ const Pokedex = (props) => {
        
       } catch (err) {
         console.error(err);
-        notificationCtx.displayMessage({
-          title: 'Error!',
-          message: err.message || 'Something went wrong!',
-          status: 'error',
-        });
-        history('/error');
+        
       }
     };
-  
-    getPokemon();
+
+    const currentID = Number(id);
+    if (currentID > 0 && currentID < 10) {
+      console.log("valid generation")
+      getPokemon();
+    }else {
+      console.log("bad generation");
+      notificationCtx.displayMessage({
+        title: 'Error.',
+        message: 'Invalid generation number',
+        status: 'error',
+      });
+      history('/error');
+    }
+    
     console.log("getPokemon");
   }, [generation]);
 
@@ -129,6 +137,8 @@ const Pokedex = (props) => {
 
   return (
     <div className="DexContainer" >
+      {isLoaded ? (
+        <>
       <PokedexNav
         generation={generation}
         searchLabel={searchLabel}
@@ -136,7 +146,7 @@ const Pokedex = (props) => {
         handleGetRandomPokemon={handleGetRandomPokemon}
         setIsLoaded={setIsLoaded}
       />
-      {isLoaded ? (
+      
         <PokedexGrid
           container
           spacing={3}
@@ -161,6 +171,7 @@ const Pokedex = (props) => {
                 )
             )}
         </PokedexGrid>
+        </>
       ) : (
           <LoadingContainer>
             <Loading />

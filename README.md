@@ -29,6 +29,7 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [x] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
 - [ ] display error if api fetch fails, currently get shown nothing found
   - [ ] use react context to centralize error state
+  - [x] error for invalid generation
   - [ ] non valid pkmn id should be no pokemon
   - [ ] api connection error
   - [ ] invalid api return

@@ -17,12 +17,6 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 ## Roadmap
 
 ### Todo
-**Responsive Fixes**
-- [x] Fix responsive styles on small phones
-  - [x] Pokedex - refactor generation select into separate component
-  - [x] Pokedex - header bar too tall 
-  - [x] Pokedex - random button does not fit
-  - [x] Pokemon - Data fields need more horizontal spacing. ex. between height and weight
 
 **Optimizations and Refinements**
 - [x] refactor styles into MUI styled
@@ -33,7 +27,12 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [ ] move pokedex helper functions to /helpers. create apiHelper.js and move helpers.js into the subfolder.
 - [x] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
 - [x] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
-- [ ] display error if api fetch fails
+- [ ] display error if api fetch fails, currently get shown nothing found
+  - [ ] use react context to centralize error state
+  - [ ] non valid pkmn id should be no pokemon
+  - [ ] api connection error
+  - [ ] invalid api return
+- [ ] back button is null if navigating directly to a pokemon page  
 - [ ] convert common styles to variables
 - [ ] pokedexNav - switch from event listener to const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));

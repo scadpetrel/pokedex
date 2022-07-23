@@ -1,15 +1,19 @@
-import "./scss/App.scss";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+
 import Pokedex from "./Pokedex";
 import Pokemon from "./Pokemon";
-import NotFound from './NotFound'
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import NotFound from "./NotFound";
+import NotificationContextProvider from "./context/notificationContext";
+
 import Container from "@mui/material/Container";
-import { ThemeProvider, createTheme, } from "@mui/material/styles";
-import Raleway from './fonts/Raleway-VariableFont_wght.ttf'
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import Raleway from "./fonts/Raleway-VariableFont_wght.ttf";
+import "./scss/App.scss";
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Raleway, Arial',
+    fontFamily: "Raleway, Arial",
   },
   components: {
     MuiCssBaseline: {
@@ -38,27 +42,41 @@ const theme = createTheme({
     },
     pokemonRed: {
       main: "#ac0031",
-    }
+    },
   },
 });
 
 function App() {
-
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <Container maxWidth="false" sx={{ maxWidth: 2000}}>
-          <BrowserRouter forceRefresh >
-            <Routes>
-              <Route path="*" element={<NotFound />} />
-              <Route exact path="/"  replace element={<Navigate to="/generation/1" />} />
-              <Route exact path="generation/:id" element={<Pokedex key={window.location.pathname}/>} />
-              <Route exact path="pokemon/:pokemonId" element={<Pokemon />} />
-            </Routes>
-          </BrowserRouter>
-        </Container>
-      </ThemeProvider>
-    </div>
+    
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <Container maxWidth="false" sx={{ maxWidth: 2000 }}>
+            <BrowserRouter forceRefresh>
+            <NotificationContextProvider>
+              <Routes>
+               
+                <Route path="*" element={<NotFound />} />
+                <Route
+                  exact
+                  path="/"
+                  replace
+                  element={<Navigate to="/generation/1" />}
+                />
+                <Route
+                  exact
+                  path="generation/:id"
+                  element={<Pokedex key={window.location.pathname} />}
+                />
+                <Route exact path="pokemon/:pokemonId" element={<Pokemon />} />
+              
+              </Routes>
+              </NotificationContextProvider>
+            </BrowserRouter>
+          </Container>
+        </ThemeProvider>
+      </div>
+    
   );
 }
 

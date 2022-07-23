@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 // Material UI imports
@@ -9,6 +9,8 @@ import Pokecard from "./Pokecard";
 import Loading from "./components/Loading";
 import { PokedexGrid, PokedexItemWrapperGrid, LoadingContainer } from "./PokedexStyles";
 
+import { NotificationContext } from "./context/notificationContext";
+
 const Pokedex = (props) => {
   const { id } = useParams();
   const history = useNavigate();
@@ -17,6 +19,8 @@ const Pokedex = (props) => {
   const [generation, setGeneration] = useState(id); // Current generation number. Was used for switch statement. Could be regular variable now.
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchLabel, setSearchLabel] = useState("");   // Generation name for search
+
+   const notificationCtx = useContext(NotificationContext);
 
   const handleSearchChange = (evt) => {
     setFilter(evt.target.value.toLowerCase());
@@ -29,6 +33,7 @@ const Pokedex = (props) => {
   // **** fetch all pokemon
   useEffect(() => {
     setPokemon([]);
+    
     // **** Generation limit, offset and serach label for select menu. Passed to getPokemon function to fetch a genearation and set search label.
   const getApiLimitAndOffset = (value) => {
     switch (value) {
@@ -58,7 +63,7 @@ const Pokedex = (props) => {
     const getPokemon = async () => {
       try {
         // get list of pokemon names
-        let res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${Query.limit}&offset=${Query.offset}`);
+        let res = await axios.get(`https://pokeap.co/api/v2/pokemon?limit=${Query.limit}&offset=${Query.offset}`);
         let data = await res.data.results;      // get additional details from new endpoint
         data.forEach(async (p, idx) => {
           let details = await axios.get(
@@ -83,6 +88,12 @@ const Pokedex = (props) => {
        
       } catch (err) {
         console.error(err);
+        notificationCtx.displayMessage({
+          title: 'Error!',
+          message: err.message || 'Something went wrong!',
+          status: 'error',
+        });
+        history('/error');
       }
     };
   

@@ -88,6 +88,13 @@ const Pokedex = (props) => {
        
       } catch (err) {
         console.error(err);
+        notificationCtx.displayMessage({
+          title: 'Connection Error',
+          message: err.message,
+          status: 'error',
+          requested: currentID
+        });
+        history('/error');
         
       }
     };
@@ -99,9 +106,10 @@ const Pokedex = (props) => {
     }else {
       console.log("bad generation");
       notificationCtx.displayMessage({
-        title: 'Error.',
-        message: 'Invalid generation number',
+        title: 'Invalid generation.',
+        message: `${currentID} is not a valid generation number. Please choose a number between 1 and 8.`,
         status: 'error',
+        requested: currentID
       });
       history('/error');
     }

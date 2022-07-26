@@ -82,7 +82,7 @@ const Pokemon = (props) => {
         getSpecies();
       } catch (err) {
         console.log("loading error", err);
-        navigate("/404-pokemon");
+        navigate("/error");
       }
     };
     axiosPokemon();

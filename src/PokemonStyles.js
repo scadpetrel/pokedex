@@ -22,9 +22,10 @@ export const PokemonPageContainer = styled(Box)(({ theme }) => ({
   },
   // base styles for data containers
   "& .PokemonInfoBox": {
-    border: "1.5px solid #4eba94",
-    borderRadius: "4px",
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    border: "5px solid #4eba94",
+    borderRadius: "5px",
+    backgroundColor: "#f6fffe",
+    // backgroundColor: "rgba(255, 255, 255, 0.8)",
   },
   // margin={0}
   // marginTop={0}

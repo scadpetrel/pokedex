@@ -28,11 +28,12 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 - [x] do not ask for previous pokemon name on bulbasarur (0). currently causing axios 404.
 - [x] do not ask for next pokemon name on calyrex (898). currently causing axios 404.
 - [ ] display error if api fetch fails, currently get shown nothing found
-  - [ ] use react context to centralize error state
+  - [x] use react context to centralize error state
   - [x] error for invalid generation
-  - [ ] non valid pkmn id should be no pokemon
-  - [ ] api connection error
+  - [x] non valid pkmn id should be no pokemon
+  - [x] api connection error
   - [ ] invalid api return
+- [ ] improve error page display
 - [ ] back button is null if navigating directly to a pokemon page  
 - [ ] convert common styles to variables
 - [ ] pokedexNav - switch from event listener to const theme = useTheme();
@@ -45,6 +46,7 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
 **Style Tweaks**
 - [x] add padding under right column in pokemon view
 - [x] create hover state for return to pokedex page from pokemon detail(header)
+- [ ] style and size modal for generation select
 
 **Feature Adddition**
 - [x] Add loading state for generation filter

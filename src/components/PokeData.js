@@ -20,7 +20,7 @@ const PokeData = ({category, meter, ftIn, weight, pounds, types, abilities}) => 
               Category
             </Typography>
             <Typography variant="subtitle1">
-              <Chip label={category} variant="outlined" />
+              <Chip label={category} variant="outlined" style={{backgroundColor: "white"}} />
             </Typography>
           </Grid>
           <Grid container className="heightWeight">
@@ -75,6 +75,7 @@ const PokeData = ({category, meter, ftIn, weight, pounds, types, abilities}) => 
                       key={ability.ability.name}
                       label={ability.ability.name}
                       variant="outlined"
+                      style={{backgroundColor: "white"}}
                     />
                   </span>
                 ))}

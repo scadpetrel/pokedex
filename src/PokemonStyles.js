@@ -94,7 +94,7 @@ export const PokemonImage = styled("div")(({ theme }) => ({
   alignItems: "center",
   width: "auto",
   borderRadius: "10px",
-  border: "1.5px solid #4eba94",
+  border: "5px solid #4eba94",
   padding: "35px",
   "& .imgPrimary": {
     height: "75%",

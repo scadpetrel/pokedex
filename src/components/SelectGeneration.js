@@ -82,11 +82,11 @@ export default function SelectGeneration({
         <ArrowDropDownIcon />
       </GenerationSelectButton>
 
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Select a Generation</DialogTitle>
-        <DialogContent>
-          <Box component="form">
-            <FormControl>
+      <Dialog open={open} onClose={handleClose} >
+        <DialogTitle textAlign="center">Select a Generation</DialogTitle>
+        <DialogContent style={{minWidth: "250px"}}>
+          <Box component="form" textAlign="center" >
+            <FormControl style={{width: "80%"}}>
               {/* <InputLabel htmlFor="generation-select">Generation</InputLabel> */}
               <Select
                 labelId="select-pokemon-generation"
@@ -99,7 +99,7 @@ export default function SelectGeneration({
                 color="secondary"
               >
                 {generationNames.map((item) => (
-                  <MenuItem key={item.value} value={item.value}>
+                  <MenuItem key={item.value} value={item.value} style={{justifyContent: "center"}}>
                     {item.full}
                   </MenuItem>
                 ))}

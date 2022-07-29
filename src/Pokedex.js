@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-// Material UI imports
 // Compontent and style imports
 import PokedexNav from "./components/PokedexNav";
 import { changeToTitleCase } from "./helper.js";
 import Pokecard from "./Pokecard";
 import Loading from "./components/Loading";
 import { PokedexGrid, PokedexItemWrapperGrid, LoadingContainer } from "./PokedexStyles";
-
 import { NotificationContext } from "./context/notificationContext";
 
 const Pokedex = (props) => {
@@ -20,7 +18,7 @@ const Pokedex = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchLabel, setSearchLabel] = useState("");   // Generation name for search
 
-   const notificationCtx = useContext(NotificationContext);
+  const notificationCtx = useContext(NotificationContext);
 
   const handleSearchChange = (evt) => {
     setFilter(evt.target.value.toLowerCase());

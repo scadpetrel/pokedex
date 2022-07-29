@@ -34,7 +34,7 @@ Visual elements built with MUI and Emotion styled components. API data fetch usi
   - [x] api connection error
   - [ ] invalid api return
 - [ ] improve error page display
-- [ ] back button is null if navigating directly to a pokemon page  
+- [x] back button is null if navigating directly to a pokemon page  
 - [ ] convert common styles to variables
 - [ ] pokedexNav - switch from event listener to const theme = useTheme();
   const lgBreak = useMediaQuery(theme.breakpoints.only("md"));
